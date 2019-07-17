@@ -1,0 +1,121 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SplashScreenActivity">
+
+    <!--    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="Aga Khan LOGO"
+                android:paddingTop="72dp"
+                android:src="@drawable/agakhan" />
+
+            <TextView
+                android:id="@+id/fullscreen_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="1dp"
+                android:gravity="center_horizontal"
+
+                android:keepScreenOn="true"
+                android:text="TOIC – Typhoid outbreak investigation and control"
+                android:textColor="@color/colorAccent"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:id="@+id/fullscreen_content_controls"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@color/black_overlay"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <Button
+                    android:id="@+id/dummy_button"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dummy Button" />
+
+            </LinearLayout>
+        </FrameLayout>-->
+
+    <View
+        android:id="@+id/splash_ball"
+        android:layout_width="@dimen/splash_ball_size"
+        android:layout_height="@dimen/splash_ball_size"
+        android:layout_centerInParent="true"
+        android:background="@drawable/ball"
+        android:transformPivotX="@dimen/splash_ball_size_half"
+        android:transformPivotY="@dimen/splash_ball_size" />
+
+    <RelativeLayout
+        android:id="@+id/house"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/splash_post_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_grad1" />
+
+        <View
+            android:id="@+id/splash_next_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/splash_next_button_height"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/splash_txt_appname"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/splash_next_button_height"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/splash_next_text_size"
+            android:textStyle="normal" />
+
+        <RelativeLayout
+            android:id="@+id/splash_scroll_view_house"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:elevation="4dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/agakhanlogo1" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

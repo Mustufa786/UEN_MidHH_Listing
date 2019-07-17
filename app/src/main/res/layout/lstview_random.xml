@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="145dp"
+    android:background="@drawable/background_border"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/checkSelected"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="08"
+        android:enabled="false" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="2dp"
+        android:layout_weight="15"
+        android:gravity="center|start"
+        android:src="@drawable/home" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginRight="@dimen/_1sdp"
+        android:layout_weight="90"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_weight="50">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtcluster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="CLUSTER CODE:"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/clusterCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txtcluster"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:gravity="center|start"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@+id/rndCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="1dp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:text="aa"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/resCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="1dp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:text="aa"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/childCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center|start"
+                android:paddingBottom="@dimen/_1sdp"
+                android:text="aa"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
