@@ -87,7 +87,7 @@ public class AddChildActivity extends Activity {
         MainApp.lc.setID(String.valueOf(updcount));
 
         if (updcount != 0) {
-            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
             MainApp.lc.setHhadd(null);
             MainApp.lc.setHh13(null);
             MainApp.lc.setHh12(null);
@@ -106,7 +106,7 @@ public class AddChildActivity extends Activity {
         MainApp.lc.setHhadd(icName.getText().toString());
         MainApp.lc.setHh13(icAgeD.getText().toString());
         MainApp.lc.setHh12(icAgeM.getText().toString());
-        Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
+
         Log.d(TAG, "SaveDraft: Structure " + MainApp.lc.getHh03());
     }
 
