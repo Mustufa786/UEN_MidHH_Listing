@@ -65,6 +65,4 @@ dependencies {
     implementation 'com.github.AliAzaz:Edittext-Library:1.0.4'
     //SDP
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
-
-    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 }
