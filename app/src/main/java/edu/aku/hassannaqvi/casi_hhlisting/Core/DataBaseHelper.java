@@ -120,7 +120,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             SingleVertices.COLUMN_POLY_LANG + " TEXT, " +
             SingleVertices.COLUMN_POLY_SEQ + " TEXT " +
             ");";
-    final String SQL_COUNT_LISTINGS = "SELECT count(*) " + ListingEntry.TABLE_NAME;
+    final String SQL_COUNT_LISTINGS = "SELECT count(*) as ttlisting from " + ListingEntry.TABLE_NAME;
     final String SQL_CREATE_VERSIONAPP = "CREATE TABLE " + VersionAppTable.TABLE_NAME + " (" +
             VersionAppTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             VersionAppTable.COLUMN_VERSION_CODE + " TEXT, " +
@@ -162,7 +162,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public int getListingCount() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(SQL_COUNT_LISTINGS, null);
-        int count = cursor.getCount();
+        int count = 0;
+
+        while (cursor.moveToNext()) {
+            count = cursor.getInt(0);
+        }
+
         cursor.close();
         return count;
     }

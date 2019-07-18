@@ -499,57 +499,18 @@ public class MainActivity extends MenuActivity {
     }
 
     public void openForm(View view) {
-
-//        if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null) {
         NextSetupActivity();
-       /* } else {
-
-            builder = new AlertDialog.Builder(MainActivity.this);
-            ImageView img = new ImageView(getApplicationContext());
-            img.setImageResource(R.drawable.tagimg);
-            img.setPadding(0, 15, 0, 15);
-            builder.setCustomTitle(img);
-
-            final EditText input = new EditText(MainActivity.this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    m_Text = input.getText().toString();
-                    if (!m_Text.equals("")) {
-                        editor.putString("tagName", m_Text);
-                        editor.commit();
-
-                        NextSetupActivity();
-                    }
-                }
-            });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            builder.show();
-        }*/
     }
 
     public void NextSetupActivity() {
 
         if (flag) {
-            //if (mN01.getSelectedItemPosition() != 0) {
             if (MainApp.PSUExist(MainApp.hh02txt)) {
                 Toast.makeText(MainActivity.this, "PSU data exist!", Toast.LENGTH_LONG).show();
                 alertPSU();
             } else {
                 startActivity(new Intent(this, SetupActivity.class));
             }
-            /*} else {
-                Toast.makeText(this, "Please select Team from dropdown!", Toast.LENGTH_SHORT).show();
-            }*/
         } else {
             Toast.makeText(this, "Please Click on CHECK button!", Toast.LENGTH_SHORT).show();
         }

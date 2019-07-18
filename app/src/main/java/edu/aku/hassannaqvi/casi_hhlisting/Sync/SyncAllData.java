@@ -46,7 +46,6 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
         this.contractClass = contractClass;
         this.url = url;
         this.dbData = dbData;
-        //this.syncStatus = (TextView) syncStatus;
         TAG = "Get" + syncClass;
     }
 
@@ -56,8 +55,8 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
         pd = new ProgressDialog(mContext);
         pd.setTitle("Syncing " + syncClass);
         pd.setMessage("Getting connected to server...");
+        pd.setCancelable(false);
         pd.show();
-        //syncStatus.setText(syncStatus.getText() + "\r\nSyncing " + syncClass);
     }
 
 
@@ -198,6 +197,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
 
             pd.setMessage(syncClass + " synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
             pd.setTitle("Done uploading +" + syncClass + " data");
+            pd.setCancelable(true);
             pd.show();
             //syncStatus.setText(syncStatus.getText() + "\r\nDone uploading +" + syncClass + " data");
 
@@ -207,6 +207,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
 
             pd.setMessage(result);
             pd.setTitle(syncClass + " Sync Failed");
+            pd.setCancelable(true);
             pd.show();
             //syncStatus.setText(syncStatus.getText() + "\r\n" + syncClass + " Sync Failed");
         } catch (IllegalAccessException e) {
