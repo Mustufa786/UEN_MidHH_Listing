@@ -4,8 +4,8 @@
     <!--<solid android:color="@color/splash_purple"/>-->
     <gradient
         android:angle="90"
-        android:endColor="#880E4F"
+        android:endColor="@color/colorPrimary"
         android:gradientRadius="460"
-        android:startColor="@color/colorAccent"
+        android:startColor="@color/colorPrimaryDark"
         android:type="radial" />
 </shape>

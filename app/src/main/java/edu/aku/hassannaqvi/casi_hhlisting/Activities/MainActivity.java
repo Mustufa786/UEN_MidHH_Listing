@@ -101,8 +101,6 @@ public class MainActivity extends MenuActivity {
     TextView na101c;
     @BindView(R.id.na101d)
     TextView na101d;
-    @BindView(R.id.na101e)
-    TextView na101e;
     @BindView(R.id.fldGrpna101)
     LinearLayout fldGrpna101;
     @BindView(R.id.adminBlock)
@@ -181,6 +179,7 @@ public class MainActivity extends MenuActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        this.setTitle("Household Linelisting");
 
         if (MainApp.admin) {
             adminBlock.setVisibility(View.VISIBLE);
@@ -234,18 +233,11 @@ public class MainActivity extends MenuActivity {
             }
         });
 
-     /*   if (sharedPref.getString("tagName", null) == "" || sharedPref.getString("tagName", null) == null) {
-            builder.show();
-        }*/
-        /*Tag End*/
-
-
         // database handler
         db = new DataBaseHelper(getApplicationContext());
 
         msgText.setText(db.getListingCount() + " records found in Listings table.");
         spinnersFill();
-
 
 //        Version Checking
         versionAppContract = db.getVersionApp();
@@ -406,20 +398,6 @@ public class MainActivity extends MenuActivity {
 
     }
 
-    public void SwitchServer(View v) {
-        if (((ToggleButton) v).isChecked()) {
-            // handle toggle on
-            // handle Server 2
-            MainApp._HOST_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/nns/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/nns/app/linelisting/";
-        } else {
-            // handle toggle off
-            // handle Server 1
-            MainApp._HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/nns/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/nns/app/linelisting/";
-        }
-    }
-
     public void OpenFormFun() {
 
         if (!txtPSU.getText().toString().isEmpty()) {
@@ -447,7 +425,6 @@ public class MainActivity extends MenuActivity {
                         na101c.setText(selSplit[2].equals("") ? "----" : selSplit[2]);
                         na101d.setText(selSplit[3]);
                         clusterName = selSplit[3];
-                        na101e.setText(enumBlockContract.getEbcode());
 
                         fldGrpna101.setVisibility(View.VISIBLE);
 
@@ -621,31 +598,6 @@ public class MainActivity extends MenuActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
-    private boolean isHostAvailable() {
-
-        if (isNetworkAvailable()) {
-            try {
-                SocketAddress sockaddr = new InetSocketAddress(ipAddress, 3000);
-                // Create an unbound socket
-                Socket sock = new Socket();
-
-                // This method will block no more than timeoutMs.
-                // If the timeout occurs, SocketTimeoutException is thrown.
-                int timeoutMs = 2000;   // 2 seconds
-                sock.connect(sockaddr, timeoutMs);
-                return true;
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Server Not Available for Update", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-        } else {
-            Toast.makeText(getApplicationContext(), "Network not available for Update", Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
     }
 
     @Override
