@@ -54,7 +54,7 @@ public class GetUpdates extends AsyncTask<String, String, String> {
 
         URL url = null;
         try {
-            url = new URL("http://43.245.131.159:8080/nns/app/listing/output.json");
+            url = new URL("http://43.245.131.159:8080/casi/app/listing/output.json");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);

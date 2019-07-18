@@ -31,8 +31,6 @@ public class FamilyListingActivity extends Activity {
 
     public static String TAG = "FamilyListingActivity";
     static Boolean familyFlag = false;
-    @BindView(R.id.txtFamilyListing)
-    TextView txtFamilyListing;
     @BindView(R.id.txtTeamNoWithFam)
     TextView txtTeamNoWithFam;
     @BindView(R.id.hh08)
@@ -82,8 +80,8 @@ public class FamilyListingActivity extends Activity {
         setContentView(R.layout.activity_family_listing);
         ButterKnife.bind(this);
 
-        txtFamilyListing.setText("Household Information");
-        txtTeamNoWithFam.setText("NNS-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
+        this.setTitle("Family Information");
+        txtTeamNoWithFam.setText("CASI-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
 
         setupButtons();
 
@@ -134,7 +132,7 @@ public class FamilyListingActivity extends Activity {
 
                 }
 
-                txtTeamNoWithFam.setText(String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
+                txtTeamNoWithFam.setText("CASI-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
             }
         });
 
@@ -235,7 +233,7 @@ public class FamilyListingActivity extends Activity {
         if (!ValidatorClass.EmptyRadioButton(this, hh10, hh10a, getString(R.string.hh10))) {
             return false;
         }
-        if (!ValidatorClass.EmptyRadioButton(this, hh10, hh10a, hh11, "Adolescents count")) {
+        /*if (!ValidatorClass.EmptyRadioButton(this, hh10, hh10a, hh11, "Adolescents count")) {
             return false;
         }
         if (hh10a.isChecked()) {
@@ -254,7 +252,7 @@ public class FamilyListingActivity extends Activity {
             if (!ValidatorClass.RangeTextBox(this, hh15, 1, 99, getString(R.string.hh14), "for Married Woman")) {
                 return false;
             }
-        }
+        }*/
 
         if (Integer.valueOf(hh16.getText().toString()) < 1) {
             Toast.makeText(this, "Invalid Value!", Toast.LENGTH_SHORT).show();
@@ -266,7 +264,7 @@ public class FamilyListingActivity extends Activity {
         }
 
 
-        if (Integer.valueOf(hh16.getText().toString()) <
+        if (Integer.valueOf(hh16.getText().toString()) <=
                 (Integer.valueOf(hh11.getText().toString().isEmpty() ? "0" : hh11.getText().toString()) +
                         Integer.valueOf(hh15.getText().toString().isEmpty() ? "0" : hh15.getText().toString()))) {
             Toast.makeText(this, "Invalid Count!", Toast.LENGTH_SHORT).show();

@@ -40,7 +40,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -198,13 +197,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         if (((ToggleButton) v).isChecked()) {
             // handle toggle on
             // handle Server 2
-            MainApp._HOST_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/nns/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/nns/app/linelisting/";
+            MainApp._HOST_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/casi/api/";
+            MainApp._UPDATE_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/casi/app/linelisting/";
         } else {
             // handle toggle off
             // handle Server 1
-            MainApp._HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/nns/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/nns/app/linelisting/";
+            MainApp._HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/casi/api/";
+            MainApp._UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/casi/app/linelisting/";
         }
     }
 

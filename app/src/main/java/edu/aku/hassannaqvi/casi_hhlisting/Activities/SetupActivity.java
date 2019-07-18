@@ -94,6 +94,8 @@ public class SetupActivity extends Activity {
         setContentView(R.layout.activity_setup);
         ButterKnife.bind(this);
 
+        this.setTitle("Structure Information");
+
         if (MainApp.userEmail == null) {
             Toast.makeText(this, "USER ERROR1[" + MainApp.userEmail + "]: Please Login Again!", Toast.LENGTH_LONG).show();
             Intent retreat = new Intent(this, LoginActivity.class);
@@ -125,7 +127,7 @@ public class SetupActivity extends Activity {
         MainApp.hh07txt = "1";
 
         //String StructureNumber = "T-" + hh02.getText() + "-" + String.format("%03d", MainApp.hh03txt);
-        String StructureNumber = "NNS-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
+        String StructureNumber = "CASI-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
 
         // removed status for REFUSED and LOCKED
         hh04i.setVisibility(View.GONE);
@@ -265,7 +267,6 @@ public class SetupActivity extends Activity {
         }
 
     }
-
 
     private void SaveDraft() {
 
@@ -410,14 +411,6 @@ public class SetupActivity extends Activity {
         }
 
         if (hh04a.isChecked()) {
-           /* if (hhadd.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Please enter address", Toast.LENGTH_LONG).show();
-                hhadd.setError("Please enter address");
-                Log.i(TAG, "Please enter address");
-                return false;
-            } else {
-                hhadd.setError(null);
-            }*/
 
             if (hh05.isChecked() && hh06.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter number", Toast.LENGTH_LONG).show();

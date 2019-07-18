@@ -37,7 +37,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,9 +44,6 @@ import org.json.JSONException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -141,8 +137,8 @@ public class MainActivity extends MenuActivity {
                         editorDownload.putBoolean("flag", true);
                         editorDownload.commit();
 
-                        Toast.makeText(context, "NNS Linelisting APP downloaded!!", Toast.LENGTH_SHORT).show();
-                        lblAppVersion.setText("NNS Linelisting APP New Version " + newVer + "  Downloaded.");
+                        Toast.makeText(context, "CASI Linelisting APP downloaded!!", Toast.LENGTH_SHORT).show();
+                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Downloaded.");
 
                         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
@@ -253,19 +249,19 @@ public class MainActivity extends MenuActivity {
                 file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
 
                 if (file.exists()) {
-                    lblAppVersion.setText("NNS Linelisting APP New Version " + newVer + "  Downloaded.");
+                    lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Downloaded.");
                     showDialog(newVer, preVer);
                 } else {
                     NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
 
-                        lblAppVersion.setText("NNS Linelisting APP New Version " + newVer + " Downloading..");
+                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + " Downloading..");
                         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                         Uri uri = Uri.parse(MainApp._UPDATE_URL + versionAppContract.getPathname());
                         DownloadManager.Request request = new DownloadManager.Request(uri);
                         request.setDestinationInExternalPublicDir(fileName, versionAppContract.getPathname())
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                                .setTitle("Downloading NNS new App ver." + newVer);
+                                .setTitle("Downloading CASI new App ver." + newVer);
                         refID = downloadManager.enqueue(request);
 
                         editorDownload.putLong("refID", refID);
@@ -273,7 +269,7 @@ public class MainActivity extends MenuActivity {
                         editorDownload.commit();
 
                     } else {
-                        lblAppVersion.setText("NNS Linelisting APP New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
+                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
                     }
                 }
 
@@ -382,7 +378,7 @@ public class MainActivity extends MenuActivity {
     void onCheckPSUClick() {
         //TODO implement
 
-        if (versionAppContract.getVersioncode() != null) {
+        /*if (versionAppContract.getVersioncode() != null) {
             if (MainApp.versionCode < Integer.valueOf(versionAppContract.getVersioncode())) {
                 if (sharedPrefDownload.getBoolean("flag", true) && file.exists()) {
                     showDialog(newVer, preVer);
@@ -394,7 +390,9 @@ public class MainActivity extends MenuActivity {
             }
         } else {
             Toast.makeText(this, "Sync data!!", Toast.LENGTH_SHORT).show();
-        }
+        }*/
+
+        OpenFormFun();
 
     }
 
@@ -658,8 +656,8 @@ public class MainActivity extends MenuActivity {
 
             return new AlertDialog.Builder(getActivity())
                     .setIcon(R.drawable.exclamation)
-                    .setTitle("NNS-2018 Line Listing APP is available!")
-                    .setMessage("NNS Line Listing App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
+                    .setTitle("CASI-2018 Line Listing APP is available!")
+                    .setMessage("CASI Line Listing App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
                     .setPositiveButton("INSTALL!!",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {

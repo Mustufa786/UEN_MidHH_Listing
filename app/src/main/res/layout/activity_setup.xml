@@ -16,16 +16,6 @@
         android:layoutDirection="rtl"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/colorPrimary"
-            android:text="Structure Information"
-            android:textAlignment="center"
-            android:textColor="#efefefef" />
-
         <!--DISTRICT (Name)-->
 
         <LinearLayout
