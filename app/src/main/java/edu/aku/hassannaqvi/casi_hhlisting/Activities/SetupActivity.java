@@ -318,22 +318,6 @@ public class SetupActivity extends Activity {
             case R.id.hh04j:
                 MainApp.lc.setHh04("88");
                 break;
-
-            /*case R.id.hh04c:
-                MainApp.lc.setHh04("3");
-                break;
-            case R.id.hh04d:
-                MainApp.lc.setHh04("4");
-                break;
-            case R.id.hh04e:
-                MainApp.lc.setHh04("5");
-                break;
-            case R.id.hh04f:
-                MainApp.lc.setHh04("6");
-                break;*/
-            /*case R.id.hh04g:
-                MainApp.lc.setHh04("3");
-                break;*/
             default:
                 break;
         }
@@ -343,7 +327,6 @@ public class SetupActivity extends Activity {
         MainApp.lc.setHh06(hh06.getText().toString());
         MainApp.lc.setHh07(MainApp.hh07txt);
         MainApp.lc.setHh09a1(hh04a.isChecked() || hh09a1.isChecked() ? "1" : "2");
-//        MainApp.lc.setHhadd(hhadd.getText().toString());
 
         MainApp.lc.setDeviceID(deviceId);
 

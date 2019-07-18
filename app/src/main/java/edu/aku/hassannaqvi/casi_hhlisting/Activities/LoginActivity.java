@@ -169,12 +169,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 attemptLogin();
+
             }
         });
 
 //        DB backup
-
         dbBackup();
     }
 
@@ -452,8 +453,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -483,10 +484,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
 
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    showProgress(true);
+                    mAuthTask = new UserLoginTask(email, password);
+                    mAuthTask.execute((Void) null);
+
+                }
+            }, 800);
 
         }
     }

@@ -157,34 +157,6 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/hh04j" />
 
-            <!-- <RadioButton
-                 android:id="@+id/hh04d"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="4dp"
-                 android:text="@string/hh04d" />
-
-             <RadioButton
-                 android:id="@+id/hh04e"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="4dp"
-                 android:text="@string/hh04e" />
-
-             <RadioButton
-                 android:id="@+id/hh04f"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="4dp"
-                 android:text="@string/hh04f" />-->
-
-            <!--<RadioButton
-                android:id="@+id/hh04g"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04g" />-->
-
         </RadioGroup>
 
         <EditText
