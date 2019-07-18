@@ -45,20 +45,36 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/projectName"
+                style="@style/textInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:gravity="center"
+                android:text="CASI - HHLISTING"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/testing" />
+
+            <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:text="A PROJECT OF"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/projectName"
+                tools:layout_editor_absoluteY="146dp" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -157,7 +173,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="5dp"
-                android:background="@color/zxing_transparent"
+                android:background="#00000000"
                 android:elevation="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView2"
                 app:layout_constraintEnd_toEndOf="@+id/cardView2"
@@ -176,27 +192,23 @@
 
                 <ImageButton
                     android:id="@+id/email_sign_in_button"
-                    android:layout_width="@dimen/_38sdp"
-                    android:layout_height="@dimen/_38sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_80sdp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/circle_green"
-                    android:clickable="true"
-                    android:padding="38dp"
-                    android:src="@drawable/ic_key"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/circle_green"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/syncData"
-                    android:layout_width="@dimen/_38sdp"
-                    android:layout_height="@dimen/_38sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="@dimen/_90sdp"
-                    android:background="@drawable/blue_circle"
-                    android:clickable="true"
-                    android:padding="38dp"
-                    android:src="@drawable/ic_download"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/blue_circle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -211,7 +223,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/zxing_transparent"
+                android:background="#00000000"
                 android:text="You dont have an account"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
