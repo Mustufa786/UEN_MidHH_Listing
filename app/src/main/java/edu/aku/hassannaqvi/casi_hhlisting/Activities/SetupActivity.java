@@ -192,7 +192,7 @@ public class SetupActivity extends Activity {
                 if (hh04g.isChecked() || hh04h.isChecked()) {
                     btnAddHousehold.setVisibility(View.GONE);
                     btnChangPSU.setVisibility(View.VISIBLE);
-                    if (hh04h.isChecked()) {
+                    if (hh04g.isChecked()) {
                         btnChangPSU.setText("Logout");
                     } else {
                         btnChangPSU.setText("Change Enumeration Block");
@@ -253,7 +253,7 @@ public class SetupActivity extends Activity {
         finish();
 
         Intent fA;
-        if (hh04h.isChecked()) {
+        if (hh04g.isChecked()) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
             SaveDraft();
