@@ -30,4 +30,17 @@
         <item>Y</item>
         <item>Z</item>
     </string-array>
+
+
+
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="country_arrays">
+        <item>Pakistan</item>
+        <item>Afganistan</item>
+        <item>Tajikistan</item>
+    </string-array>
+
+
+
 </resources>
