@@ -50,12 +50,12 @@ public class FamilyListingActivity extends Activity {
     EditText hh11;
     @BindView(R.id.hh14)
     RadioGroup hh14;
-    @BindView(R.id.hh14a)
-    RadioButton hh14a;
-    @BindView(R.id.hh14b)
-    RadioButton hh14b;
-    @BindView(R.id.hh15)
-    EditText hh15;
+    /*    @BindView(R.id.hh14a)
+        RadioButton hh14a;
+        @BindView(R.id.hh14b)
+        RadioButton hh14b;
+        @BindView(R.id.hh15)
+        EditText hh15;*/
     @BindView(R.id.hh16)
     EditText hh16;
     @BindView(R.id.hh17)
@@ -105,13 +105,13 @@ public class FamilyListingActivity extends Activity {
                         hh11.setText(null);
                     }
 
-                    if (hh14a.isChecked()) {
+                    /*if (hh14a.isChecked()) {
                         hh15.setVisibility(View.VISIBLE);
                         hh15.requestFocus();
                     } else {
                         hh15.setVisibility(View.GONE);
                         hh15.setText(null);
-                    }
+                    }*/
                 }
             });
         }
@@ -210,9 +210,8 @@ public class FamilyListingActivity extends Activity {
         MainApp.lc.setHh09(hh09.getText().toString());
         MainApp.lc.setHh10(hh10a.isChecked() ? "1" : hh10b.isChecked() ? "2" : "0");
         MainApp.lc.setHh11(hh11.getText().toString().isEmpty() ? "0" : hh11.getText().toString());
-        /*MainApp.lc.setHh14(hh14a.isChecked() ? "1" : hh14b.isChecked() ? "2" : "0");
-        MainApp.lc.setHh15(hh15.getText().toString().isEmpty() ? "0" : hh15.getText().toString());*/
-        MainApp.lc.setHh16(hh16.getText().toString());
+        MainApp.lc.setHh14(hh16.getText().toString());
+        MainApp.lc.setHh15(deleteHH.isChecked() ? "1" : "0");
         MainApp.lc.setIsNewHH(hh17.isChecked() ? "1" : "2");
 
         Log.d(TAG, "SaveDraft: Structure " + MainApp.lc.getHh03());
@@ -220,6 +219,8 @@ public class FamilyListingActivity extends Activity {
     }
 
     private boolean formValidation() {
+
+        if (deleteHH.isChecked()) return true;
 
         if (hh08.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter name", Toast.LENGTH_SHORT).show();
@@ -283,9 +284,7 @@ public class FamilyListingActivity extends Activity {
         }
 
 
-        if (Integer.valueOf(hh16.getText().toString()) <=
-                (Integer.valueOf(hh11.getText().toString().isEmpty() ? "0" : hh11.getText().toString()) +
-                        Integer.valueOf(hh15.getText().toString().isEmpty() ? "0" : hh15.getText().toString()))) {
+        if (Integer.valueOf(hh16.getText().toString()) <= (Integer.valueOf(hh11.getText().toString().isEmpty() ? "0" : hh11.getText().toString()))) {
             Toast.makeText(this, "Invalid Count!", Toast.LENGTH_SHORT).show();
             hh16.setError("Invalid Count!");
             Log.i(TAG, "(hh16): Invalid Count! ");
