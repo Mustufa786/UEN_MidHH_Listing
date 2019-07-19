@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -25,6 +27,7 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
+import edu.aku.hassannaqvi.casi_hhlisting.validation.ClearClass;
 import edu.aku.hassannaqvi.casi_hhlisting.validation.ValidatorClass;
 
 public class FamilyListingActivity extends Activity {
@@ -65,6 +68,10 @@ public class FamilyListingActivity extends Activity {
     RadioButton hh08a1b;
     @BindView(R.id.hh08a1c)
     RadioButton hh08a1c;
+    @BindView(R.id.deleteHH)
+    CheckBox deleteHH;
+    @BindView(R.id.fldGrpSecB01)
+    LinearLayout fldGrpSecB01;
     @BindView(R.id.btnAddNewHousehold)
     Button btnAddNewHousehold;
     @BindView(R.id.btnAddFamily)
@@ -136,6 +143,16 @@ public class FamilyListingActivity extends Activity {
             }
         });
 
+        deleteHH.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
+                    ClearClass.ClearAllFields(fldGrpSecB01, false);
+                else
+                    ClearClass.ClearAllFields(fldGrpSecB01, true);
+            }
+        });
+
     }
 
     public void setupButtons() {
@@ -149,6 +166,8 @@ public class FamilyListingActivity extends Activity {
             btnAddHousehold.setVisibility(View.VISIBLE);
 
             hh17.setVisibility(View.VISIBLE);
+
+            deleteHH.setVisibility(View.VISIBLE);
         }
 
     }

@@ -66,166 +66,186 @@
 
         </RadioGroup>
 
-        <TextView
+        <CheckBox
+            android:id="@+id/deleteHH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/hh08" />
-
-        <EditText
-            android:id="@+id/hh08"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="@string/txtName"
-            android:hint="@string/hh08"
-            android:inputType="text"
-            android:maxLength="24" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/hh09" />
-
-        <EditText
-            android:id="@+id/hh09"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hh09"
-            android:inputType="number"
-            android:maxLength="11" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+            android:drawableRight=""
             android:layoutDirection="rtl"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_weight="20"
-                android:text="@string/hh16" />
-
-
-            <EditText
-                android:id="@+id/hh16"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_weight="50"
-                android:inputType="number"
-                android:maxLength="2" />
-
-        </LinearLayout>
+            android:text="@string/delete"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <LinearLayout
+            android:id="@+id/fldGrpSecB01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/hh10" />
-
-            <RadioGroup
-                android:id="@+id/hh10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/hh10a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/hh10b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no" />
-
-            </RadioGroup>
+                android:layout_marginTop="24dp"
+                android:text="@string/hh08" />
 
             <EditText
-                android:id="@+id/hh11"
+                android:id="@+id/hh08"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:hint="@string/hh10a"
-                android:inputType="number"
-                android:maxLength="2"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp"
-            android:visibility="gone">
+                android:digits="@string/txtName"
+                android:hint="@string/hh08"
+                android:inputType="text"
+                android:maxLength="24" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/hh14" />
-
-            <RadioGroup
-                android:id="@+id/hh14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/hh14a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/hh14b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no" />
-
-            </RadioGroup>
+                android:layout_marginTop="24dp"
+                android:text="@string/hh09" />
 
             <EditText
-                android:id="@+id/hh15"
+                android:id="@+id/hh09"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:hint="@string/hh14a"
+                android:hint="@string/hh09"
                 android:inputType="number"
-                android:maxLength="2"
-                android:visibility="gone" />
+                android:maxLength="11" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp">
-
-            <Switch
-                android:id="@+id/hh17"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="4"
-                android:text="@string/hh17"
-                android:textColor="@color/colorPrimaryDark"
-                android:textOff="@string/no"
-                android:textOn="@string/yes"
-                android:textSize="@dimen/_10sdp" />
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="20"
+                    android:text="@string/hh16" />
+
+
+                <EditText
+                    android:id="@+id/hh16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="50"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/hh10" />
+
+                <RadioGroup
+                    android:id="@+id/hh10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/hh10a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/hh10b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/hh11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:hint="@string/hh10a"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/hh14" />
+
+                <RadioGroup
+                    android:id="@+id/hh14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/hh14a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/hh14b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/hh15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:hint="@string/hh14a"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <Switch
+                    android:id="@+id/hh17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="4"
+                    android:text="@string/hh17"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textOff="@string/no"
+                    android:textOn="@string/yes"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

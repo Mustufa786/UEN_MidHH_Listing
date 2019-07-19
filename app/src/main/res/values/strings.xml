@@ -66,6 +66,7 @@
     <string name="no"> نہیں </string>
     <string name="rfsd"> انکار </string>
     <string name="locked"> بند </string>
+    <string name="delete"> Delete this HH </string>
 
     <string name="txtMsg">1234567890-=+ qwertyuiop[]asdfghjkl;zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:ZXCVBNM?</string>
     <string name="txtName"> qwertyuiop asdfghjkl zxcvbnm QWERTYUIOP ASDFGHJKL ZXCVBNM </string>
