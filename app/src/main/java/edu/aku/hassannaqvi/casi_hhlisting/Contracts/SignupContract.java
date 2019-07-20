@@ -20,6 +20,24 @@ public class SignupContract {
     String password;
     String cPassword;
     String countryId;
+    private String formDate = ""; // Date
+    private String deviceID = "";
+
+    public String getFormDate() {
+        return formDate;
+    }
+
+    public void setFormDate(String formDate) {
+        this.formDate = formDate;
+    }
+
+    public String getDeviceID() {
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
+    }
 
     public SignupContract() {
         // Default Constructor
@@ -88,6 +106,8 @@ public class SignupContract {
         this.userName = jsonObject.getString(SignUpTable.USERNAME);
         this.password = jsonObject.getString(SignUpTable.PASSWORD);
         this.countryId = jsonObject.getString(SignUpTable.COUNTRY_ID);
+        this.deviceID = jsonObject.getString(SignUpTable.COLUMN_DEVICEID);
+        this.formDate = jsonObject.getString(SignUpTable.COLUMN_FORMDATE);
 
         return this;
 
@@ -100,6 +120,8 @@ public class SignupContract {
         this.designation = cursor.getString(cursor.getColumnIndex(SignUpTable.DESIGNATION));
         this.password = cursor.getString(cursor.getColumnIndex(SignUpTable.PASSWORD));
         this.countryId = cursor.getString(cursor.getColumnIndex(SignUpTable.COUNTRY_ID));
+        this.deviceID = cursor.getString(cursor.getColumnIndex(SignUpTable.COLUMN_DEVICEID));
+        this.formDate = cursor.getString(cursor.getColumnIndex(SignUpTable.COLUMN_FORMDATE));
 
         return this;
 
@@ -109,12 +131,14 @@ public class SignupContract {
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
-//        json.put(SignUpTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
+        json.put(SignUpTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(SignUpTable.FULLNAME, this.fullName == null ? JSONObject.NULL : this.fullName);
         json.put(SignUpTable.DESIGNATION, this.designation == null ? JSONObject.NULL : this.designation);
         json.put(SignUpTable.USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
         json.put(SignUpTable.PASSWORD, this.password == null ? JSONObject.NULL : this.password);
         json.put(SignUpTable.COUNTRY_ID, this.countryId == null ? JSONObject.NULL : this.countryId);
+        json.put(SignUpTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
+        json.put(SignUpTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
 
         return json;
     }
@@ -130,8 +154,9 @@ public class SignupContract {
         public static final String COUNTRY_ID = "country_id";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
+        public static final String COLUMN_FORMDATE = "formdate";
+        public static final String COLUMN_DEVICEID = "deviceid";
 
         public static final String _URL = "signup.php";
-
     }
 }
