@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 
 /**
  * Created by ali.azaz on 03/19/18.
@@ -99,6 +100,10 @@ public class ClearClass {
                 ClearAllFields(v, flag);
             } else if (v instanceof LinearLayout) {
                 ClearAllFields(v, flag);
+            } else if (v instanceof Switch) {
+                ((Switch) v).setChecked(false);
+                if (flag != null)
+                    v.setEnabled(false);
             }
 
         }

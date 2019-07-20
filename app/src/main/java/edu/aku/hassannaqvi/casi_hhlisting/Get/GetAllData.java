@@ -74,7 +74,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     url = new URL(MainApp._HOST_URL + EnumBlockContract.EnumBlockTable._URI);
                     break;
                 case "User":
-                    url = new URL(MainApp._HOST_URL + UsersContract.SingleUser._URI);
+                    url = new URL(MainApp._HOST_URL + UsersContract.UsersTable._URI);
                     break;
                 case "Team":
                     url = new URL(MainApp._HOST_URL + TeamsContract.SingleTaluka._URI);

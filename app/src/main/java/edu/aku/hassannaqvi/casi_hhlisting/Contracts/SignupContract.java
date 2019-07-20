@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class SignupContract {
 
-    private static final String TAG = "Users_CONTRACT";
+    private static final String TAG = "Signup_Contract";
     String _ID;
     String fullName;
     String designation;
@@ -128,6 +128,10 @@ public class SignupContract {
         public static final String DESIGNATION = "designation";
         public static final String PASSWORD = "password";
         public static final String COUNTRY_ID = "country_id";
+        public static final String COLUMN_SYNCED = "synced";
+        public static final String COLUMN_SYNCED_DATE = "synced_date";
+
+        public static final String _URL = "signup.php";
 
     }
 }

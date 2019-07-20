@@ -54,6 +54,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VerticesContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.AndroidDatabaseManager;
@@ -539,6 +540,15 @@ public class MainActivity extends MenuActivity {
                     ListingContract.class,
                     MainApp._HOST_URL + ListingContract.ListingEntry._URL,
                     db.getAllListings()
+            ).execute();
+            Toast.makeText(getApplicationContext(), "Syncing New Users Data", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "New Users",
+                    "updateSyncedSignup",
+                    SignupContract.class,
+                    MainApp._HOST_URL + SignupContract.SignUpTable._URL,
+                    db.getUnsyncedSignups()
             ).execute();
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);

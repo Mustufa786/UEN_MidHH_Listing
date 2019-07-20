@@ -622,8 +622,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
             Toast.makeText(this, "TEAM CREDITS: " +
                             "\r\nHassan Naqvi, " +
                             "Ali Azaz, " +
-                            "Gul Sanober, " +
-                            "Javed Khan",
+                            "Mustufa, " +
+                            "Farooqui",
                     Toast.LENGTH_LONG)
                     .show();
         }

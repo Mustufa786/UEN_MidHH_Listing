@@ -23,10 +23,11 @@ import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract.EnumBlockT
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract.ListingEntry;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract.SignUpTable;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.TeamsContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.TeamsContract.SingleTaluka;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.UsersContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Contracts.UsersContract.SingleUser;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract.VersionAppTable;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VerticesContract;
@@ -110,10 +111,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             EnumBlockTable.COLUMN_GEO_AREA + " TEXT, " +
             EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
-    final String SQL_CREATE_USERS = "CREATE TABLE " + SingleUser.TABLE_NAME + "("
-            + SingleUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SingleUser.ROW_USERNAME + " TEXT,"
-            + SingleUser.ROW_PASSWORD + " TEXT );";
+    public static final String SQL_CREATE_SIGNUP = "CREATE TABLE " + SignUpTable.TABLE_NAME + "("
+            + SignUpTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + SignUpTable.FULLNAME + " TEXT,"
+            + SignUpTable.USERNAME + " TEXT,"
+            + SignUpTable.DESIGNATION + " TEXT,"
+            + SignUpTable.PASSWORD + " TEXT,"
+            + SignUpTable.COUNTRY_ID + " TEXT, "
+            + SignUpTable.COLUMN_SYNCED + " TEXT, "
+            + SignUpTable.COLUMN_SYNCED_DATE + " TEXT " +
+            ");";
     final String SQL_CREATE_VERTICES_TABLE = "CREATE TABLE " + SingleVertices.TABLE_NAME + " (" +
             SingleVertices._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             SingleVertices.COLUMN_CLUSTER_CODE + " TEXT," +
@@ -128,11 +135,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             VersionAppTable.COLUMN_VERSION_NAME + " TEXT, " +
             VersionAppTable.COLUMN_PATH_NAME + " TEXT " +
             ");";
+    final String SQL_CREATE_USERS = "CREATE TABLE " + UsersTable.TABLE_NAME + "("
+            + UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + UsersTable.ROW_USERNAME + " TEXT,"
+            + UsersTable.ROW_PASSWORD + " TEXT,"
+            + UsersTable.COUNTRY_ID + " TEXT );";
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -143,7 +154,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERTICES_TABLE);
-        db.execSQL(SQL_CREATE_VERSIONAPP);
+        db.execSQL(SQL_CREATE_SIGNUP);
 
     }
 
@@ -153,9 +164,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ListingEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SingleTaluka.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + EnumBlockTable.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + SingleUser.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SingleVertices.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + VersionAppTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SignUpTable.TABLE_NAME);
         onCreate(db);
 
     }
@@ -202,21 +214,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                SingleUser.ROW_USERNAME,
-                SingleUser.ROW_PASSWORD,
+                UsersTable.ROW_USERNAME,
+                UsersTable.ROW_PASSWORD,
         };
 
-        String whereClause = SingleUser.ROW_USERNAME + "=? AND " + SingleUser.ROW_PASSWORD + "=?";
+        String whereClause = UsersTable.ROW_USERNAME + "=? AND " + UsersTable.ROW_PASSWORD + "=?";
         String[] whereArgs = new String[]{username, password};
         String groupBy = null;
         String having = null;
-
         String orderBy = null;
 
-        Collection<UsersContract> allDC = new ArrayList<>();
         try {
             c = db.query(
-                    SingleUser.TABLE_NAME,  // The table to query
+                    UsersTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
                     whereClause,               // The columns for the WHERE clause
                     whereArgs,                 // The values for the WHERE clause
@@ -224,7 +234,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     having,                    // don't filter by row groups
                     orderBy                    // The sort order
             );
-//            if (!(c.moveToFirst()) || c.getCount() > 0) {
             if (c.getCount() > 0) {
                 return true;
             }
@@ -571,33 +580,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Collection<ListingContract> getAllBLRandom() {
+    public Collection<SignupContract> getUnsyncedSignups() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                singleRandomHH.COLUMN_ID,
-                singleRandomHH.COLUMN_CLUSTER_BLOCK_CODE
-                , singleRandomHH.COLUMN_LUID
-                , singleRandomHH.COLUMN_STRUCTURE_NO
-                , singleRandomHH.COLUMN_FAMILY_EXT_CODE
-                , singleRandomHH.COLUMN_HH_HEAD
-                , singleRandomHH.COLUMN_CONTACT
-                , singleRandomHH.COLUMN_HH_SELECTED_STRUCT
-                , singleRandomHH.COLUMN_RANDOMDT
+                SignUpTable._ID,
+                SignUpTable.FULLNAME,
+                SignUpTable.DESIGNATION,
+                SignUpTable.USERNAME,
+                SignUpTable.PASSWORD,
+                SignUpTable.COUNTRY_ID,
         };
 
-        String whereClause = null;
+        String whereClause = SignUpTable.COLUMN_SYNCED + " is null OR " + SignUpTable.COLUMN_SYNCED + " = '' ";
         String[] whereArgs = null;
         String groupBy = null;
         String having = null;
+        String orderBy = null;
 
-        String orderBy =
-                ListingEntry.COLUMN_NAME_CLUSTERCODE + " ASC";
-
-        Collection<ListingContract> allLC = new ArrayList<ListingContract>();
+        Collection<SignupContract> allLC = new ArrayList<>();
         try {
             c = db.query(
-                    ListingEntry.TABLE_NAME,  // The table to query
+                    SignUpTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
                     whereClause,               // The columns for the WHERE clause
                     whereArgs,                 // The values for the WHERE clause
@@ -606,8 +610,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                ListingContract listing = new ListingContract();
-                allLC.add(listing.hydrate(c, 0));
+                allLC.add(new SignupContract().Hydrate(c));
             }
         } finally {
             if (c != null) {
@@ -969,25 +972,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(SingleUser.TABLE_NAME, null, null);
-
+        db.delete(UsersContract.UsersTable.TABLE_NAME, null, null);
         try {
             JSONArray jsonArray = userlist;
             for (int i = 0; i < jsonArray.length(); i++) {
+
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
-                String userName = jsonObjectUser.getString("username");
-                String password = jsonObjectUser.getString("password");
 
-
+                UsersContract user = new UsersContract();
+                user.Sync(jsonObjectUser);
                 ContentValues values = new ContentValues();
 
-                values.put(SingleUser.ROW_USERNAME, userName);
-                values.put(SingleUser.ROW_PASSWORD, password);
-                db.insert(SingleUser.TABLE_NAME, null, values);
+                values.put(UsersTable.ROW_USERNAME, user.getUserName());
+                values.put(UsersTable.ROW_PASSWORD, user.getPassword());
+                values.put(UsersTable.COUNTRY_ID, user.getCOUNTRY_ID());
+                db.insert(UsersTable.TABLE_NAME, null, values);
             }
-            db.close();
+
 
         } catch (Exception e) {
+            Log.d(TAG, "syncUser(e): " + e);
+        } finally {
+            db.close();
         }
     }
 
@@ -1051,6 +1057,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 ListingEntry.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
+    public void updateSyncedSignup(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SignUpTable.COLUMN_SYNCED, true);
+        values.put(SignUpTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = SignUpTable._ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                SignUpTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);

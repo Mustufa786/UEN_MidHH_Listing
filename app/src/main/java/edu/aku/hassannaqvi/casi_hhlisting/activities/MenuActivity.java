@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
@@ -233,6 +234,15 @@ public class MenuActivity extends AppCompatActivity implements SyncDevice.SyncDe
                                 ListingContract.class,
                                 MainApp._HOST_URL + ListingContract.ListingEntry._URL,
                                 db.getAllListings()
+                        ).execute();
+                        Toast.makeText(getApplicationContext(), "Syncing New Users Data", Toast.LENGTH_SHORT).show();
+                        new SyncAllData(
+                                mContext,
+                                "New Users",
+                                "updateSyncedSignup",
+                                SignupContract.class,
+                                MainApp._HOST_URL + SignupContract.SignUpTable._URL,
+                                db.getUnsyncedSignups()
                         ).execute();
 
                     }
