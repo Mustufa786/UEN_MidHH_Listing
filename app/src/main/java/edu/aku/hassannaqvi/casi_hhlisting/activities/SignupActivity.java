@@ -82,9 +82,9 @@ public class SignupActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                startActivity(new Intent(this, LoginActivity.class));
+                Toast.makeText(this, "New Account Registered!!", Toast.LENGTH_SHORT).show();
                 finish();
-
+                startActivity(new Intent(this, LoginActivity.class));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
