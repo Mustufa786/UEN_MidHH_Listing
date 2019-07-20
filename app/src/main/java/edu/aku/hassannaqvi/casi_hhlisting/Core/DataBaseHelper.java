@@ -107,7 +107,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             ");";
     final String SQL_CREATE_PSU_TABLE = "CREATE TABLE " + EnumBlockTable.TABLE_NAME + " (" +
             EnumBlockTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            EnumBlockTable.COLUMN_EB_CODE + " TEXT, " +
+            EnumBlockTable.COLUMN_COUNTRY_ID + " TEXT, " +
             EnumBlockTable.COLUMN_GEO_AREA + " TEXT, " +
             EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
@@ -155,6 +155,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERTICES_TABLE);
         db.execSQL(SQL_CREATE_SIGNUP);
+        db.execSQL(SQL_CREATE_VERSIONAPP);
 
     }
 
@@ -198,7 +199,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
                 ContentValues values = new ContentValues();
 
-                values.put(EnumBlockTable.COLUMN_EB_CODE, Vc.getEbcode());
+                values.put(EnumBlockTable.COLUMN_COUNTRY_ID, Vc.getEbcode());
                 values.put(EnumBlockTable.COLUMN_GEO_AREA, Vc.getGeoarea());
                 values.put(EnumBlockTable.COLUMN_CLUSTER_AREA, Vc.getCluster());
 
@@ -1118,7 +1119,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 EnumBlockTable._ID,
-                EnumBlockTable.COLUMN_EB_CODE,
+                EnumBlockTable.COLUMN_COUNTRY_ID,
                 EnumBlockTable.COLUMN_GEO_AREA,
                 EnumBlockTable.COLUMN_CLUSTER_AREA
         };

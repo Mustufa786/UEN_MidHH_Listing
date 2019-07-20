@@ -333,6 +333,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+
+            Toast.makeText(LoginActivity.this, "Starting Download Data Request!", Toast.LENGTH_LONG).show();
             new syncData(this).execute();
 
         } else {
@@ -621,8 +623,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
             new GetAllData(this, "EnumBlock").execute();
             Toast.makeText(LoginActivity.this, "Sync User", Toast.LENGTH_LONG).show();
             new GetAllData(this, "User").execute();
-            Toast.makeText(LoginActivity.this, "Sync Teams", Toast.LENGTH_SHORT).show();
-            new GetAllData(this, "Team").execute();
+            /*Toast.makeText(LoginActivity.this, "Sync Teams", Toast.LENGTH_SHORT).show();
+            new GetAllData(this, "Team").execute();*/
             Toast.makeText(LoginActivity.this, "Sync Version", Toast.LENGTH_SHORT).show();
             new GetAllData(this, "VersionApp").execute();
             Toast.makeText(LoginActivity.this, "Get Updates", Toast.LENGTH_SHORT).show();

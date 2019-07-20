@@ -404,7 +404,7 @@ public class MainActivity extends MenuActivity {
             txtPSU.setError(null);
             Boolean loginFlag = false;
             int clus = Integer.valueOf(txtPSU.getText().toString());
-            if (clus < 6000) {
+            if (clus > 100000) {
                 loginFlag = !(MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user"));
             } else {
                 loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user");
