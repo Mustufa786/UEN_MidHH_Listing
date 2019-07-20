@@ -46,7 +46,6 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -191,20 +190,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
             }
         } else {
             doPermissionGrantedStuffs();
-        }
-    }
-
-    public void SwitchServer(View v) {
-        if (((ToggleButton) v).isChecked()) {
-            // handle toggle on
-            // handle Server 2
-            MainApp._HOST_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/casi/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP2 + ":" + MainApp._PORT + "/casi/app/linelisting/";
-        } else {
-            // handle toggle off
-            // handle Server 1
-            MainApp._HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/casi/api/";
-            MainApp._UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/casi/app/linelisting/";
         }
     }
 

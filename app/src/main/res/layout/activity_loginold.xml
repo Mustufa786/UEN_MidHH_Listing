@@ -200,20 +200,6 @@
 
             </LinearLayout>
 
-            <ToggleButton
-                android:id="@+id/btnSwitchServer"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/black_overlay"
-                android:elevation="2dp"
-                android:onClick="SwitchServer"
-                android:padding="15dp"
-                android:textOff="Switch Server 1"
-                android:textOn="Switch Server 2"
-                android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/txtinstalldate"
                 android:layout_width="match_parent"

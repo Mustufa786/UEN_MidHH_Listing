@@ -71,7 +71,7 @@
                 android:background="#ddd"
                 android:hint="Cluster number"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="6"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
 

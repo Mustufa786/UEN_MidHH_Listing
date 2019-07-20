@@ -606,6 +606,6 @@ public class ListingContract {
         public static final String COLUMN_RANDOMIZED = "randomized";
 
         public static final String COLUMN_USERNAME = "username";
-        public static final String _URL = "casi_listings.php";
+        public static final String _URL = "listings.php";
     }
 }
