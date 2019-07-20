@@ -101,7 +101,7 @@ public class ClearClass {
             } else if (v instanceof LinearLayout) {
                 ClearAllFields(v, flag);
             } else if (v instanceof Switch) {
-                ((Switch) v).setChecked(false);
+                ((Switch) v).setChecked(flag);
                 if (flag != null)
                     v.setEnabled(false);
             }
