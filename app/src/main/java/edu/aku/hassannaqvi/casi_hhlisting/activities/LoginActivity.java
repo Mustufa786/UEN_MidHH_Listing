@@ -40,6 +40,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -107,6 +108,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
     ImageButton syncData;
     @BindView(R.id.showPassword)
     ImageButton showPassword;
+    @BindView(R.id.signup)
+    Button signup;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     String DirectoryName;
@@ -176,6 +179,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
 
 //        DB backup
         dbBackup();
+
+        signup.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            }
+        });
+
     }
 
     public void loadIMEI() {
