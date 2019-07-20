@@ -109,7 +109,7 @@ public class SignupContract {
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
-        json.put(SignUpTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
+//        json.put(SignUpTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(SignUpTable.FULLNAME, this.fullName == null ? JSONObject.NULL : this.fullName);
         json.put(SignUpTable.DESIGNATION, this.designation == null ? JSONObject.NULL : this.designation);
         json.put(SignUpTable.USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
