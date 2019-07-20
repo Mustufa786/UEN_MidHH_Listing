@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.casi_hhlisting.Activities;
+package edu.aku.hassannaqvi.casi_hhlisting.activities;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;

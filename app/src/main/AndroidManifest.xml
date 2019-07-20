@@ -22,32 +22,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.SignupActivity"></activity>
+        <activity android:name=".activities.SignupActivity"></activity>
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".Activities.AddChildActivity"
+            android:name=".activities.AddChildActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SetupActivity"
+            android:name=".activities.SetupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.FamilyListingActivity"
+            android:name=".activities.FamilyListingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Core.AndroidDatabaseManager"
             android:screenOrientation="portrait"
             android:theme="@style/android:Theme.Holo.Light.DarkActionBar" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="Login In"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Activities.SplashScreenActivity"
+            android:name=".activities.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme">
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.RandomizationActivity"
+            android:name=".activities.RandomizationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustResize|stateHidden" />
@@ -75,11 +75,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".WifiDirect.WiFiDirectActivity"

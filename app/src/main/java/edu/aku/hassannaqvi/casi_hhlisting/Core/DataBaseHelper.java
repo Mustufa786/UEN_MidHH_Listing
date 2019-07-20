@@ -22,6 +22,7 @@ import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract.EnumBlockTable;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract.ListingEntry;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.TeamsContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.TeamsContract.SingleTaluka;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.UsersContract;
@@ -236,6 +237,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             }
         }
         return false;
+    }
+
+    public Long addSignUpForm(SignupContract fc) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(SignupContract.SignUpTable.FULLNAME, fc.getFullName());
+        values.put(SignupContract.SignUpTable.DESIGNATION, fc.getDesignation());
+        values.put(SignupContract.SignUpTable.USERNAME, fc.getUserName());
+        values.put(SignupContract.SignUpTable.PASSWORD, fc.getPassword());
+        values.put(SignupContract.SignUpTable.COUNTRY_ID, fc.getCountryId());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                SignupContract.SignUpTable.TABLE_NAME,
+                null,
+                values);
+        return newRowId;
     }
 
     public Long addForm(ListingContract lc) {

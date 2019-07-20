@@ -16,7 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import edu.aku.hassannaqvi.casi_hhlisting.Activities.RandomizationActivity;
+import edu.aku.hassannaqvi.casi_hhlisting.activities.RandomizationActivity;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 

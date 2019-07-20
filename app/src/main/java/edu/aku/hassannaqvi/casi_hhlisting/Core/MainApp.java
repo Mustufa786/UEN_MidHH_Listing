@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Other.TypefaceUtil;
 
 /**
@@ -56,12 +57,15 @@ public class MainApp extends Application {
     public static String clusterCode = "";
     public static String enumStr = "";
 
+    public static SignupContract signContract;
+
     public static int hh07 = 0;
     public static int cTotal = 0;
     public static SharedPreferences sharedPref;
     public static String userEmail;
     public static int versionCode;
     public static String versionName;
+    public static boolean validateFlag;
     protected static LocationManager locationManager;
     Location location;
 
