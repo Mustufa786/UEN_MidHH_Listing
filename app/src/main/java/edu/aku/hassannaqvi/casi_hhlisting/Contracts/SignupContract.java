@@ -123,7 +123,7 @@ public class SignupContract {
 
         public static final String TABLE_NAME = "signup";
         public static final String _ID = "id";
-        public static final String FULLNAME = "fullname";
+        public static final String FULLNAME = "full_name";
         public static final String USERNAME = "username";
         public static final String DESIGNATION = "designation";
         public static final String PASSWORD = "password";
