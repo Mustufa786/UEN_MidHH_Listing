@@ -2,8 +2,8 @@ package edu.aku.hassannaqvi.casi_hhlisting.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +26,7 @@ public class SignupActivity extends AppCompatActivity {
 
     String[] countries = new String[]{
 
-            "- Select Country - ", "Pakistan", "Afghanistan", "Tajikistan"
+            "- Select Country - ", "Afghanistan", "Pakistan", "Tajikistan"
     };
 
     HashMap<String, String> coutryMap = new HashMap<String, String>() {{
@@ -91,7 +91,20 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
-        return ValidatorClass.EmptyCheckingContainer(this, bi.signUpSection);
+        if (!ValidatorClass.EmptyCheckingContainer(this, bi.signUpSection))
+            return false;
+
+        if (bi.password.getText().toString().length() != 8) {
+            bi.password.setError("Password length requires 8 alphanumeric characters!");
+            return false;
+        }
+
+        if (!bi.password.getText().toString().equals(bi.cPassword.getText().toString())) {
+            bi.password.setError("Password not match!");
+            return false;
+        }
+
+        return true;
     }
 
     private void SaveDraft() throws JSONException {
