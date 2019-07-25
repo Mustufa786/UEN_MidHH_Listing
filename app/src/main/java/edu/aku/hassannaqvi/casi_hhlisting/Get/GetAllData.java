@@ -58,7 +58,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
         pd.setTitle("Syncing " + syncClass);
         pd.setMessage("Getting connected to server...");
         pd.setCancelable(false);
-        pd.show();
+        
 
     }
 
@@ -174,20 +174,20 @@ public class GetAllData extends AsyncTask<String, String, String> {
 
                     pd.setMessage("Received: " + jsonArray.length());
                     pd.setCancelable(true);
-                    pd.show();
+                    
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
                 pd.setMessage("Received: " + json.length() + "");
                 pd.setCancelable(true);
-                pd.show();
+                
             }
         } else {
             pd.setTitle("Connection Error");
             pd.setMessage("Server not found!");
             pd.setCancelable(true);
-            pd.show();
+            
         }
     }
 }

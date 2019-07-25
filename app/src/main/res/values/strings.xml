@@ -16,6 +16,8 @@
     <string name="hh04i"> انکار کردیا </string>
     <string name="hh04j"> دیگر </string>
 
+    <string name="btnSync">Sync</string>
+    <string name="btnUpload">Upload</string>
     <!--<string name="hh08a1"> کیا کوئی جواب دہندہ موجود ہے </string>-->
     <string name="confirmcity"> کیا آپ اُوپر دیئے گئے شہر/گاوُں میں موجود ہیں؟ </string>
     <string name="hh08a1a"> جواب دہندہ موجود ہے </string>

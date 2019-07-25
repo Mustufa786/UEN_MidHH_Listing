@@ -41,6 +41,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     // The name of database.
     public static final String DATABASE_NAME = "casi-hhl.db";
+    public static final String PROJECT_NAME = "casi-hhl-2019";
     public static final String DB_NAME = DATABASE_NAME.replace(".db", "-copy.db");
     public static final String FOLDER_NAME = "DMU-CASIPAKHHL";
     public static final String SQL_CREATE_BL_RANDOM = "CREATE TABLE " + singleRandomHH.TABLE_NAME + "("

@@ -40,6 +40,9 @@
             android:name=".activities.AddChildActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.SyncActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.SetupActivity"
             android:screenOrientation="portrait" />
         <activity

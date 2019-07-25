@@ -346,8 +346,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            Toast.makeText(LoginActivity.this, "Starting Download Data Request!", Toast.LENGTH_LONG).show();
-            new syncData(this).execute();
+//            Toast.makeText(LoginActivity.this, "Starting Download Data Request!", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(LoginActivity.this, SyncActivity.class));
+//            new syncData(this).execute();
+
 
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
