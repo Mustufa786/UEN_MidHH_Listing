@@ -30,7 +30,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/colorPrimary"
                 android:elevation="2dp"
-                android:padding="16dp"
+                android:padding="5dp"
                 android:text="@string/btnSync"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -48,6 +48,7 @@
 
             <TextView
                 android:id="@+id/no_item"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -64,7 +65,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/colorPrimary"
                 android:elevation="2dp"
-                android:padding="16dp"
+                android:padding="5dp"
                 android:text="@string/btnUpload"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -81,6 +82,7 @@
 
             <TextView
                 android:id="@+id/no_data_item"
+                style="@style/textInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"

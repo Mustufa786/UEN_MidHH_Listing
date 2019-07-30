@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 import edu.aku.hassannaqvi.casi_hhlisting.validation.ClearClass;
@@ -345,7 +345,7 @@ public class FamilyListingActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        DataBaseHelper db = new DataBaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
         long updcount = db.addForm(MainApp.lc);
 

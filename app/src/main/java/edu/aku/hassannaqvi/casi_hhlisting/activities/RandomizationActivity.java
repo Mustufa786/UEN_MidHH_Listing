@@ -19,7 +19,7 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Other.randomListAdapter;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 
@@ -31,7 +31,7 @@ public class RandomizationActivity extends MenuActivity {
     @BindView(R.id.lstClusters)
     RecyclerView lstClusters;
     randomListAdapter randomListAdapter;
-    DataBaseHelper db;
+    DatabaseHelper db;
     ArrayList<ListingContract> listingDataList;
 
     @Override
@@ -42,7 +42,7 @@ public class RandomizationActivity extends MenuActivity {
 
         this.setTitle("Randomization Clusters");
 
-        db = new DataBaseHelper(this);
+        db = new DatabaseHelper(this);
 
         lstList = new ArrayList<>();
         hhRandomise = new ArrayList<>();

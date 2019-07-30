@@ -54,15 +54,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VerticesContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.AndroidDatabaseManager;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
-import edu.aku.hassannaqvi.casi_hhlisting.Sync.SyncAllData;
-import edu.aku.hassannaqvi.casi_hhlisting.Sync.SyncDevice;
 
 public class MainActivity extends MenuActivity {
 
@@ -111,7 +108,7 @@ public class MainActivity extends MenuActivity {
     String m_Text = "";
     Boolean exit = false;
     Boolean flag = false;
-    DataBaseHelper db;
+    DatabaseHelper db;
     ProgressDialog progressDoalog;
     @BindView(R.id.lblAppVersion)
     TextView lblAppVersion;
@@ -231,7 +228,7 @@ public class MainActivity extends MenuActivity {
         });
 
         // database handler
-        db = new DataBaseHelper(getApplicationContext());
+        db = new DatabaseHelper(getApplicationContext());
 
         msgText.setText(db.getListingCount() + " records found in Listings table.");
         spinnersFill();
@@ -246,7 +243,7 @@ public class MainActivity extends MenuActivity {
             if (MainApp.versionCode < Integer.valueOf(versionAppContract.getVersioncode())) {
                 lblAppVersion.setVisibility(View.VISIBLE);
 
-                String fileName = DataBaseHelper.DATABASE_NAME.replace(".db", "-New-Apps");
+                String fileName = DatabaseHelper.DATABASE_NAME.replace(".db", "-New-Apps");
                 file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
 
                 if (file.exists()) {
@@ -336,6 +333,7 @@ public class MainActivity extends MenuActivity {
                 ucN.setText(null);
                 fldGrpna101.setVisibility(View.GONE);
                 openForm.setVisibility(View.GONE);
+                chkconfirm.setChecked(false);
             }
 
             @Override
@@ -410,7 +408,7 @@ public class MainActivity extends MenuActivity {
                 loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user");
             }
             if (loginFlag) {
-                DataBaseHelper db = new DataBaseHelper(this);
+                DatabaseHelper db = new DatabaseHelper(this);
                 EnumBlockContract enumBlockContract = db.getEnumBlock(txtPSU.getText().toString());
                 if (enumBlockContract != null) {
                     String selected = enumBlockContract.getGeoarea();
@@ -490,7 +488,7 @@ public class MainActivity extends MenuActivity {
 
     public void openClusterMap(View view) {
 
-        DataBaseHelper db = new DataBaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
         Collection<VerticesContract> v = db.getVerticesByCluster(txtPSU.getText().toString());
         if (v.size() > 3) {
             startActivity(new Intent(this, MapsActivity.class));
@@ -530,7 +528,7 @@ public class MainActivity extends MenuActivity {
     public void syncFunction(View view) {
         if (isNetworkAvailable()) {
 
-            new SyncDevice(this).execute();
+            /*new SyncDevice(this).execute();
 
             Toast.makeText(getApplicationContext(), "Syncing Listing", Toast.LENGTH_SHORT).show();
             new SyncAllData(
@@ -539,7 +537,7 @@ public class MainActivity extends MenuActivity {
                     "updateSyncedForms",
                     ListingContract.class,
                     MainApp._HOST_URL + ListingContract.ListingEntry._URL,
-                    db.getAllListings()
+                    db.getUnsyncedListings()
             ).execute();
             Toast.makeText(getApplicationContext(), "Syncing New Users Data", Toast.LENGTH_SHORT).show();
             new SyncAllData(
@@ -549,7 +547,9 @@ public class MainActivity extends MenuActivity {
                     SignupContract.class,
                     MainApp._HOST_URL + SignupContract.SignUpTable._URL,
                     db.getUnsyncedSignups()
-            ).execute();
+            ).execute();*/
+
+            startActivity(new Intent(MainActivity.this, SyncActivity.class));
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();
@@ -679,7 +679,7 @@ public class MainActivity extends MenuActivity {
                         + "_" + ListingContract.ListingEntry.TABLE_NAME);
                 FileWriter writer = new FileWriter(gpxfile);
 
-                Collection<ListingContract> listing = db.getAllListings();
+                Collection<ListingContract> listing = db.getUnsyncedListings();
                 if (listing.size() > 0) {
                     JSONArray jsonSync = new JSONArray();
                     for (ListingContract fc : listing) {

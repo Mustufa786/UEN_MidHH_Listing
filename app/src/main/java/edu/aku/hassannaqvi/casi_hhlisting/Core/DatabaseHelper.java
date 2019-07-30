@@ -37,7 +37,7 @@ import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VerticesContract.SingleVerti
 /**
  * Created by hassan.naqvi on 10/18/2016.
  */
-public class DataBaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     // The name of database.
     public static final String DATABASE_NAME = "casi-hhl.db";
@@ -56,7 +56,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + singleRandomHH.COLUMN_RANDOMDT + " TEXT );";
     // Change this when you change the database schema.
     private static final int DATABASE_VERSION = 1;
-    public static String TAG = "DataBaseHelper";
+    public static String TAG = "DatabaseHelper";
     public static String DB_FORM_ID;
     // Create a table to hold Listings.
     final String SQL_CREATE_LISTING_TABLE = "CREATE TABLE " + ListingEntry.TABLE_NAME + " (" +
@@ -144,7 +144,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + UsersTable.ROW_PASSWORD + " TEXT,"
             + UsersTable.COUNTRY_ID + " TEXT );";
 
-    public DataBaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -485,7 +485,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return jsonArray;
     }
 
-    public Collection<ListingContract> getAllListings() {
+    public Collection<ListingContract> getUnsyncedListings() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {

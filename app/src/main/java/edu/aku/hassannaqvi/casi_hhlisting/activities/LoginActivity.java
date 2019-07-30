@@ -62,7 +62,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.Get.GetAllData;
 import edu.aku.hassannaqvi.casi_hhlisting.Get.GetUpdates;
@@ -289,7 +289,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
                 editor.commit();
             }
 
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + DataBaseHelper.FOLDER_NAME);
+            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.FOLDER_NAME);
             boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
@@ -304,11 +304,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
                 if (success) {
 
                     try {
-                        File dbFile = new File(this.getDatabasePath(DataBaseHelper.DATABASE_NAME).getPath());
+                        File dbFile = new File(this.getDatabasePath(DatabaseHelper.DATABASE_NAME).getPath());
                         FileInputStream fis = new FileInputStream(dbFile);
 
                         String outFileName = DirectoryName + File.separator +
-                                DataBaseHelper.DB_NAME;
+                                DatabaseHelper.DB_NAME;
 
                         // Open the empty db as the output stream
                         OutputStream output = new FileOutputStream(outFileName);
@@ -348,7 +348,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
 
 //            Toast.makeText(LoginActivity.this, "Starting Download Data Request!", Toast.LENGTH_LONG).show();
             startActivity(new Intent(LoginActivity.this, SyncActivity.class));
-//            new syncData(this).execute();
+//            new SyncData(this).execute();
 
 
         } else {
@@ -774,7 +774,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
 
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                DataBaseHelper db = new DataBaseHelper(LoginActivity.this);
+                DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
                 if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
                         || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
                     MainApp.userEmail = mEmail;
@@ -822,48 +822,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
-        }
-    }
-
-    public class syncData extends AsyncTask<String, String, String> {
-
-        private Context mContext;
-
-        public syncData(Context mContext) {
-            this.mContext = mContext;
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    /*Toast.makeText(LoginActivity.this, "Sync User", Toast.LENGTH_LONG).show();
-                    new GetUsers(mContext).execute();*/
-                    new SyncDevice(LoginActivity.this).execute();
-
-                }
-            });
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    editor.putBoolean("checkingFlag", true);
-                    editor.commit();
-
-                    dbBackup();
-
-                }
-            }, 1200);
         }
     }
 

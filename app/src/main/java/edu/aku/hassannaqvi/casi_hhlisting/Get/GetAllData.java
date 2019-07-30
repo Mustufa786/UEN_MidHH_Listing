@@ -26,7 +26,7 @@ import edu.aku.hassannaqvi.casi_hhlisting.Contracts.EnumBlockContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.TeamsContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.UsersContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 
 
@@ -153,7 +153,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
         if (result != null) {
             String json = result;
             if (json.length() > 0) {
-                DataBaseHelper db = new DataBaseHelper(mContext);
+                DatabaseHelper db = new DatabaseHelper(mContext);
                 try {
                     JSONArray jsonArray = new JSONArray(json);
 

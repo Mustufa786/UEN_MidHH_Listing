@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -90,7 +90,7 @@ public class GetUpdates extends AsyncTask<String, String, String> {
         if (result != null) {
             String json = result;
             if (json.length() > 0) {
-                DataBaseHelper db = new DataBaseHelper(mContext);
+                DatabaseHelper db = new DatabaseHelper(mContext);
                 try {
                     JSONArray ja = new JSONArray(json);
                     JSONObject jObject = new JSONObject(ja.getString(0));

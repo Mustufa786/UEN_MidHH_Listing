@@ -40,6 +40,7 @@
             android:name=".activities.AddChildActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/AppTheme2"
             android:name=".activities.SyncActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -14,12 +14,6 @@
         android:title="Upload Data"
         app:showAsAction="never" />
 
-    <!--    <item
-            android:id="@+id/menu_randomization"
-            android:orderInCategory="1"
-            android:title="Randomization"
-            app:showAsAction="never" />-->
-
     <item
         android:id="@+id/menu_openDB"
         android:orderInCategory="1"

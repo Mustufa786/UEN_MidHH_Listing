@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 import edu.aku.hassannaqvi.casi_hhlisting.databinding.ActivitySignupBinding;
@@ -131,7 +131,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
 
-        DataBaseHelper db = new DataBaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
         long rowID = db.addSignUpForm(MainApp.signContract);
 

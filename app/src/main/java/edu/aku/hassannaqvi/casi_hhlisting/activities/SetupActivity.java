@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.casi_hhlisting.Contracts.ListingContract;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 
@@ -449,7 +449,7 @@ public class SetupActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        DataBaseHelper db = new DataBaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
         Log.d(TAG, "UpdateDB: Structure" + MainApp.lc.getHh03());
 
         long updcount = db.addForm(MainApp.lc);

@@ -277,7 +277,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:onClick="syncFunction"
-            android:text="Sync Listing" />
+            android:text="Sync Listing"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/adminBlock"

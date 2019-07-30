@@ -16,7 +16,7 @@ import org.json.JSONException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 
@@ -79,7 +79,7 @@ public class AddChildActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        DataBaseHelper db = new DataBaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
 
         long updcount = db.addForm(MainApp.lc);

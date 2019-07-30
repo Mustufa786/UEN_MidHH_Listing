@@ -30,7 +30,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
-import edu.aku.hassannaqvi.casi_hhlisting.Core.DataBaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 import edu.aku.hassannaqvi.casi_hhlisting.WifiDirect.DeviceListFragment.DeviceActionListener;
 
@@ -43,7 +43,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     protected static final int CHOOSE_FILE_RESULT_CODE = 20;
     static ProgressDialog progressDialog = null;
     EditText msgBox;
-    DataBaseHelper db;
+    DatabaseHelper db;
     private View mContentView = null;
     private WifiP2pDevice device;
     private WifiP2pInfo info;
@@ -73,7 +73,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        db = new DataBaseHelper(getActivity());
+        db = new DatabaseHelper(getActivity());
 
         mContentView = inflater.inflate(R.layout.device_detail, null);
         msgBox = mContentView.findViewById(R.id.clusterNo);
