@@ -1214,6 +1214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             db.close();
         }
+
     }
 
     public VersionAppContract getVersionApp() {

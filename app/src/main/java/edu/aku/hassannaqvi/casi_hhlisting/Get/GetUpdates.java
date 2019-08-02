@@ -23,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
+import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -54,7 +55,7 @@ public class GetUpdates extends AsyncTask<String, String, String> {
 
         URL url = null;
         try {
-            url = new URL("http://43.245.131.159:8080/casi/app/listing/output.json");
+            url = new URL(MainApp._UPDATE_URL);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);

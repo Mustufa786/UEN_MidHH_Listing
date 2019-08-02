@@ -64,15 +64,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
-import edu.aku.hassannaqvi.casi_hhlisting.Get.GetAllData;
-import edu.aku.hassannaqvi.casi_hhlisting.Get.GetUpdates;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
-import edu.aku.hassannaqvi.casi_hhlisting.Sync.SyncDevice;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, SyncDevice.SyncDevicInterface {
+public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -627,24 +624,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>, 
                             "Farooqui",
                     Toast.LENGTH_LONG)
                     .show();
-        }
-    }
-
-    @Override
-    public void processFinish(boolean flag) {
-        if (flag) {
-            Toast.makeText(LoginActivity.this, "Sync Enum Blocks", Toast.LENGTH_LONG).show();
-            new GetAllData(this, "EnumBlock").execute();
-            Toast.makeText(LoginActivity.this, "Sync User", Toast.LENGTH_LONG).show();
-            new GetAllData(this, "User").execute();
-            /*Toast.makeText(LoginActivity.this, "Sync Teams", Toast.LENGTH_SHORT).show();
-            new GetAllData(this, "Team").execute();*/
-            Toast.makeText(LoginActivity.this, "Sync Version", Toast.LENGTH_SHORT).show();
-            new GetAllData(this, "VersionApp").execute();
-            Toast.makeText(LoginActivity.this, "Get Updates", Toast.LENGTH_SHORT).show();
-            new GetUpdates(this).execute();
-            /*Toast.makeText(LoginActivity.this, "Get Vertices", Toast.LENGTH_SHORT).show();
-            new GetVertices(this).execute();*/
         }
     }
 

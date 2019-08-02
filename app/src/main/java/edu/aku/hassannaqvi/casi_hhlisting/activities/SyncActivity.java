@@ -33,7 +33,6 @@ import edu.aku.hassannaqvi.casi_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.Get.GetAllData;
-import edu.aku.hassannaqvi.casi_hhlisting.Get.GetUpdates;
 import edu.aku.hassannaqvi.casi_hhlisting.Other.SyncModel;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 import edu.aku.hassannaqvi.casi_hhlisting.Sync.SyncAllData;
@@ -280,7 +279,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         model.setstatusID(0);
                         list.add(model);
                     }
-                    new GetAllData(mContext, "EnumBlock").execute();
+                    new GetAllData(mContext, "EnumBlock", syncListAdapter, list).execute(countryID);
                     bi.noItem.setVisibility(View.GONE);
 
 //                  getting Users!!
@@ -290,16 +289,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         model.setstatusID(0);
                         list.add(model);
                     }
-                    new GetAllData(mContext, "User").execute();
-
-//                   getting BL Random
-//                    Toast.makeText(SyncActivity.this, "Sync BL Random", Toast.LENGTH_SHORT).show();
-                    if (listActivityCreated) {
-                        model = new SyncModel();
-                        model.setstatusID(0);
-                        list.add(model);
-                    }
-                    new GetAllData(mContext, "VersionApp").execute();
+                    new GetAllData(mContext, "User", syncListAdapter, list).execute(countryID);
 
 //                    Getting App Version
 //                    Toast.makeText(SyncActivity.this, "Sync App Version", Toast.LENGTH_SHORT).show();
@@ -308,7 +298,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         model.setstatusID(0);
                         list.add(model);
                     }
-                    new GetUpdates(mContext).execute();
+                    new GetAllData(mContext, "VersionApp", syncListAdapter, list).execute();
 
                     listActivityCreated = false;
                 }
