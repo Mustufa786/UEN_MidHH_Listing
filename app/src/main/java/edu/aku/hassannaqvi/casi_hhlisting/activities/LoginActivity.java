@@ -62,6 +62,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import edu.aku.hassannaqvi.casi_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.casi_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
@@ -113,6 +114,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     Location location;
     private UserLoginTask mAuthTask = null;
     private int clicks;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,11 +179,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 //        DB backup
         dbBackup();
 
+        db = new DatabaseHelper(this);
+
         signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                VersionAppContract versionAppContract = db.getVersionApp();
+                if (versionAppContract != null)
+                    startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                else
+                    Toast.makeText(LoginActivity.this, "Please download data first!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -753,7 +761,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
                 if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
                         || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
                     MainApp.userEmail = mEmail;

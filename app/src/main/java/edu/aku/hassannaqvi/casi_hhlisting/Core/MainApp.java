@@ -107,7 +107,7 @@ public class MainApp extends Application {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("tag", sharedPref.getString("tagName", null));
-        map.put("org", sharedPref.getString("orgID", null));
+        map.put("org", sharedPref.getString("countryID", null));
         map.put("listing", sharedPref.getString("listing", null));
         map.put("date", sharedPref.getString("date", null));
 

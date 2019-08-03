@@ -71,6 +71,17 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+
+        HashMap<String, String> tagVal = MainApp.getTagValues(this);
+        String countryID = tagVal.get("org") != null ? tagVal.get("org").equals("null") ? "" : tagVal.get("org") : "";
+        if (countryID.equals("") || countryID.equals("0")) {
+            bi.countries.setEnabled(true);
+            bi.countries.setSelection(0);
+        } else {
+            bi.countries.setSelection(Integer.valueOf(countryID));
+            bi.countries.setEnabled(false);
+        }
+
     }
 
     public void BtnContinue() {
