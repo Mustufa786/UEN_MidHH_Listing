@@ -18,7 +18,7 @@
     <application
         android:name=".Core.MainApp"
         android:allowBackup="true"
-        android:icon="@drawable/nns_2018_linelisting_logo"
+        android:icon="@drawable/casi_logo_text"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
