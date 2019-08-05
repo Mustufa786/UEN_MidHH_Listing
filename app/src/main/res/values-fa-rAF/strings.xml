@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CASI Linelisting</string>
+    <string name="app_name">CASI Linelisting - DARI</string>
     <string name="hh01"> تعلُقہ کوڈ </string>
     <string name="hh02">شماره کلاستر  </string>
     <string name="hh03"> اسٹرکچر نمبر </string>
