@@ -102,5 +102,6 @@
     <string name="disconnect_peer_button">Disconnect</string>
     <string name="enable_p2p_button">Enable Wifi</string>
     <string name="discover_peers_button">Find Near-By Devices</string>
+    <string name="country_prompt">Choose a country</string>
 
 </resources>

@@ -3,7 +3,7 @@
     <string name="app_name">CASI Linelisting - DARI</string>
     <string name="hh01"> تعلُقہ کوڈ </string>
     <string name="hh02">شماره کلاستر  </string>
-    <string name="hh03"> اسٹرکچر نمبر </string>
+    <string name="hh03"> شمار ساختمان </string>
     <string name="hh04"> نوع ساختمان  </string>
     <string name="hh04a">  رهایشی </string>
     <string name="hh04b">  دوکان/مارکیت/پلازا </string>
@@ -25,7 +25,7 @@
     <string name="hh08a1b"> هیچ یک از اعضای خانواده یا یک پاسخ دهنده استعداد در خانه وجود نداشت</string>
     <string name="hh08a1c"> خانه بسته است </string>
 
-    <string name="hh09a1"> کیا یہ جگہ رہائشی مقصد کے لئے استعمال ہوتی ہے؟ </string>
+    <string name="hh09a1"> آیا این مکان برای مقصد رهایشی استفاده می شود؟ </string>
     <string name="hh09a2"> کیا کوئی جواب دہندہ موجود ہے </string>
     <string name="hh09a2a"> پاسخ دهنده وجود دارد</string>
     <string name="hh09a2b">  هیچ یک از اعضای خانواده یا یک پاسخ دهنده استعداد در خانه وجود نداشت</string>
@@ -102,5 +102,6 @@
     <string name="disconnect_peer_button">Disconnect</string>
     <string name="enable_p2p_button">Enable Wifi</string>
     <string name="discover_peers_button">Find Near-By Devices</string>
+    <string name="country_prompt">Choose a country</string>
 
 </resources>
