@@ -3,7 +3,7 @@
     <string name="app_name">CASI Linelisting - DARI</string>
     <string name="hh01"> تعلُقہ کوڈ </string>
     <string name="hh02">شماره کلاستر  </string>
-    <string name="hh03"> اسٹرکچر نمبر </string>
+    <string name="hh03"> شمار ساختمان </string>
     <string name="hh04"> نوع ساختمان  </string>
     <string name="hh04a">  رهایشی </string>
     <string name="hh04b">  دوکان/مارکیت/پلازا </string>
