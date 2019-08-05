@@ -41,7 +41,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/akulogo"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:visibility="gone" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
