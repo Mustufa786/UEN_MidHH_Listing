@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
 import edu.aku.hassannaqvi.casi_hhlisting.Other.SyncModel;
 import edu.aku.hassannaqvi.casi_hhlisting.R;
 import edu.aku.hassannaqvi.casi_hhlisting.databinding.SyncListAdapterBinding;

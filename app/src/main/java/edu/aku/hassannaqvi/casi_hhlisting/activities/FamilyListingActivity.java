@@ -253,6 +253,11 @@ public class FamilyListingActivity extends Activity {
         if (!ValidatorClass.EmptyRadioButton(this, hh10, hh10a, getString(R.string.hh10))) {
             return false;
         }
+        if (hh10a.isChecked()) {
+            if (!ValidatorClass.EmptyTextBox(this, hh11, getString(R.string.hh10))) {
+                return false;
+            }
+        }
         /*if (!ValidatorClass.EmptyRadioButton(this, hh10, hh10a, hh11, "Adolescents count")) {
             return false;
         }
