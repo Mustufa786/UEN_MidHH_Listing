@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.aku.hassannaqvi.casi_hhlisting">
+    package="edu.aku.hassannaqvi.uenmd_hhlisting">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -40,9 +40,9 @@
             android:name=".activities.AddChildActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:theme="@style/AppTheme2"
             android:name=".activities.SyncActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2" />
         <activity
             android:name=".activities.SetupActivity"
             android:screenOrientation="portrait" />

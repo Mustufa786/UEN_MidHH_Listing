@@ -9,10 +9,10 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.casi_hhlisting.adapters.Upload_list_adapter" />
+            type="edu.aku.hassannaqvi.uenmd_hhlisting.adapters.Upload_list_adapter" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_15sdp"
@@ -86,5 +86,5 @@
                     tools:text="Results:    " />
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </layout>
