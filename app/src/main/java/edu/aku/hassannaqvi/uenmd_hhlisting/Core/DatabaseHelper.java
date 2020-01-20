@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "casi-hhl.db";
     public static final String PROJECT_NAME = "casi-hhl-2019";
     public static final String DB_NAME = DATABASE_NAME.replace(".db", "-copy.db");
-    public static final String FOLDER_NAME = "DMU-CASIPAKHHL";
+    public static final String FOLDER_NAME = "DMU-UEN-MidlinePAKHHL";
     public static final String SQL_CREATE_BL_RANDOM = "CREATE TABLE " + singleRandomHH.TABLE_NAME + "("
             + singleRandomHH.COLUMN_ID + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleRandomHH.COLUMN_CLUSTER_BLOCK_CODE + " TEXT,"

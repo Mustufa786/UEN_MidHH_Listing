@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +26,7 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.WifiDirect.WiFiDirectActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
 
 public class MenuActivity extends AppCompatActivity {
 

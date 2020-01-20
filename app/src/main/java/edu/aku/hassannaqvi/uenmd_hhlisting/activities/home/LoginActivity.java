@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.home;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -67,6 +67,8 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SignupActivity;
 
 /**
  * A login screen that offers login via email/password.

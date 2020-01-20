@@ -23,6 +23,7 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.randomListAdapter;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu.MenuActivity;
 
 public class RandomizationActivity extends MenuActivity {
 

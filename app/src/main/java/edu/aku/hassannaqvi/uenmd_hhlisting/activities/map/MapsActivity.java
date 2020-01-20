@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.map;
 
 import android.content.Context;
 import android.content.SharedPreferences;

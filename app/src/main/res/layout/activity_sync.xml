@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.uenmd_hhlisting.activities.SyncActivity" />
+            type="edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity" />
     </data>
 
     <androidx.core.widget.NestedScrollView

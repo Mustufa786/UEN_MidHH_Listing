@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -104,14 +104,6 @@ public class FamilyListingActivity extends Activity {
                         hh11.setVisibility(View.GONE);
                         hh11.setText(null);
                     }
-
-                    /*if (hh14a.isChecked()) {
-                        hh15.setVisibility(View.VISIBLE);
-                        hh15.requestFocus();
-                    } else {
-                        hh15.setVisibility(View.GONE);
-                        hh15.setText(null);
-                    }*/
                 }
             });
         }

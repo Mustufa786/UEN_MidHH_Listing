@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,6 +32,8 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.home.LoginActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.home.MainActivity;
 
 public class SetupActivity extends Activity {
 
@@ -50,26 +52,10 @@ public class SetupActivity extends Activity {
     RadioButton hh04a;
     @BindView(R.id.hh04b)
     RadioButton hh04b;
-    @BindView(R.id.hh04c)
-    RadioButton hh04c;
-    @BindView(R.id.hh04d)
-    RadioButton hh04d;
-    @BindView(R.id.hh04e)
-    RadioButton hh04e;
-    @BindView(R.id.hh04f)
-    RadioButton hh04f;
-    @BindView(R.id.hh04fb)
-    RadioButton hh04fb;
     @BindView(R.id.hh04g)
     RadioButton hh04g;
     @BindView(R.id.hh04h)
     RadioButton hh04h;
-    @BindView(R.id.hh04i)
-    RadioButton hh04i;
-    @BindView(R.id.hh04j)
-    RadioButton hh04j;
-    @BindView(R.id.hh04jx)
-    EditText hh04jx;
     @BindView(R.id.hh05)
     Switch hh05;
     @BindView(R.id.hh06)
@@ -107,10 +93,7 @@ public class SetupActivity extends Activity {
             startActivity(retreat);
         }
 
-
-        deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-
+        deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         hh02.setText(MainApp.clusterCode);
         hh02.setEnabled(false);
 
@@ -118,20 +101,13 @@ public class SetupActivity extends Activity {
             MainApp.hh03txt = 1;
         } else {
             MainApp.hh03txt++;
-            //MainApp.lc.setHh03(String.valueOf(MainApp.hh03txt));
-            //hh02.setText(MainApp.hh02txt.toString());
             hh02.setText(MainApp.clusterCode);
             hh02.setEnabled(false);
         }
 
         MainApp.hh07txt = "1";
 
-        //String StructureNumber = "T-" + hh02.getText() + "-" + String.format("%03d", MainApp.hh03txt);
-        String StructureNumber = "CASI-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
-
-        // removed status for REFUSED and LOCKED
-        hh04i.setVisibility(View.GONE);
-        hh04fb.setVisibility(View.GONE);
+        String StructureNumber = "MD-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
 
         hh03.setTextColor(Color.RED);
         hh03.setText(StructureNumber);
@@ -151,7 +127,7 @@ public class SetupActivity extends Activity {
                     MainApp.hh07txt = "";
                 }
 
-                if (hh04a.isChecked() || hh04g.isChecked() || hh04h.isChecked() || hh04fb.isChecked() || hh04i.isChecked()) {
+                if (hh04a.isChecked() || hh04g.isChecked() || hh04h.isChecked()) {
                     hh09a1.setVisibility(View.GONE);
                     hh09a1.setChecked(false);
 
@@ -200,13 +176,6 @@ public class SetupActivity extends Activity {
                 } else {
                     btnChangPSU.setVisibility(View.GONE);
 
-                }
-
-                if (hh04j.isChecked()) {
-                    hh04jx.setVisibility(View.VISIBLE);
-                } else {
-                    hh04jx.setVisibility(View.GONE);
-                    hh04jx.setText(null);
                 }
             }
         });
@@ -291,37 +260,15 @@ public class SetupActivity extends Activity {
             case R.id.hh04b:
                 MainApp.lc.setHh04("2");
                 break;
-            case R.id.hh04c:
-                MainApp.lc.setHh04("3");
-                break;
-            case R.id.hh04d:
-                MainApp.lc.setHh04("4");
-                break;
-            case R.id.hh04e:
-                MainApp.lc.setHh04("5");
-                break;
-            case R.id.hh04f:
-                MainApp.lc.setHh04("6");
-                break;
-            case R.id.hh04fb:
-                MainApp.lc.setHh04("7");
-                break;
             case R.id.hh04g:
                 MainApp.lc.setHh04("8");
                 break;
             case R.id.hh04h:
                 MainApp.lc.setHh04("9");
                 break;
-            case R.id.hh04i:
-                MainApp.lc.setHh04("10");
-                break;
-            case R.id.hh04j:
-                MainApp.lc.setHh04("88");
-                break;
             default:
                 break;
         }
-        MainApp.lc.setHh04other(hh04jx.getText().toString());
         MainApp.lc.setUsername(MainApp.userEmail);
         MainApp.lc.setHh05(hh05.isChecked() ? "1" : "2");
         MainApp.lc.setHh06(hh06.getText().toString());
@@ -386,11 +333,11 @@ public class SetupActivity extends Activity {
         }
         if (hh04.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please one option", Toast.LENGTH_LONG).show();
-            hh04j.setError("Please one option");
+            hh04b.setError("Please one option");
             Log.i(TAG, "Please one option");
             return false;
         } else {
-            hh04j.setError(null);
+            hh04b.setError(null);
         }
 
         if (hh04a.isChecked()) {
@@ -412,15 +359,6 @@ public class SetupActivity extends Activity {
             } else {
                 hh06.setError(null);
             }
-        }
-
-        if (hh04j.isChecked() && hh04jx.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): Data required", Toast.LENGTH_LONG).show();
-            hh04jx.setError("ERROR(empty): Data required");
-            Log.i(TAG, "ERROR(empty): Data required");
-            return false;
-        } else {
-            hh04jx.setError(null);
         }
 
 

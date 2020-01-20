@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.home;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -60,6 +60,10 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.map.MapsActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu.MenuActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SetupActivity;
 
 public class MainActivity extends MenuActivity {
 
@@ -135,8 +139,8 @@ public class MainActivity extends MenuActivity {
                         editorDownload.putBoolean("flag", true);
                         editorDownload.commit();
 
-                        Toast.makeText(context, "CASI Linelisting APP downloaded!!", Toast.LENGTH_SHORT).show();
-                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Downloaded.");
+                        Toast.makeText(context, "UEN-Midline Linelisting APP downloaded!!", Toast.LENGTH_SHORT).show();
+                        lblAppVersion.setText("UEN-Midline Linelisting APP New Version " + newVer + "  Downloaded.");
 
                         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
@@ -247,19 +251,19 @@ public class MainActivity extends MenuActivity {
                 file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
 
                 if (file.exists()) {
-                    lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Downloaded.");
+                    lblAppVersion.setText("UEN-Midline Linelisting APP New Version " + newVer + "  Downloaded.");
                     showDialog(newVer, preVer);
                 } else {
                     NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
 
-                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + " Downloading..");
+                        lblAppVersion.setText("UEN-Midline Linelisting APP New Version " + newVer + " Downloading..");
                         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                         Uri uri = Uri.parse(MainApp._UPDATE_URL + versionAppContract.getPathname());
                         DownloadManager.Request request = new DownloadManager.Request(uri);
                         request.setDestinationInExternalPublicDir(fileName, versionAppContract.getPathname())
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                                .setTitle("Downloading CASI new App ver." + newVer);
+                                .setTitle("Downloading UEN-Midline new App ver." + newVer);
                         refID = downloadManager.enqueue(request);
 
                         editorDownload.putLong("refID", refID);
@@ -267,7 +271,7 @@ public class MainActivity extends MenuActivity {
                         editorDownload.commit();
 
                     } else {
-                        lblAppVersion.setText("CASI Linelisting APP New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
+                        lblAppVersion.setText("UEN-Midline Linelisting APP New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
                     }
                 }
 
@@ -627,8 +631,8 @@ public class MainActivity extends MenuActivity {
 
             return new AlertDialog.Builder(getActivity())
                     .setIcon(R.drawable.exclamation)
-                    .setTitle("CASI-2018 Line Listing APP is available!")
-                    .setMessage("CASI Line Listing App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
+                    .setTitle("UEN-Midline-2018 Line Listing APP is available!")
+                    .setMessage("UEN-Midline Line Listing App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
                     .setPositiveButton("INSTALL!!",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {

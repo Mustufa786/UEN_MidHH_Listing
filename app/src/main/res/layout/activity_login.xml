@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".activities.LoginActivity">
+    tools:context=".activities.home.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:gravity="center"
-                android:text="CASI - HHLISTING"
+                android:text="UEN-Midline - HHLISTING"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold"

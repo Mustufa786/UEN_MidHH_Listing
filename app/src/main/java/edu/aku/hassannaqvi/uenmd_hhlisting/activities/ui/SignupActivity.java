@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.home.LoginActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.databinding.ActivitySignupBinding;
 import edu.aku.hassannaqvi.uenmd_hhlisting.validation.ValidatorClass;
 

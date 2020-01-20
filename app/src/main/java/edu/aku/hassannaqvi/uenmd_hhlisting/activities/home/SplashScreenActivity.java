@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.uenmd_hhlisting.activities;
+package edu.aku.hassannaqvi.uenmd_hhlisting.activities.home;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

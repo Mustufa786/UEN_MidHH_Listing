@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="edu.aku.hassannaqvi.uenmd_hhlisting.activities.SetupActivity">
+    tools:context="edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SetupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,42 +93,6 @@
                 android:text="@string/hh04b" />
 
             <RadioButton
-                android:id="@+id/hh04c"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04c" />
-
-            <RadioButton
-                android:id="@+id/hh04d"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04d" />
-
-            <RadioButton
-                android:id="@+id/hh04e"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04e" />
-
-            <RadioButton
-                android:id="@+id/hh04f"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04f" />
-
-            <RadioButton
-                android:id="@+id/hh04fb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04fb"
-                android:visibility="gone" />
-
-            <RadioButton
                 android:id="@+id/hh04g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,33 +106,7 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/hh04h" />
 
-            <RadioButton
-                android:id="@+id/hh04i"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04i"
-                android:visibility="gone" />
-
-            <RadioButton
-                android:id="@+id/hh04j"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/hh04j" />
-
         </RadioGroup>
-
-        <EditText
-            android:id="@+id/hh04jx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:digits="@string/txtName"
-            android:hint="@string/hh04j"
-            android:inputType="text"
-            android:maxLength="50"
-            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/hh09a1"
