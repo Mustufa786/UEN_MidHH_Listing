@@ -11,7 +11,6 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -68,8 +67,6 @@ public class SetupActivity extends Activity {
     Button btnAddHousehold;
     @BindView(R.id.btnChangePSU)
     Button btnChangPSU;
-    @BindView(R.id.hh09a1)
-    CheckBox hh09a1;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date().getTime());
 
     private String TAG = "Setup Activity";
@@ -126,34 +123,6 @@ public class SetupActivity extends Activity {
                 } else {
                     MainApp.hh07txt = "";
                 }
-
-                if (hh04a.isChecked() || hh04g.isChecked() || hh04h.isChecked()) {
-                    hh09a1.setVisibility(View.GONE);
-                    hh09a1.setChecked(false);
-
-                } else {
-                    hh09a1.setVisibility(View.VISIBLE);
-                    hh09a1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                            if (hh09a1.isChecked()) {
-                                fldGrpHH04.setVisibility(View.VISIBLE);
-                                btnAddHousehold.setVisibility(View.GONE);
-                                MainApp.hh07txt = "1";
-                                hh07.setText(getString(R.string.hh07) + ": " + MainApp.hh07txt);
-
-                            } else {
-                                fldGrpHH04.setVisibility(View.GONE);
-                                hh05.setChecked(false);
-                                hh06.setText(null);
-                                MainApp.hh07txt = "";
-                                btnAddHousehold.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-
-                }
-
 
                 hh07.setText(getString(R.string.hh07) + ": " + MainApp.hh07txt);
                 if (hh04a.isChecked()) {
@@ -273,7 +242,7 @@ public class SetupActivity extends Activity {
         MainApp.lc.setHh05(hh05.isChecked() ? "1" : "2");
         MainApp.lc.setHh06(hh06.getText().toString());
         MainApp.lc.setHh07(MainApp.hh07txt);
-        MainApp.lc.setHh09a1(hh04a.isChecked() || hh09a1.isChecked() ? "1" : "2");
+        MainApp.lc.setHh09a1(hh04a.isChecked() ? "1" : "2");
 
         MainApp.lc.setDeviceID(deviceId);
 

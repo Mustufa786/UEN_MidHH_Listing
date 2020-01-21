@@ -153,6 +153,7 @@ public class MainActivity extends MenuActivity {
             }
         }
     };
+
     private String clusterName;
 
     @Override

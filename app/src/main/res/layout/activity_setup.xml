@@ -108,12 +108,6 @@
 
         </RadioGroup>
 
-        <CheckBox
-            android:id="@+id/hh09a1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hh09a1" />
-
         <LinearLayout
             android:id="@+id/fldGrpHH04"
             android:layout_width="match_parent"

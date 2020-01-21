@@ -39,7 +39,7 @@ public class MainApp extends Application {
     public static String _IP = "vcoe1.aku.edu"; // Test PHP server
     public static String _IP2 = "58.65.211.13"; // Test PHP server
     public static String _HOST_URL = "https://" + MainApp._IP + ":" + MainApp._PORT + "/casi/api/";
-    public static String _UPDATE_URL = "https://" + MainApp._IP + ":" + MainApp._PORT + "/casi/app/linelisting/";
+    public static String _UPDATE_URL = "https://" + MainApp._IP + ":" + MainApp._PORT + "/uen_mid/app/linelisting/";
     public static String DeviceURL = "devices.php";
 
     public static String TAG = "MainApp";
