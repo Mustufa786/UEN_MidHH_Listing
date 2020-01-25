@@ -35,6 +35,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -103,6 +105,20 @@ public class MainActivity extends MenuActivity {
     LinearLayout fldGrpna101;
     @BindView(R.id.adminBlock)
     LinearLayout adminBlock;
+    @BindView(R.id.lllstwarning)
+    LinearLayout lllstwarning;
+
+    @BindView(R.id.fldGrpMain01)
+    LinearLayout fldGrpMain01;
+
+    @BindView(R.id.lstwarning)
+    RadioGroup lstwarning;
+
+    @BindView(R.id.lstwarninga)
+    RadioButton lstwarninga;
+    @BindView(R.id.lstwarningb)
+    RadioButton lstwarningb;
+
 
 
     SharedPreferences sharedPref;
@@ -283,6 +299,7 @@ public class MainActivity extends MenuActivity {
         }
 
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
     }
 
     @Override
@@ -337,8 +354,10 @@ public class MainActivity extends MenuActivity {
                 psuN.setText(null);
                 ucN.setText(null);
                 fldGrpna101.setVisibility(View.GONE);
-                openForm.setVisibility(View.GONE);
+                lllstwarning.setVisibility(View.GONE);
                 chkconfirm.setChecked(false);
+                lstwarning.clearCheck();
+
             }
 
             @Override
@@ -436,11 +455,19 @@ public class MainActivity extends MenuActivity {
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                                 if (chkconfirm.isChecked()) {
                                     openForm.setBackgroundColor(getResources().getColor(R.color.green));
-                                    openForm.setVisibility(View.VISIBLE);
+                                    lllstwarning.setVisibility(View.VISIBLE);
                                     MainApp.hh01txt = 1;
-                                } else {
-                                    openForm.setVisibility(View.GONE);
 
+                                    // Cluster question
+                                    if (MainApp.PSUExist(MainApp.hh02txt))
+                                        fldGrpMain01.setVisibility(View.GONE);
+                                    else {
+                                        fldGrpMain01.setVisibility(View.VISIBLE);
+                                        lstwarning.clearCheck();
+                                    }
+
+                                } else {
+                                    lllstwarning.setVisibility(View.GONE);
                                 }
                             }
                         });
@@ -453,12 +480,12 @@ public class MainActivity extends MenuActivity {
                 } else {
                     Toast.makeText(this, "Sorry not found any block", Toast.LENGTH_SHORT).show();
                     flag = false;
-                    openForm.setVisibility(View.GONE);
+                    lllstwarning.setVisibility(View.GONE);
                 }
             } else {
                 Toast.makeText(this, "Can't proceed test cluster for current user!!", Toast.LENGTH_SHORT).show();
                 flag = false;
-                openForm.setVisibility(View.GONE);
+                lllstwarning.setVisibility(View.GONE);
             }
         } else {
             txtPSU.setError("Data required!!");

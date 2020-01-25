@@ -104,7 +104,7 @@ public class SetupActivity extends Activity {
 
         MainApp.hh07txt = "1";
 
-        String StructureNumber = "MD-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
+        String StructureNumber = "ML-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
 
         hh03.setTextColor(Color.RED);
         hh03.setText(StructureNumber);

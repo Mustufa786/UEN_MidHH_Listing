@@ -88,7 +88,7 @@ public class FamilyListingActivity extends Activity {
         ButterKnife.bind(this);
 
         this.setTitle("Family Information");
-        txtTeamNoWithFam.setText("CASI-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
+        txtTeamNoWithFam.setText("ML-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
 
         setupButtons();
 
@@ -131,7 +131,7 @@ public class FamilyListingActivity extends Activity {
 
                 }
 
-                txtTeamNoWithFam.setText("CASI-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
+                txtTeamNoWithFam.setText("ML-S" + String.format("%04d", MainApp.hh03txt) + "-H" + String.format("%03d", Integer.valueOf(MainApp.hh07txt)));
             }
         });
 

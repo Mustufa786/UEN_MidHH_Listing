@@ -221,13 +221,66 @@
                 android:layout_weight="1"
                 android:onClick="openClusterMap"
                 android:text="Check Cluster Map"
-                android:textColor="#7139c2" />
+                android:textColor="#7139c2"
+                android:visibility="gone" />
 
             <CheckBox
                 android:id="@+id/chkconfirm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/confirmcity" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lllstwarning"
+            style="@style/linearlayout_view"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/fldGrpMain01"
+                style="@style/linearlayout_view_wt_bound">
+
+                <TextView
+                    style="@style/textInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/lstWarning"
+                    android:textColor="@color/white" />
+
+                <RadioGroup
+                    android:id="@+id/lstwarning"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/lstwarninga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/lstwarningb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/no" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/openForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:onClick="openForm"
+                android:text="Start Line Listing" />
 
         </LinearLayout>
 
@@ -262,15 +315,6 @@
                 android:visibility="gone" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/openForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:onClick="openForm"
-            android:text="Start Line Listing"
-            android:visibility="gone" />
 
         <Button
             android:id="@+id/syncFunction"

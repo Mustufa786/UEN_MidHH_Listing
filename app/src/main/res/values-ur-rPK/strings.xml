@@ -103,4 +103,9 @@
     <string name="enable_p2p_button">Enable Wifi</string>
     <string name="discover_peers_button">Find Near-By Devices</string>
     <string name="country_prompt">Choose a country</string>
+
+    <string name="lstWarning1">Is it first tab that use in this cluster?</string>
+
+    <string name="lstWarning">کیا یہ پہلا ٹیب ہے جو اس کلسٹر میں استعمال ہوتا ہے؟</string>
+
 </resources>
