@@ -355,7 +355,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         if (networkInfo != null && networkInfo.isConnected()) {
 
 //            Toast.makeText(LoginActivity.this, "Starting Download Data Request!", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(LoginActivity.this, SyncActivity.class));
+            startActivity(new Intent(LoginActivity.this, SyncActivity.class).putExtra("sync_flag", true));
 //            new SyncData(this).execute();
 
 

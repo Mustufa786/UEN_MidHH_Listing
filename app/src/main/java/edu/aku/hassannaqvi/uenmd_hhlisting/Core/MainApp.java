@@ -35,16 +35,16 @@ public class MainApp extends Application {
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWO_MINUTES = 1000 * 60 * 2;
-    //public static String _IP = "10.1.42.30"; // Testing Server
-    public static String _IP = "vcoe1.aku.edu"; // Test PHP server
+    public static final String _IP = "http://f38158";// .TEST server
+    public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";// .TEST server;
     public static String _IP2 = "58.65.211.13"; // Test PHP server
-    public static String _HOST_URL = "https://" + MainApp._IP + ":" + MainApp._PORT + "/casi/api/";
-    public static String _UPDATE_URL = "https://" + MainApp._IP + ":" + MainApp._PORT + "/uen_mid/app/linelisting/";
+    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/linelisting/";
     public static String DeviceURL = "devices.php";
 
     public static String TAG = "MainApp";
     public static Boolean admin = false;
     public static String IMEI;
+    public static String DIST_ID;
     public static ListingContract lc;
     public static int hh01txt;
     public static String hh02txt;
@@ -60,7 +60,6 @@ public class MainApp extends Application {
 
     public static SignupContract signContract;
 
-    public static int hh07 = 0;
     public static int cTotal = 0;
     public static SharedPreferences sharedPref;
     public static String userEmail;

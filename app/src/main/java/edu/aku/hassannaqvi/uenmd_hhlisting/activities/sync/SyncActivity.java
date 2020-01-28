@@ -26,7 +26,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
@@ -58,6 +57,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     Boolean uploadlistActivityCreated;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
+    private boolean sync_flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         uploadlistActivityCreated = true;
         db = new DatabaseHelper(this);
         dbBackup();
+
+        sync_flag = getIntent().getBooleanExtra("sync_flag", false);
+
         bi.btnSync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,8 +137,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     @Override
     public void processFinish(boolean flag) {
         if (flag) {
-            HashMap<String, String> tagVal = MainApp.getTagValues(this);
-            new SyncData(SyncActivity.this, tagVal.get("org") != null ? tagVal.get("org").equals("null") ? null : tagVal.get("org") : null).execute();
+//            HashMap<String, String> tagVal = MainApp.getTagValues(this);
+            new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
         }
     }
 
@@ -257,7 +261,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     }
 
-    public class SyncData extends AsyncTask<String, String, String> {
+    public class SyncData extends AsyncTask<Boolean, String, String> {
 
         String countryID;
         private Context mContext;
@@ -268,11 +272,29 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         }
 
         @Override
-        protected String doInBackground(String... strings) {
-            runOnUiThread(new Runnable() {
+        protected String doInBackground(Boolean... strings) {
+            runOnUiThread(() -> {
 
-                @Override
-                public void run() {
+                if (strings[0]) {
+//                  getting Users!!
+//                    Toast.makeText(SyncActivity.this, "Sync Users", Toast.LENGTH_SHORT).show();
+                    if (listActivityCreated) {
+                        model = new SyncModel();
+                        model.setstatusID(0);
+                        list.add(model);
+                    }
+                    new GetAllData(mContext, "User", syncListAdapter, list).execute();
+
+//              Getting App Version
+//              Toast.makeText(SyncActivity.this, "Sync App Version", Toast.LENGTH_SHORT).show();
+                    if (listActivityCreated) {
+                        model = new SyncModel();
+                        model.setstatusID(0);
+                        list.add(model);
+                    }
+                    new GetAllData(mContext, "VersionApp", syncListAdapter, list).execute();
+
+                } else {
 
 //                  getting Enum Blocks
                     if (listActivityCreated) {
@@ -281,28 +303,12 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         list.add(model);
                     }
                     new GetAllData(mContext, "EnumBlock", syncListAdapter, list).execute(countryID);
+
+
                     bi.noItem.setVisibility(View.GONE);
-
-//                  getting Users!!
-//                    Toast.makeText(SyncActivity.this, "Sync Users", Toast.LENGTH_SHORT).show();
-                    if (listActivityCreated) {
-                        model = new SyncModel();
-                        model.setstatusID(0);
-                        list.add(model);
-                    }
-                    new GetAllData(mContext, "User", syncListAdapter, list).execute(countryID);
-
-//                    Getting App Version
-//                    Toast.makeText(SyncActivity.this, "Sync App Version", Toast.LENGTH_SHORT).show();
-                    if (listActivityCreated) {
-                        model = new SyncModel();
-                        model.setstatusID(0);
-                        list.add(model);
-                    }
-                    new GetAllData(mContext, "VersionApp", syncListAdapter, list).execute();
-
-                    listActivityCreated = false;
                 }
+
+                listActivityCreated = false;
             });
 
 

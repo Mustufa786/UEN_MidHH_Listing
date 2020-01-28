@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -32,10 +33,10 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.adapters.SyncListAdapter;
 
 public class GetAllData extends AsyncTask<String, String, String> {
 
-    HttpURLConnection urlConnection;
-    SyncListAdapter adapter;
-    List<SyncModel> list;
-    int position;
+    private HttpURLConnection urlConnection;
+    private SyncListAdapter adapter;
+    private List<SyncModel> list;
+    private int position;
     private String TAG = "";
     private Context mContext;
     private ProgressDialog pd;
@@ -59,10 +60,10 @@ public class GetAllData extends AsyncTask<String, String, String> {
                 position = 0;
                 break;
             case "User":
-                position = 1;
+                position = 0;
                 break;
             case "VersionApp":
-                position = 2;
+                position = 1;
                 break;
         }
         list.get(position).settableName(syncClass);
@@ -90,10 +91,10 @@ public class GetAllData extends AsyncTask<String, String, String> {
                 position = 0;
                 break;
             case "User":
-                position = 1;
+                position = 0;
                 break;
             case "VersionApp":
-                position = 2;
+                position = 1;
                 break;
         }
         list.get(position).setstatus("Syncing");
@@ -116,11 +117,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     break;
                 case "User":
                     url = new URL(MainApp._HOST_URL + UsersContract.UsersTable._URI);
-                    position = 1;
+                    position = 0;
                     break;
                 case "VersionApp":
                     url = new URL(MainApp._UPDATE_URL + VersionAppContract.VersionAppTable._URI);
-                    position = 2;
+                    position = 1;
                     break;
             }
 
@@ -130,7 +131,6 @@ public class GetAllData extends AsyncTask<String, String, String> {
 
             switch (syncClass) {
                 case "EnumBlock":
-                case "User":
 
                     if (args[0] != null && !args[0].equals("")) {
                         if (Integer.valueOf(args[0]) > 0) {
@@ -143,11 +143,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
 
                             // Starts the query
                             urlConnection.connect();
-                            JSONArray jsonSync = new JSONArray();
                             DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
                             JSONObject json = new JSONObject();
                             try {
-                                json.put("country_id", args[0]);
+                                json.put("dist_id", args[0]);
+                                json.put("user", "test1234");
                             } catch (JSONException e1) {
                                 e1.printStackTrace();
                             }
@@ -157,6 +157,31 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             wr.close();
                         }
                     }
+                    break;
+
+                case "User":
+
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setRequestProperty("Content-Type", "application/json");
+                    urlConnection.setRequestProperty("charset", "utf-8");
+                    urlConnection.setUseCaches(false);
+
+                    // Starts the query
+                    urlConnection.connect();
+                    DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put("user", "test1234");
+                    } catch (JSONException e1) {
+                        e1.printStackTrace();
+                    }
+                    Log.d(TAG, "downloadUrl: " + json.toString());
+                    wr.writeBytes(json.toString());
+                    wr.flush();
+                    wr.close();
+
                     break;
             }
 
@@ -175,9 +200,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     result.append(line);
                 }
             }
-        } catch (java.net.SocketTimeoutException e) {
-            return null;
-        } catch (java.io.IOException e) {
+        } catch (IOException e) {
             return null;
         } finally {
             urlConnection.disconnect();
@@ -205,11 +228,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             break;
                         case "User":
                             db.syncUsers(jsonArray);
-                            position = 1;
+                            position = 0;
                             break;
                         case "VersionApp":
                             db.syncVersionApp(jsonArray);
-                            position = 2;
+                            position = 1;
                             break;
                     }
 

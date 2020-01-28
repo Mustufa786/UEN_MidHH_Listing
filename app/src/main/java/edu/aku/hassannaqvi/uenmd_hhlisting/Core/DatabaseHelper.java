@@ -108,7 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ");";
     final String SQL_CREATE_PSU_TABLE = "CREATE TABLE " + EnumBlockTable.TABLE_NAME + " (" +
             EnumBlockTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            EnumBlockTable.COLUMN_COUNTRY_ID + " TEXT, " +
+            EnumBlockTable.COLUMN_DIST_ID + " TEXT, " +
             EnumBlockTable.COLUMN_GEO_AREA + " TEXT, " +
             EnumBlockTable.COLUMN_CLUSTER_AREA + " TEXT " +
             ");";
@@ -142,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + UsersTable.ROW_USERNAME + " TEXT,"
             + UsersTable.ROW_PASSWORD + " TEXT,"
-            + UsersTable.COUNTRY_ID + " TEXT );";
+            + UsersTable.DIST_ID + " TEXT );";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -202,7 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 ContentValues values = new ContentValues();
 
-                values.put(EnumBlockTable.COLUMN_COUNTRY_ID, Vc.getEbcode());
+                values.put(EnumBlockTable.COLUMN_DIST_ID, Vc.getDist_id());
                 values.put(EnumBlockTable.COLUMN_GEO_AREA, Vc.getGeoarea());
                 values.put(EnumBlockTable.COLUMN_CLUSTER_AREA, Vc.getCluster());
 
@@ -214,39 +214,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean Login(String username, String password) {
+    public boolean Login(String username, String password) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                UsersTable.ROW_USERNAME,
-                UsersTable.ROW_PASSWORD,
-        };
 
-        String whereClause = UsersTable.ROW_USERNAME + "=? AND " + UsersTable.ROW_PASSWORD + "=?";
-        String[] whereArgs = new String[]{username, password};
-        String groupBy = null;
-        String having = null;
-        String orderBy = null;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + UsersContract.UsersTable.TABLE_NAME + " WHERE " + UsersContract.UsersTable.ROW_USERNAME + "=? AND " + UsersContract.UsersTable.ROW_PASSWORD + "=?", new String[]{username, password});
+        if (mCursor != null) {
 
-        try {
-            c = db.query(
-                    UsersTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            if (c.getCount() > 0) {
+            if (mCursor.getCount() > 0) {
+
+                if (mCursor.moveToFirst()) {
+                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.UsersTable.DIST_ID));
+                }
                 return true;
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return false;
@@ -994,7 +973,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 values.put(UsersTable.ROW_USERNAME, user.getUserName());
                 values.put(UsersTable.ROW_PASSWORD, user.getPassword());
-                values.put(UsersTable.COUNTRY_ID, user.getCOUNTRY_ID());
+                values.put(UsersTable.DIST_ID, user.getDIST_ID());
                 db.insert(UsersTable.TABLE_NAME, null, values);
             }
 
@@ -1127,7 +1106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 EnumBlockTable._ID,
-                EnumBlockTable.COLUMN_COUNTRY_ID,
+                EnumBlockTable.COLUMN_DIST_ID,
                 EnumBlockTable.COLUMN_GEO_AREA,
                 EnumBlockTable.COLUMN_CLUSTER_AREA
         };

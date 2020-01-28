@@ -17,7 +17,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -99,10 +98,10 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(
                         connection.getInputStream(), StandardCharsets.UTF_8));
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
 
                 while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
+                    sb.append(line).append("\n");
                 }
                 br.close();
                 System.out.println("" + sb.toString());
@@ -111,10 +110,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
                 System.out.println(connection.getResponseMessage());
                 return connection.getResponseMessage();
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-
             e.printStackTrace();
         } finally {
             if (connection != null)
@@ -127,7 +123,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         int sSynced = 0;
-        String sSyncedError = "";
+        StringBuilder sSyncedError = new StringBuilder();
         JSONArray json = null;
         try {
             json = new JSONArray(result);
@@ -139,8 +135,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
                         sharedPref = context.getSharedPreferences("tagName", MODE_PRIVATE);
                         editor = sharedPref.edit();
                         editor.putString("tagName", tag);
-                        editor.putString("countryID", jsonObject.getString("country_id"));
-                        editor.commit();
+                        editor.apply();
 
                         if (flag) {
                             delegate.processFinish(true);
@@ -148,7 +143,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
 
                     } else if (jsonObject.getString("status").equals("0") && jsonObject.getString("error").equals("1")) {
                     } else {
-                        sSyncedError += "\nError:This device is not found on server.";
+                        sSyncedError.append("\nError:This device is not found on server.");
                     }
                 }
             } else {

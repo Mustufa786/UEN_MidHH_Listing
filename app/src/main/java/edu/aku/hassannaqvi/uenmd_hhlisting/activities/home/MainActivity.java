@@ -474,7 +474,7 @@ public class MainActivity extends MenuActivity {
                         });
 
                         MainApp.hh02txt = txtPSU.getText().toString();
-                        MainApp.enumCode = enumBlockContract.getEbcode();
+                        MainApp.enumCode = enumBlockContract.getDist_id();
                         MainApp.enumStr = enumBlockContract.getGeoarea();
                         MainApp.clusterCode = txtPSU.getText().toString();
                     }
