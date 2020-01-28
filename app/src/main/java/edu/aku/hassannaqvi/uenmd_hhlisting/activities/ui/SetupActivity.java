@@ -104,7 +104,7 @@ public class SetupActivity extends Activity {
 
         MainApp.hh07txt = "1";
 
-        String StructureNumber = "ML-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
+        String StructureNumber = MainApp.tabCheck + "-" + MainApp.clusterCode + "-S" + String.format("%04d", MainApp.hh03txt);
 
         hh03.setTextColor(Color.RED);
         hh03.setText(StructureNumber);
@@ -243,10 +243,9 @@ public class SetupActivity extends Activity {
         MainApp.lc.setHh06(hh06.getText().toString());
         MainApp.lc.setHh07(MainApp.hh07txt);
         MainApp.lc.setHh09a1(hh04a.isChecked() ? "1" : "2");
-
         MainApp.lc.setDeviceID(deviceId);
 
-        MainApp.lc.setIsRandom("2");
+        MainApp.lc.setIsRandom(MainApp.tabCheck);
 
         setGPS();
 

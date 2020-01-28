@@ -70,6 +70,8 @@ public class MainApp extends Application {
     protected static LocationManager locationManager;
     Location location;
 
+    public static String tabCheck = "";
+
     public static void updatePSU(String psuCode, String structureNo) {
 
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -81,10 +83,23 @@ public class MainApp extends Application {
 
     }
 
+    public static void updateTabNo(String psuCode, String structureNo) {
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString("T" + psuCode, structureNo);
+
+        editor.apply();
+        Log.d(TAG, "updatePSU: " + psuCode + " " + structureNo);
+
+    }
+
     public static Boolean PSUExist(String psuCode) {
         Log.d(TAG, "PSUExist: " + psuCode);
         MainApp.hh03txt = Integer.valueOf(sharedPref.getString(psuCode, "0"));
         Log.d(TAG, "PSUExist (Test): " + sharedPref.getString(psuCode, "0"));
+
+        MainApp.tabCheck = sharedPref.getString("T" + psuCode, "");
 
         if (MainApp.hh03txt == 0) {
             Log.d(TAG, "PSUExist (False): " + MainApp.hh03txt);

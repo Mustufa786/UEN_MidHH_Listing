@@ -40,6 +40,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -118,7 +120,6 @@ public class MainActivity extends MenuActivity {
     RadioButton lstwarninga;
     @BindView(R.id.lstwarningb)
     RadioButton lstwarningb;
-
 
 
     SharedPreferences sharedPref;
@@ -536,10 +537,18 @@ public class MainActivity extends MenuActivity {
     public void NextSetupActivity() {
 
         if (flag) {
+
+            if (!Validator.emptyCheckingContainer(this, fldGrpMain01)) return;
+
+            if (MainApp.tabCheck.equals(""))
+                MainApp.tabCheck = lstwarninga.isChecked() ? "A" : lstwarningb.isChecked() ? "B" : "";
+
             if (MainApp.PSUExist(MainApp.hh02txt)) {
                 Toast.makeText(MainActivity.this, "PSU data exist!", Toast.LENGTH_LONG).show();
                 alertPSU();
             } else {
+                if (MainApp.tabCheck.equals(""))
+                    MainApp.tabCheck = lstwarninga.isChecked() ? "A" : lstwarningb.isChecked() ? "B" : "";
                 startActivity(new Intent(this, SetupActivity.class));
             }
         } else {

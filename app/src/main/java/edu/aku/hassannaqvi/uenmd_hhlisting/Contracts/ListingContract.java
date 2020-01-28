@@ -603,7 +603,7 @@ public class ListingContract {
         public static final String COLUMN_TAGID = "tagId";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_RANDOMIZED = "randomized";
+        public static final String COLUMN_RANDOMIZED = "tabNo";
 
         public static final String COLUMN_USERNAME = "username";
         public static final String _URL = "listings.php";

@@ -296,6 +296,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         MainApp.updatePSU(lc.getHh02(), lc.getHh03());
         Log.d(TAG, "PSUExist (Test): " + MainApp.sharedPref.getString(lc.getHh02(), "0"));
+        MainApp.updateTabNo(lc.getHh02(), MainApp.tabCheck);
 
         values.put(ListingEntry.COLUMN_NAME_HH04, lc.getHh04());
         values.put(ListingEntry.COLUMN_NAME_HH04OTHER, lc.getHh04other());
