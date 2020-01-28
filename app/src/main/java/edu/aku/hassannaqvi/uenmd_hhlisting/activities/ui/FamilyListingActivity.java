@@ -223,14 +223,14 @@ public class FamilyListingActivity extends Activity {
             hh08.setError(null);
         }
 
-        if (hh09.getText().toString().isEmpty()) {
+        /*if (hh09.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter contact number", Toast.LENGTH_SHORT).show();
             hh09.setError("Please enter contact number");
             Log.i(TAG, "Please enter contact number");
             return false;
         } else {
             hh09.setError(null);
-        }
+        }*/
 
         if (hh16.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.hh16), Toast.LENGTH_SHORT).show();
