@@ -24,6 +24,7 @@
         android:id="@+id/menu_wifiDirect"
         android:orderInCategory="1"
         android:title="Connect to device"
+        android:visible="false"
         app:showAsAction="never" />
 
 </menu>

@@ -40,8 +40,8 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VerticesContract.SingleVert
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // The name of database.
-    public static final String DATABASE_NAME = "casi-hhl.db";
-    public static final String PROJECT_NAME = "casi-hhl-2019";
+    public static final String DATABASE_NAME = "uenml-hhl.db";
+    public static final String PROJECT_NAME = "uenml-hhl-2019";
     public static final String DB_NAME = DATABASE_NAME.replace(".db", "-copy.db");
     public static final String FOLDER_NAME = "DMU-UEN-MidlinePAKHHL";
     public static final String SQL_CREATE_BL_RANDOM = "CREATE TABLE " + singleRandomHH.TABLE_NAME + "("
