@@ -77,7 +77,6 @@
                 tools:layout_editor_absoluteY="146dp" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -89,6 +88,7 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/akulogo"
                 android:contentDescription="Aga Khan LOGO"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -229,6 +229,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/signup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -247,6 +248,7 @@
                 android:background="@drawable/button_background"
                 android:text="SIGN UP"
                 android:textColor="@android:color/white"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.529"
                 app:layout_constraintStart_toStartOf="parent"
@@ -258,11 +260,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="240dp"
+                android:layout_marginTop="200dp"
                 android:text="Version 2.1"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

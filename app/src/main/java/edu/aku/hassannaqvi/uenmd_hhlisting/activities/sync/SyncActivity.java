@@ -29,7 +29,6 @@ import java.util.Date;
 import java.util.List;
 
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.SignupContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Get.GetAllData;
@@ -75,21 +74,15 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
         sync_flag = getIntent().getBooleanExtra("sync_flag", false);
 
-        bi.btnSync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bi.btnSync.setOnClickListener(v -> {
 
-                Toast.makeText(SyncActivity.this, "Start Downloading Data", Toast.LENGTH_SHORT).show();
-                onSyncDataClick();
-            }
+            Toast.makeText(SyncActivity.this, "Start Downloading Data", Toast.LENGTH_SHORT).show();
+            onSyncDataClick();
         });
-        bi.btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bi.btnUpload.setOnClickListener(v -> {
 
-                Toast.makeText(SyncActivity.this, "Start Uploading Data", Toast.LENGTH_SHORT).show();
-                syncServer();
-            }
+            Toast.makeText(SyncActivity.this, "Start Uploading Data", Toast.LENGTH_SHORT).show();
+            syncServer();
         });
         setAdapter();
         setUploadAdapter();
@@ -100,7 +93,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            new SyncDevice(SyncActivity.this, true).execute();
+            if (sync_flag) new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(true);
+            else new SyncDevice(SyncActivity.this, true).execute();
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -137,7 +131,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     @Override
     public void processFinish(boolean flag) {
         if (flag) {
-//            HashMap<String, String> tagVal = MainApp.getTagValues(this);
             new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
         }
     }
@@ -169,7 +162,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             ).execute();
 
 //            Toast.makeText(getApplicationContext(), "Syncing Family Members", Toast.LENGTH_SHORT).show();
-            if (uploadlistActivityCreated) {
+            /*if (uploadlistActivityCreated) {
                 uploadmodel = new SyncModel();
                 uploadmodel.setstatusID(0);
                 uploadlist.add(uploadmodel);
@@ -181,7 +174,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     SignupContract.class,
                     MainApp._HOST_URL + SignupContract.SignUpTable._URL,
                     db.getUnsyncedSignups(), 1, uploadListAdapter, uploadlist
-            ).execute();
+            ).execute();*/
             bi.noDataItem.setVisibility(View.GONE);
 
             uploadlistActivityCreated = false;

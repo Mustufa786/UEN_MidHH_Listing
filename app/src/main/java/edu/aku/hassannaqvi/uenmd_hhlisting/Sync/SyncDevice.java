@@ -26,12 +26,12 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import static android.content.Context.MODE_PRIVATE;
 
 public class SyncDevice extends AsyncTask<Void, Integer, String> {
-    public SyncDevicInterface delegate;
-    Context context;
+    private SyncDevicInterface delegate;
+    private Context context;
 
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-    boolean flag;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    private boolean flag;
     private String TAG = "";
 
     public SyncDevice(Context context, boolean flag) {
@@ -84,6 +84,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
                 DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
 
                 try {
+                    jsonObject.addProperty("dist_id", MainApp.DIST_ID);
                     jsonObject.addProperty("imei", MainApp.IMEI);
                     jsonObject.addProperty("appversion", MainApp.versionName + "." + MainApp.versionCode);
                     jsonObject.addProperty("appname", context.getString(R.string.app_name));
