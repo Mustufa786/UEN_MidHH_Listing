@@ -111,6 +111,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     ImageButton showPassword;
     @BindView(R.id.signup)
     Button signup;
+    @BindView(R.id.testing)
+    TextView testing;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     String DirectoryName;
@@ -195,6 +197,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     Toast.makeText(LoginActivity.this, "Please download data first!!", Toast.LENGTH_SHORT).show();
             }
         });
+
+//        Testing visibility
+        if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
+            testing.setVisibility(View.GONE);
+        } else {
+            testing.setVisibility(View.VISIBLE);
+        }
 
     }
 

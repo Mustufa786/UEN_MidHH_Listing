@@ -406,51 +406,65 @@ public class MainActivity extends MenuActivity {
     public void OpenFormFun() {
 
         if (!txtPSU.getText().toString().isEmpty()) {
+
             txtPSU.setError(null);
-            DatabaseHelper db = new DatabaseHelper(this);
-            EnumBlockContract enumBlockContract = db.getEnumBlock(txtPSU.getText().toString());
-            if (enumBlockContract != null) {
-                String selected = enumBlockContract.getGeoarea();
+            boolean loginFlag;
+            int clus = Integer.valueOf(txtPSU.getText().toString().substring(3, 6));
+            if (clus < 500) {
+                loginFlag = !(MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user"));
+            } else {
+                loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user");
+            }
+            if (loginFlag) {
+                DatabaseHelper db = new DatabaseHelper(this);
+                EnumBlockContract enumBlockContract = db.getEnumBlock(txtPSU.getText().toString());
+                if (enumBlockContract != null) {
+                    String selected = enumBlockContract.getGeoarea();
 
-                if (!selected.equals("")) {
+                    if (!selected.equals("")) {
 
-                    String[] selSplit = selected.split("\\|");
+                        String[] selSplit = selected.split("\\|");
 
-                    na101a.setText(selSplit[0]);
-                    na101b.setText(selSplit[1].equals("") ? "----" : selSplit[1]);
-                    na101c.setText(selSplit[2].equals("") ? "----" : selSplit[2]);
-                    na101d.setText(selSplit[3]);
-                    clusterName = selSplit[3];
+                        na101a.setText(selSplit[0]);
+                        na101b.setText(selSplit[1].equals("") ? "----" : selSplit[1]);
+                        na101c.setText(selSplit[2].equals("") ? "----" : selSplit[2]);
+                        na101d.setText(selSplit[3]);
+                        clusterName = selSplit[3];
 
-                    fldGrpna101.setVisibility(View.VISIBLE);
+                        fldGrpna101.setVisibility(View.VISIBLE);
 
-                    flag = true;
-                    chkconfirm.setOnCheckedChangeListener((compoundButton, b) -> {
-                        if (chkconfirm.isChecked()) {
-                            openForm.setBackgroundColor(getResources().getColor(R.color.green));
-                            lllstwarning.setVisibility(View.VISIBLE);
-                            MainApp.hh01txt = 1;
+                        flag = true;
+                        chkconfirm.setOnCheckedChangeListener((compoundButton, b) -> {
+                            if (chkconfirm.isChecked()) {
+                                openForm.setBackgroundColor(getResources().getColor(R.color.green));
+                                lllstwarning.setVisibility(View.VISIBLE);
+                                MainApp.hh01txt = 1;
 
-                            // Cluster question
-                            if (MainApp.PSUExist(MainApp.hh02txt))
-                                fldGrpMain01.setVisibility(View.GONE);
-                            else {
-                                fldGrpMain01.setVisibility(View.VISIBLE);
-                                lstwarning.clearCheck();
+                                // Cluster question
+                                if (MainApp.PSUExist(MainApp.hh02txt))
+                                    fldGrpMain01.setVisibility(View.GONE);
+                                else {
+                                    fldGrpMain01.setVisibility(View.VISIBLE);
+                                    lstwarning.clearCheck();
+                                }
+
+                            } else {
+                                lllstwarning.setVisibility(View.GONE);
                             }
+                        });
 
-                        } else {
-                            lllstwarning.setVisibility(View.GONE);
-                        }
-                    });
-
-                    MainApp.hh02txt = txtPSU.getText().toString();
-                    MainApp.enumCode = enumBlockContract.getDist_id();
-                    MainApp.enumStr = enumBlockContract.getGeoarea();
-                    MainApp.clusterCode = txtPSU.getText().toString();
+                        MainApp.hh02txt = txtPSU.getText().toString();
+                        MainApp.enumCode = enumBlockContract.getDist_id();
+                        MainApp.enumStr = enumBlockContract.getGeoarea();
+                        MainApp.clusterCode = txtPSU.getText().toString();
+                    }
+                } else {
+                    Toast.makeText(this, "Sorry not found any block", Toast.LENGTH_SHORT).show();
+                    flag = false;
+                    lllstwarning.setVisibility(View.GONE);
                 }
             } else {
-                Toast.makeText(this, "Sorry not found any block", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Can't proceed test cluster for current user!!", Toast.LENGTH_SHORT).show();
                 flag = false;
                 lllstwarning.setVisibility(View.GONE);
             }
