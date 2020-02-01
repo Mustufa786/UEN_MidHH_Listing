@@ -37,9 +37,6 @@
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activities.ui.AddChildActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.sync.SyncActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />

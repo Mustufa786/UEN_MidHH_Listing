@@ -1,83 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UEN-Midline Linelisting - Urdu</string>
-    <string name="hh01"> تعلُقہ کوڈ </string>
+    <string name="app_name">UEN-Midline Linelisting</string>
     <string name="hh02"> کلسٹر کوڈ  </string>
     <string name="hh03"> اسٹرکچر نمبر </string>
     <string name="hh04"> تعمیراتی ساخت </string>
     <string name="hh04a"> رہائشی </string>
-    <string name="hh04b"> ‏غیررہائشی </string>
-    <string name="hh04c"> مسجد/گرجاگھر/مندر </string>
-    <string name="hh04d"> اسکول/کالج/یونیورسٹی </string>
-    <string name="hh04e"> مرکز صحت </string>
-    <string name="hh04f"> زیرتعمیر </string>
-    <string name="hh04fb"> خالی/بند </string>
+    <string name="hh04b"> ‏غیر رہائشی </string>
     <string name="hh04g"> عارظی  طور پر لسٹنگ بند کریں  </string>
     <string name="hh04h"> مزید عمارت نہیں (کلسٹر مکمل ہوگیا) </string>
-    <string name="hh04i"> انکار کردیا </string>
-    <string name="hh04j"> دیگر </string>
-
-    <string name="btnSync">Sync</string>
-    <string name="btnUpload">Upload</string>
-    <!--<string name="hh08a1"> کیا کوئی جواب دہندہ موجود ہے </string>-->
     <string name="confirmcity"> کیا آپ اُوپر دیئے گئے شہر/گاوُں میں موجود ہیں؟ </string>
-    <string name="hh08a1a"> جواب دہندہ موجود ہے </string>
-    <string name="hh08a1b"> گھرانے کا کوئی فرد یا باصلاحیت جواب دہندہ گھر پر موجود نہیں تھا</string>
-    <string name="hh08a1c"> گھر بند ہے </string>
-
-    <string name="hh09a1"> کیا یہ جگہ رہائشی مقصد کے لئے استعمال ہوتی ہے؟ </string>
-    <string name="hh09a2"> کیا کوئی جواب دہندہ موجود ہے </string>
-    <string name="hh09a2a"> جواب دہندہ موجود ہے </string>
-    <string name="hh09a2b"> گھرانے کا کوئی فرد یا باصلاحیت جواب دہندہ گھر پر موجود نہیں تھا</string>
-    <string name="hh09a2c"> گھر بند ہے </string>
-
-
-    <string name="hh05">   کیا اس عمارت میں ایک سے زیادہ خاندان رہائش پزیر ہیں؟ </string>
+    <string name="hh05"> کیا اس عمارت میں ایک سے زیادہ خاندان رہائش پزیر ہیں؟ </string>
     <string name="hh06"> خاندان کی تعداد؟ </string>
     <string name="hh07"> خاندان نمبر </string>
-    <string name="hh08a1">  کیا کوئی جواب دہندہ موجود ہے؟ </string>
     <string name="hh08"> خاندان کے سربراہ کا نام </string>
     <string name="hh09"> موبائل نمبر </string>
     <string name="hh10a"> تعداد </string>
-    <string name="hh12a"> تعداد </string>
-    <string name="hh14a"> تعداد </string>
     <string name="hh10">   کیا اس گھر میں کوئی شادی شدہ خواتین رہ رہی ہیں جن کی عمر 15 سے 49 سال کے درمیان ہے اور 5 سال سے کم عمر کے بچے ہیں؟ </string>
-    <string name="hh12">   کیااس گھر میں 10 سے 19 سال کے مرد رہائش پزیر ہیں؟ </string>
-    <string name="hh14">    کیا اس گھر میں 15 سے 49 سال کی خواتین رہائش پزیر ہیں؟ </string>
     <string name="hh16"> افراد کی تعداد </string>
-    <string name="hh17">   کیا اس گھر میں مذید کوئی خاندان رہائش پزیر ہے </string>
-    <string name="hh18">گزشتہ 3 سال کے دوران پیدا ہونے والے زندہ بچوں کی تعداد</string>
-    <string name="hh18a">گزشتہ 3 سالوں کے دوران اموات کی تعداد</string>
-    <string name="hh19"> گزشتہ 3 سالوں کے دوران نومولود (0-27دن عمر) بچوں کی اموات کی تعداد </string>
-    <string name="hh20"> گزشتہ 3 سالوں کے دوران (28 دن- 12 مہینے) شیرخوار بچوں کی اموات کی تعداد </string>
-    <string name="hh21"> گزشتہ 3 سالوں کے دوران (13 مہینے – 59 مہینے) بچوں کی اموات کی تعداد </string>
-    <string name="hh22"> گزشتہ 3 سالوں کے دوران مردہ بچوں کی پیدائش کی تعداد۔</string>
-    <string name="hh23"> گزشتہ 3 سالوں کے دوران کتنی خواتین کی وفات (دوران حمل ، زچگی یا زچگی کے بعد 42 دن  کے دوران) واقع ہوئی ۔</string>
-    <string name="hh24"> گزشتہ 3 سالوں کے دوران (12 سے 19 سال تک کے نو عمر) لڑکوں کی اموات کی تعداد ۔</string>
-    <string name="hh25"> گزشتہ 3 سالوں کے دوران (12 سے 19 سال تک کے نو عمر) لڑکیوں کی اموات کی تعداد ۔</string>
-    <string name="hh26"> گزشتہ 3 سالوں کے دوران (20 سے 49 سال تک  کی خواتین ) کی اموات کی تعداد ۔</string>
-    <string name="hh27"> گزشتہ 3 سالوں کے دوران ( 5 سال – 11 سال کی عمر) کے بچوں کی اموات کی تعداد ۔</string>
-    <string name="hhadd"> پتہ </string>
-
+    <string name="hh17"> کیا اس گھر میں مذید کوئی خاندان رہائش پزیر ہے </string>
     <string name="na101a"> ضلعہ </string>
     <string name="na101b">  تحصیل / تعلُقہ </string>
     <string name="na101c"> یونین کونسل </string>
     <string name="na101d"> گاوُں/ محلہ </string>
-    <string name="na101e"> اینومریشن بلاک نمبر </string>
-
     <string name="yes"> ہاں </string>
     <string name="no"> نہیں </string>
-    <string name="rfsd"> انکار </string>
-    <string name="locked"> بند </string>
     <string name="delete"> Delete this HH </string>
+    <string name="lstWarning">کیا یہ پہلا ٹیب ہے جو اس کلسٹر میں استعمال ہوتا ہے؟</string>
 
-    <string name="txtMsg">1234567890-=+ qwertyuiop[]asdfghjkl;zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:ZXCVBNM?</string>
-    <string name="txtName"> qwertyuiop asdfghjkl zxcvbnm QWERTYUIOP ASDFGHJKL ZXCVBNM </string>
-    <string name="child_name"> Child Name </string>
-    <string name="child_age"> Child Age </string>
-    <string name="hh12m">ماہ</string>
-    <string name="hh13">دن</string>
-
+    <string name="btnSync">Sync</string>
+    <string name="btnUpload">Upload</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Login</string>
@@ -103,9 +54,6 @@
     <string name="enable_p2p_button">Enable Wifi</string>
     <string name="discover_peers_button">Find Near-By Devices</string>
     <string name="country_prompt">Choose a country</string>
-
-    <string name="lstWarning1">Is it first tab that use in this cluster?</string>
-
-    <string name="lstWarning">کیا یہ پہلا ٹیب ہے جو اس کلسٹر میں استعمال ہوتا ہے؟</string>
+    <string name="txtName"> qwertyuiop asdfghjkl zxcvbnm QWERTYUIOP ASDFGHJKL ZXCVBNM </string>
 
 </resources>

@@ -48,26 +48,10 @@ public class FamilyListingActivity extends Activity {
     RadioButton hh10b;
     @BindView(R.id.hh11)
     EditText hh11;
-    @BindView(R.id.hh14)
-    RadioGroup hh14;
-    /*    @BindView(R.id.hh14a)
-        RadioButton hh14a;
-        @BindView(R.id.hh14b)
-        RadioButton hh14b;
-        @BindView(R.id.hh15)
-        EditText hh15;*/
     @BindView(R.id.hh16)
     EditText hh16;
     @BindView(R.id.hh17)
     Switch hh17;
-    @BindView(R.id.hh08a1)
-    RadioGroup hh08a1;
-    @BindView(R.id.hh08a1a)
-    RadioButton hh08a1a;
-    @BindView(R.id.hh08a1b)
-    RadioButton hh08a1b;
-    @BindView(R.id.hh08a1c)
-    RadioButton hh08a1c;
     @BindView(R.id.deleteHH)
     CheckBox deleteHH;
     @BindView(R.id.fldGrpSecB01)
@@ -78,7 +62,7 @@ public class FamilyListingActivity extends Activity {
     Button btnAddFamilty;
     @BindView(R.id.btnAddHousehold)
     Button btnAddHousehold;
-    @BindViews({R.id.hh10, R.id.hh14})
+    @BindViews({R.id.hh10})
     List<RadioGroup> hh10_12;
 
     @Override

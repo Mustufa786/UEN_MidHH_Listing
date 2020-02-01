@@ -38,7 +38,7 @@ public class MainApp extends Application {
     public static final String _IP = "http://f38158";// .TEST server
     //    public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
     public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";
-    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/linelisting/";
+    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/listings/";
     public static String DeviceURL = "devices.php";
 
     public static String TAG = "MainApp";

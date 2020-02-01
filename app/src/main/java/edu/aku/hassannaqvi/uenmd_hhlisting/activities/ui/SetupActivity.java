@@ -41,8 +41,6 @@ public class SetupActivity extends Activity {
     ScrollView activityHouseholdListing;
     @BindView(R.id.hh02)
     EditText hh02;
-    @BindView(R.id.hhadd)
-    EditText hhadd;
     @BindView(R.id.hh03)
     TextView hh03;
     @BindView(R.id.hh04)
