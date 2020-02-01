@@ -11,12 +11,12 @@
     <string name="hh04g"> عارضي (لسٽون بند ڪريو) </string>
     <string name="hh04h"> لائين لسٽون مڪمل (وڌيڪ جڳھه نه آھي) </string>
 
-    <string name="confirmcity"> کیا آپ اُوپر دیئے گئے شہر/گاوُں میں موجود ہیں؟ </string>
-    <string name="hh05"> کیا اس عمارت میں ایک سے زیادہ خاندان رہائش پزیر ہیں؟ </string>
-    <string name="hh06"> خاندان کی تعداد؟ </string>
+    <string name="confirmcity"> ڇا توھان مٿي ڏنل شهر / ڳوٺ ۾ موجود آھيو؟ </string>
+    <string name="hh05"> ڇا ھن عمارت ۾ ھڪ کان وڌيڪ گھر رھائش پذير آھن؟ </string>
+    <string name="hh06"> گهرن جو تعداد </string>
     <string name="hh07"> خاندان نمبر </string>
-    <string name="hh17"> کیا اس گھر میں مذید کوئی خاندان رہائش پزیر ہے </string>
-    <string name="lstWarning">کیا یہ پہلا ٹیب ہے جو اس کلسٹر میں استعمال ہوتا ہے؟</string>
+    <string name="hh17"> ڇا ھن گهر ۾ ڪو وڌيڪ خاندان رھائش پذير آھي؟ </string>
+    <string name="lstWarning">ڇا ھي پھريون ٽيب آھي جيڪو ھن ڪلسٽر ۾ استعمال ٿي رھيو آھي؟</string>
 
     <string name="hh08"> گهر جي سربراھ جو نالو </string>
     <string name="hh09">""</string>
@@ -32,7 +32,6 @@
     <string name="yes"> ھا </string>
     <string name="no"> نه </string>
     <string name="delete"> Delete this HH </string>
-
 
     <!--Default-->
     <string name="btnSync">Sync</string>
