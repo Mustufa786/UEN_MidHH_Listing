@@ -38,7 +38,7 @@ public class MainApp extends Application {
     //public static final String _IP = "http://f38158";// .TEST server
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
     public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";
-    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/listings/";
+    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/listings/sn/";
     public static String DeviceURL = "devices.php";
 
     public static String TAG = "MainApp";
@@ -133,7 +133,7 @@ public class MainApp extends Application {
     public void onCreate() {
         super.onCreate();
         Log.d("App", "Creating...");
-        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+//        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         // Declare and Initialize GPS collection module
