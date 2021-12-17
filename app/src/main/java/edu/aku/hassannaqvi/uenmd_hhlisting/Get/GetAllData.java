@@ -19,9 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.EnumBlockContract;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.UsersContract;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.SyncModel;
@@ -38,9 +35,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
     private List<SyncModel> list;
     private int position;
     private String TAG = "";
-    private Context mContext;
+    private final Context mContext;
     private ProgressDialog pd;
-    private String syncClass;
+    private final String syncClass;
 
 
     public GetAllData(Context context, String syncClass) {
@@ -110,7 +107,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
 
         URL url = null;
         try {
-            switch (syncClass) {
+/*            switch (syncClass) {
                 case "EnumBlock":
                     url = new URL(MainApp._HOST_URL + EnumBlockContract.EnumBlockTable._URI);
                     position = 0;
@@ -123,7 +120,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     url = new URL(MainApp._UPDATE_URL + VersionAppContract.VersionAppTable._URI);
                     position = 1;
                     break;
-            }
+            }*/
+            url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
+
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(100000 /* milliseconds */);
@@ -146,8 +145,8 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
                             JSONObject json = new JSONObject();
                             try {
-                                json.put("dist_id", args[0]);
-                                json.put("user", "test1234");
+                                json.put("filter", " where dist_id ='" + args[0] + "'");
+                                json.put("table", "clusters");
                             } catch (JSONException e1) {
                                 e1.printStackTrace();
                             }
@@ -173,7 +172,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
                     JSONObject json = new JSONObject();
                     try {
-                        json.put("user", "test1234");
+                        json.put("table", "users");
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }

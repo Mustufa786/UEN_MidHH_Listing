@@ -35,12 +35,11 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Get.GetAllData;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.SyncModel;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Sync.SyncAllData;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Sync.SyncDevice;
 import edu.aku.hassannaqvi.uenmd_hhlisting.adapters.SyncListAdapter;
 import edu.aku.hassannaqvi.uenmd_hhlisting.adapters.Upload_list_adapter;
 import edu.aku.hassannaqvi.uenmd_hhlisting.databinding.ActivitySyncBinding;
 
-public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDevicInterface {
+public class SyncActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     SharedPreferences sharedPref;
     String DirectoryName;
@@ -93,8 +92,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            if (sync_flag) new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(true);
-            else new SyncDevice(SyncActivity.this, true).execute();
+            new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
+
+            //  else new SyncDevice(SyncActivity.this, true).execute();
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -128,12 +128,12 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         }
     }
 
-    @Override
+/*    @Override
     public void processFinish(boolean flag) {
         if (flag) {
             new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(sync_flag);
         }
-    }
+    }*/
 
     public void syncServer() {
 
@@ -145,7 +145,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             DatabaseHelper db = new DatabaseHelper(this);
 
-            new SyncDevice(this, false).execute();
+            //    new SyncDevice(this, false).execute();
 //            Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             if (uploadlistActivityCreated) {
                 uploadmodel = new SyncModel();
@@ -251,13 +251,12 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
     public class SyncData extends AsyncTask<Boolean, String, String> {
 
         String countryID;
-        private Context mContext;
+        private final Context mContext;
 
         public SyncData(Context mContext, String countryID) {
             this.mContext = mContext;

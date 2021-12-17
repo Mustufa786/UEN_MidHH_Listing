@@ -32,6 +32,8 @@ public class MainApp extends Application {
     // GPS Related Field Variables
 
     public static final Integer _PORT = 443; // Port - with colon (:)
+    public static final String _SERVER_URL = "sync.php";
+    public static final String _SERVER_GET_URL = "getData.php";
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWO_MINUTES = 1000 * 60 * 2;
