@@ -4,7 +4,6 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -14,6 +13,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.location.Location;
@@ -28,12 +28,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.telephony.TelephonyManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -46,6 +49,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -58,6 +62,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -73,7 +78,7 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SignupActivity;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -91,6 +96,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWO_MINUTES = 1000 * 60 * 2;
+    private static final String TAG = "LoginActivity";
     protected static LocationManager locationManager;
     // UI references.
     @BindView(R.id.login_progress)
@@ -120,12 +126,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private UserLoginTask mAuthTask = null;
     private int clicks;
     DatabaseHelper db;
+    private int countryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initializingCountry();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
 
         try {
 
@@ -438,7 +447,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        MainApp.IMEI = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     private void populateAutoComplete() {
@@ -879,6 +888,125 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     }
 
+    private void changeLanguage(int countryCode) {
+        Log.d(TAG, "changeLanguage: " + countryCode);
+        String lang;
+        String country;
+
+        switch (countryCode) {
+            case 1:
+                lang = "ur";
+                country = "PK";
+                MainApp.editor
+                        .putString("lang", "1")
+                        .apply();
+                break;
+            case 2:
+                lang = "sd";
+                country = "PK";
+                MainApp.editor
+                        .putString("lang", "2")
+                        .apply();
+                break;
+           /* case 3:
+                lang = "tg";
+                country = "TJ";
+                MainApp.editor
+                        .putString("lang", "3")
+                        .apply();
+            case 4:
+                lang = "ru";
+                country = "KG";
+                MainApp.editor
+                        .putString("lang", "4")
+                        .apply();*/
+            default:
+                lang = "en";
+                country = "US";
+                MainApp.editor
+                        .putString("lang", "0")
+                        .apply();
+        }
+
+        Locale locale = new Locale(lang, country);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        config.setLayoutDirection(new Locale(lang, country));
+        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+
+    }
+
+
+    private void initializingCountry() {
+        countryCode = Integer.parseInt(MainApp.sharedPref.getString("lang", "0"));
+        if (countryCode == 0) {
+            MainApp.editor.putString("lang", "1").apply();
+        }
+
+        changeLanguage(Integer.parseInt(MainApp.sharedPref.getString("lang", "0")));
+    }
+
+/*    public void TakePhoto(View view) {
+
+        Intent intent = new Intent(this, TakePhoto.class);
+        intent.putExtra("picID", "picid");
+        intent.putExtra("id", "id");
+        if (PhotoSerial == 0) {
+            intent.putExtra("picView", "Brand/logo");} else {
+            intent.putExtra("picView", "Ingredients");
+        }
+        takePhotoLauncher.launch(intent);
+
+    }*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.language_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.NO:
+                return true;
+
+            case R.id.UR:
+                MainApp.selectedLanguage = 1;
+                MainApp.langRTL = true;
+                break;
+
+            case R.id.SD:
+                MainApp.selectedLanguage = 2;
+                MainApp.langRTL = true;
+                break;
+
+        /*    case R.id.TJ:
+                MainApp.selectedLanguage = 3;
+                MainApp.langRTL = false;
+                break;
+
+            case R.id.KG:
+                MainApp.selectedLanguage = 4;
+                MainApp.langRTL = false;
+                break;
+
+            default:
+                MainApp.selectedLanguage = 0;
+                MainApp.langRTL = false;*/
+
+        }
+        MainApp.editor.putString("lang", String.valueOf(MainApp.selectedLanguage)).apply();
+
+        changeLanguage(MainApp.selectedLanguage);
+        startActivity(new Intent(LoginActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+        return true;
+    }
 
 }
 

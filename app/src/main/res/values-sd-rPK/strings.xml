@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UEN-Midline Linelisting - Sindhi</string>
+    <string name="app_name">UEN-Rapid Survey Linelisting - Sindhi</string>
 
     <!--Ali added-->
     <string name="hh02"> ڪلسٽر نمبر </string>
@@ -19,7 +19,7 @@
     <string name="lstWarning">ڇا ھي پھريون ٽيب آھي جيڪو ھن ڪلسٽر ۾ استعمال ٿي رھيو آھي؟</string>
 
     <string name="hh08"> گهر جي سربراھ جو نالو </string>
-    <string name="hh09">" موبائل نمبر "</string>
+    <string name="hh09"> موبائل نمبر </string>
     <string name="hh10a"> تعداد </string>
     <string name="hh10"> ڇا ھن گهر ۾ ڪا شادي شدھ عورت رھي آھي جنھن جي عمر 15 کان 49 سال ھجي ۽ 5 سالن کان گھٽ عمر وارا ٻار آھن؟ </string>
     <string name="hh16"> گهر جي مڪمل ڀاتين جو تعداد </string>

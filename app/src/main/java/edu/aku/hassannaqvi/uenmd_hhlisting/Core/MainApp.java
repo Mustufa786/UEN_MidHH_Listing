@@ -37,8 +37,9 @@ public class MainApp extends Application {
     private static final int TWO_MINUTES = 1000 * 60 * 2;
     //public static final String _IP = "http://f38158";// .TEST server
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
-    public static final String _HOST_URL = MainApp._IP + "/uen_ml/api/";
-    public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/listings/sn/";
+    public static final String _HOST_URL = MainApp._IP + "/uen_rs/api/";
+    //public static String _UPDATE_URL = MainApp._IP + "/uen_ml/app/listings/";
+    public static String _UPDATE_URL = MainApp._IP + "/uen_rs/app/listings/";
     public static String DeviceURL = "devices.php";
 
     public static String TAG = "MainApp";
@@ -61,11 +62,14 @@ public class MainApp extends Application {
     public static SignupContract signContract;
 
     public static int cTotal = 0;
+    public static SharedPreferences.Editor editor;
     public static SharedPreferences sharedPref;
     public static String userEmail;
     public static int versionCode;
     public static String versionName;
     public static boolean validateFlag;
+    public static int selectedLanguage = 0;
+    public static boolean langRTL = false;
     protected static LocationManager locationManager;
     Location location;
 
@@ -133,7 +137,7 @@ public class MainApp extends Application {
     public void onCreate() {
         super.onCreate();
         Log.d("App", "Creating...");
-//        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+        //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         // Declare and Initialize GPS collection module
@@ -150,7 +154,7 @@ public class MainApp extends Application {
 
 
         sharedPref = getSharedPreferences("PSUCodes", Context.MODE_PRIVATE);
-
+        editor = sharedPref.edit();
     }
 
     public void requestLocationUpdate() {

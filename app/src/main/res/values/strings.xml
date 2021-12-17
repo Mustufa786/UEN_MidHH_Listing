@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UEN-Midline Linelisting - Sindhi</string>
+    <string name="app_name">UEN-Rapid Survey Linelisting</string>
+    <string name="options" translatable="false">Options</string>
 
     <!--Ali added-->
     <string name="hh02"> ڪلسٽر نمبر </string>
