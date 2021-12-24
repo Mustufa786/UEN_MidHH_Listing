@@ -24,7 +24,7 @@ public class TeamsContract {
     }
 
     public TeamsContract hydrate(Cursor cursor) {
-        this.teamNo = cursor.getString(cursor.getColumnIndex(SingleTaluka.COLUMN_TEAM_NO));
+        this.teamNo = cursor.getString(cursor.getColumnIndexOrThrow(SingleTaluka.COLUMN_TEAM_NO));
 
         return this;
     }

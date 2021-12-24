@@ -32,10 +32,10 @@ public class VerticesContract {
     }
 
     public VerticesContract hydrate(Cursor cursor) {
-        this.cluster_code = cursor.getString(cursor.getColumnIndex(SingleVertices.COLUMN_CLUSTER_CODE));
-        this.poly_lat = cursor.getDouble(cursor.getColumnIndex(SingleVertices.COLUMN_POLY_LAT));
-        this.poly_lng = cursor.getDouble(cursor.getColumnIndex(SingleVertices.COLUMN_POLY_LANG));
-        this.poly_seq = cursor.getString(cursor.getColumnIndex(SingleVertices.COLUMN_POLY_SEQ));
+        this.cluster_code = cursor.getString(cursor.getColumnIndexOrThrow(SingleVertices.COLUMN_CLUSTER_CODE));
+        this.poly_lat = cursor.getDouble(cursor.getColumnIndexOrThrow(SingleVertices.COLUMN_POLY_LAT));
+        this.poly_lng = cursor.getDouble(cursor.getColumnIndexOrThrow(SingleVertices.COLUMN_POLY_LANG));
+        this.poly_seq = cursor.getString(cursor.getColumnIndexOrThrow(SingleVertices.COLUMN_POLY_SEQ));
 
         return this;
     }

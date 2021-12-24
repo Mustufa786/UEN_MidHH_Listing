@@ -71,6 +71,7 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
+import edu.aku.hassannaqvi.uenmd_hhlisting.Other.TypefaceUtil;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SignupActivity;
@@ -900,6 +901,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 MainApp.editor
                         .putString("lang", "1")
                         .apply();
+                TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+
                 break;
             case 2:
                 lang = "sd";
@@ -907,6 +910,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 MainApp.editor
                         .putString("lang", "2")
                         .apply();
+                TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
                 break;
            /* case 3:
                 lang = "tg";

@@ -42,9 +42,11 @@
             android:theme="@style/AppTheme2" />
         <activity
             android:name=".activities.ui.SetupActivity"
+            android:theme="@style/AppThemeUrdu"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ui.FamilyListingActivity"
+            android:theme="@style/AppThemeUrdu"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Core.AndroidDatabaseManager"

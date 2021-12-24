@@ -58,16 +58,16 @@ public class BLRandomContract {
     }
 
     public BLRandomContract Hydrate(Cursor cursor) {
-        this._ID = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_ID));
-        this.LUID = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_LUID));
-        this.subVillageCode = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_CLUSTER_BLOCK_CODE));
-        this.structure = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_STRUCTURE_NO));
-        this.extension = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_FAMILY_EXT_CODE));
-        this.hh = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_HH));
-        this.randomDT = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_RANDOMDT));
-        this.hhhead = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_HH_HEAD));
-        this.contact = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_CONTACT));
-        this.selStructure = cursor.getString(cursor.getColumnIndex(singleRandomHH.COLUMN_HH_SELECTED_STRUCT));
+        this._ID = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_ID));
+        this.LUID = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_LUID));
+        this.subVillageCode = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_CLUSTER_BLOCK_CODE));
+        this.structure = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_STRUCTURE_NO));
+        this.extension = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_FAMILY_EXT_CODE));
+        this.hh = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_HH));
+        this.randomDT = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_RANDOMDT));
+        this.hhhead = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_HH_HEAD));
+        this.contact = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_CONTACT));
+        this.selStructure = cursor.getString(cursor.getColumnIndexOrThrow(singleRandomHH.COLUMN_HH_SELECTED_STRUCT));
 
         return this;
     }

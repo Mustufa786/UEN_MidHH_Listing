@@ -114,14 +114,14 @@ public class SignupContract {
     }
 
     public SignupContract Hydrate(Cursor cursor) {
-        this._ID = cursor.getString(cursor.getColumnIndex(SignUpTable._ID));
-        this.fullName = cursor.getString(cursor.getColumnIndex(SignUpTable.FULLNAME));
-        this.userName = cursor.getString(cursor.getColumnIndex(SignUpTable.USERNAME));
-        this.designation = cursor.getString(cursor.getColumnIndex(SignUpTable.DESIGNATION));
-        this.password = cursor.getString(cursor.getColumnIndex(SignUpTable.PASSWORD));
-        this.countryId = cursor.getString(cursor.getColumnIndex(SignUpTable.COUNTRY_ID));
-        this.deviceID = cursor.getString(cursor.getColumnIndex(SignUpTable.COLUMN_DEVICEID));
-        this.formDate = cursor.getString(cursor.getColumnIndex(SignUpTable.COLUMN_FORMDATE));
+        this._ID = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable._ID));
+        this.fullName = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.FULLNAME));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.USERNAME));
+        this.designation = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.DESIGNATION));
+        this.password = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.PASSWORD));
+        this.countryId = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.COUNTRY_ID));
+        this.deviceID = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.COLUMN_DEVICEID));
+        this.formDate = cursor.getString(cursor.getColumnIndexOrThrow(SignUpTable.COLUMN_FORMDATE));
 
         return this;
 

@@ -49,7 +49,7 @@ public class MainApp extends Application {
     public static String IMEI;
     public static String DIST_ID;
     public static ListingContract lc;
-    public static int hh01txt;
+    public static String hh01txt;
     public static String hh02txt;
     public static int hh03txt = 0;
     public static String hh07txt;
@@ -72,6 +72,7 @@ public class MainApp extends Application {
     public static boolean validateFlag;
     public static int selectedLanguage = 0;
     public static boolean langRTL = false;
+    public static String selectedVillage = "";
     protected static LocationManager locationManager;
     Location location;
 

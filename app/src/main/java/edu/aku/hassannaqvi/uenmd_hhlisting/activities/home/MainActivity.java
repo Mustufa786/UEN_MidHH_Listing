@@ -29,6 +29,8 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +51,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -72,8 +76,8 @@ public class MainActivity extends MenuActivity {
 
     public static String TAG = "MainActivity";
     static File file;
-    private static String ipAddress = "192.168.1.10";
-    private static String port = "3000";
+    private static final String ipAddress = "192.168.1.10";
+    private static final String port = "3000";
     public List<String> psuCode;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
     @BindView(R.id.districtN)
@@ -101,7 +105,7 @@ public class MainActivity extends MenuActivity {
     @BindView(R.id.na101c)
     TextView na101c;
     @BindView(R.id.na101d)
-    TextView na101d;
+    Spinner na101d;
     @BindView(R.id.fldGrpna101)
     LinearLayout fldGrpna101;
     @BindView(R.id.adminBlock)
@@ -149,7 +153,7 @@ public class MainActivity extends MenuActivity {
                 downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                 Cursor cursor = downloadManager.query(query);
                 if (cursor.moveToFirst()) {
-                    int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
 
                         editorDownload.putBoolean("flag", true);
@@ -177,13 +181,9 @@ public class MainActivity extends MenuActivity {
         MenuItem dbManager = menu.findItem(R.id.menu_openDB);
 //        MenuItem randomization = menu.findItem(R.id.menu_randomization);
 
-        if (MainApp.admin) {
-            dbManager.setVisible(true);
-//            randomization.setVisible(true);
-        } else {
-            dbManager.setVisible(false);
-//            randomization.setVisible(false);
-        }
+        //            randomization.setVisible(true);
+        //            randomization.setVisible(false);
+        dbManager.setVisible(MainApp.admin);
 
         return true;
     }
@@ -252,7 +252,7 @@ public class MainActivity extends MenuActivity {
         db = new DatabaseHelper(getApplicationContext());
 
         msgText.setText(db.getListingCount() + " records found in Listings table.");
-        spinnersFill();
+        // spinnersFill();
 
 //        Version Checking
         versionAppContract = db.getVersionApp();
@@ -308,7 +308,7 @@ public class MainActivity extends MenuActivity {
         unregisterReceiver(broadcastReceiver);
     }
 
-    public void spinnersFill() {
+    public void populateSpinner(String villages) {
         // Spinner Drop down elements
         //List<String> teamNos = new ArrayList<String>();
         //Collection<TeamsContract> dc = db.getAllTeams();
@@ -316,20 +316,28 @@ public class MainActivity extends MenuActivity {
         //teamNos.add("....");
 
         //Log.d(TAG, "onCreate: " + dc.size());
-        /*for (TeamsContract d : dc) {
-            teamNos.add(d.getTeamNo());
-        }*/
+        ArrayList villageList = new ArrayList<>();
+        villageList.add("...");
+        String[] villiageSplit = villages.split(",");
+
+        for (String v : villiageSplit) {
+
+            villageList.add(v);
+
+        }
+
 
         // Creating adapter for spinner
-        /*mN01.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, teamNos));
+        na101d.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, villageList));
 
-        mN01.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        na101d.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                chkconfirm.setChecked(false);
+                lstwarning.clearCheck();
+                if (na101d.getSelectedItemPosition() != 0) {
 
-                if (mN01.getSelectedItemPosition() != 0) {
-
-                    MainApp.hh01txt = Integer.valueOf(mN01.getSelectedItem().toString());
+                    MainApp.hh01txt = na101d.getSelectedItem().toString();
 
                 }
 
@@ -339,7 +347,7 @@ public class MainActivity extends MenuActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });*/
+        });
 
         txtPSU.addTextChangedListener(new TextWatcher() {
             @Override
@@ -405,15 +413,15 @@ public class MainActivity extends MenuActivity {
 
     public void OpenFormFun() {
 
-        if (!txtPSU.getText().toString().isEmpty()) {
+        if (txtPSU.getText().toString().length() != 6) {
 
             txtPSU.setError(null);
             boolean loginFlag;
             int clus = Integer.valueOf(txtPSU.getText().toString().substring(3, 6));
             if (clus < 500) {
-                loginFlag = !(MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user"));
+                loginFlag = !(MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.startsWith("user"));
             } else {
-                loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.substring(0, 4).equals("user");
+                loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.startsWith("user");
             }
             if (loginFlag) {
                 DatabaseHelper db = new DatabaseHelper(this);
@@ -428,29 +436,37 @@ public class MainActivity extends MenuActivity {
                         na101a.setText(selSplit[0]);
                         na101b.setText(selSplit[1].equals("") ? "----" : selSplit[1]);
                         na101c.setText(selSplit[2].equals("") ? "----" : selSplit[2]);
-                        na101d.setText(selSplit[3]);
-                        clusterName = selSplit[3];
+                        populateSpinner(selSplit[3]);
+                        clusterName = selSplit[1];
 
                         fldGrpna101.setVisibility(View.VISIBLE);
 
                         flag = true;
                         chkconfirm.setOnCheckedChangeListener((compoundButton, b) -> {
+
+
                             if (chkconfirm.isChecked()) {
-                                openForm.setBackgroundColor(getResources().getColor(R.color.green));
-                                lllstwarning.setVisibility(View.VISIBLE);
-                                MainApp.hh01txt = 1;
+                                if (na101d.getSelectedItemPosition() != 0) {
+                                    openForm.setBackgroundColor(getResources().getColor(R.color.green));
+                                    lllstwarning.setVisibility(View.VISIBLE);
+                                    // MainApp.hh01txt = "1";
 
-                                // Cluster question
-                                if (MainApp.PSUExist(MainApp.hh02txt))
-                                    fldGrpMain01.setVisibility(View.GONE);
-                                else {
-                                    fldGrpMain01.setVisibility(View.VISIBLE);
-                                    lstwarning.clearCheck();
+                                    // Cluster question
+                                    if (MainApp.PSUExist(MainApp.hh02txt))
+                                        fldGrpMain01.setVisibility(View.GONE);
+                                    else {
+                                        fldGrpMain01.setVisibility(View.VISIBLE);
+                                        lstwarning.clearCheck();
+                                    }
+                                } else {
+                                    chkconfirm.setChecked(false);
+                                    Toast.makeText(this, "Please select a village.", Toast.LENGTH_SHORT).show();
                                 }
-
                             } else {
                                 lllstwarning.setVisibility(View.GONE);
                             }
+
+
                         });
 
                         MainApp.hh02txt = txtPSU.getText().toString();
@@ -469,7 +485,7 @@ public class MainActivity extends MenuActivity {
                 lllstwarning.setVisibility(View.GONE);
             }
         } else {
-            txtPSU.setError("Data required!!");
+            txtPSU.setError("Incorrect Cluster Number");
             txtPSU.setFocusable(true);
         }
     }

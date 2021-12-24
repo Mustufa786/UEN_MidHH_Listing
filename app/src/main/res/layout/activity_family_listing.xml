@@ -83,8 +83,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:text="@string/hh16" />
 
@@ -92,8 +91,7 @@
                 <EditText
                     android:id="@+id/hh16"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="50"
                     android:inputType="number"
                     android:maxLength="2" />
@@ -153,7 +151,7 @@
                 <Switch
                     android:id="@+id/hh17"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight="4"
                     android:text="@string/hh17"
@@ -171,6 +169,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:text="Add New Family"
             android:visibility="gone" />
 
@@ -179,6 +180,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:text="Add Next Family"
             android:visibility="gone" />
 
@@ -187,6 +191,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:text="Goto Next Structure"
             android:visibility="gone" />
     </LinearLayout>

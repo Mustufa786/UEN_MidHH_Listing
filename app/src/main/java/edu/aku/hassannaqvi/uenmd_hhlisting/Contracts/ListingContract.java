@@ -462,51 +462,51 @@ public class ListingContract {
     }
 
     public ListingContract hydrate(Cursor c, int type) {
-        ListingContract lc = new ListingContract(c.getString(c.getColumnIndex(ListingEntry._ID)));
-        lc.setUID(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_UID))));
-        lc.setHhDT(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HHDATETIME))));
-        lc.setEnumCode(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_ENUMCODE))));
-        lc.setClusterCode(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_CLUSTERCODE))));
-        lc.setEnumStr(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_ENUMSTR))));
-        lc.setHh01(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH01))));
-        lc.setHh02(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH02))));
-        lc.setHh03(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH03))));
-        lc.setHh04(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH04))));
-        lc.setHh04other(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH04OTHER))));
-        lc.setHh05(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH05))));
-        lc.setHh06(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH06))));
-        lc.setHh07(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH07))));
-        lc.setHh07n(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH07n))));
-        lc.setHh08(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH08))));
-        lc.setHh09(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH09))));
-        lc.setHh09a1(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH09A1))));
-        lc.setHh08a1(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH08A1))));
-        lc.setHh10(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH10))));
-        lc.setHh11(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH11))));
-        lc.setHh12(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH12))));
-        lc.setHh13(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH13))));
-        lc.setHh14(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH14))));
-        lc.setHh15(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH15))));
-        lc.setHh16(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_HH16))));
-        lc.setHhadd(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_ADDRESS))));
-        lc.setDeviceID(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_DEVICEID))));
-        lc.setGPSLat(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_GPSLat))));
-        lc.setGPSLng(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_GPSLng))));
-        lc.setGPSTime(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_GPSTime))));
-        lc.setGPSAcc(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_GPSAccuracy))));
-        lc.setGPSAlt(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_NAME_GPSAltitude))));
-        lc.setAppVer(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_APPVER))));
-        lc.setTagId(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_TAGID))));
-        lc.setUsername(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_USERNAME))));
-        lc.setIsNewHH(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_ISNEWHH))));
-        lc.setIsRandom(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_RANDOMIZED))));
-        lc.setCounter(String.valueOf(c.getString(c.getColumnIndex(ListingEntry.COLUMN_COUNTER)) != null ?
-                c.getString(c.getColumnIndex(ListingEntry.COLUMN_COUNTER)) : ""));
+        ListingContract lc = new ListingContract(c.getString(c.getColumnIndexOrThrow(ListingEntry._ID)));
+        lc.setUID(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_UID))));
+        lc.setHhDT(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HHDATETIME))));
+        lc.setEnumCode(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_ENUMCODE))));
+        lc.setClusterCode(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_CLUSTERCODE))));
+        lc.setEnumStr(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_ENUMSTR))));
+        lc.setHh01(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH01))));
+        lc.setHh02(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH02))));
+        lc.setHh03(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH03))));
+        lc.setHh04(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH04))));
+        lc.setHh04other(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH04OTHER))));
+        lc.setHh05(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH05))));
+        lc.setHh06(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH06))));
+        lc.setHh07(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH07))));
+        lc.setHh07n(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH07n))));
+        lc.setHh08(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH08))));
+        lc.setHh09(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH09))));
+        lc.setHh09a1(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH09A1))));
+        lc.setHh08a1(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH08A1))));
+        lc.setHh10(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH10))));
+        lc.setHh11(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH11))));
+        lc.setHh12(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH12))));
+        lc.setHh13(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH13))));
+        lc.setHh14(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH14))));
+        lc.setHh15(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH15))));
+        lc.setHh16(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH16))));
+        lc.setHhadd(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_ADDRESS))));
+        lc.setDeviceID(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_DEVICEID))));
+        lc.setGPSLat(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSLat))));
+        lc.setGPSLng(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSLng))));
+        lc.setGPSTime(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSTime))));
+        lc.setGPSAcc(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSAccuracy))));
+        lc.setGPSAlt(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSAltitude))));
+        lc.setAppVer(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_APPVER))));
+        lc.setTagId(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_TAGID))));
+        lc.setUsername(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_USERNAME))));
+        lc.setIsNewHH(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_ISNEWHH))));
+        lc.setIsRandom(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_RANDOMIZED))));
+        lc.setCounter(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_COUNTER)) != null ?
+                c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_COUNTER)) : ""));
         if (type == 1) {
-            lc.setResCount(String.valueOf(c.getString(c.getColumnIndex("RESCOUNTER"))));
-            lc.setChildCount(String.valueOf(c.getString(c.getColumnIndex("CHILDCOUNTER"))));
-            lc.setRandCount(String.valueOf(c.getString(c.getColumnIndex("RANDCOUNTER"))));
-            lc.setTotalhh(String.valueOf(c.getString(c.getColumnIndex("TOTALHH"))));
+            lc.setResCount(String.valueOf(c.getString(c.getColumnIndexOrThrow("RESCOUNTER"))));
+            lc.setChildCount(String.valueOf(c.getString(c.getColumnIndexOrThrow("CHILDCOUNTER"))));
+            lc.setRandCount(String.valueOf(c.getString(c.getColumnIndexOrThrow("RANDCOUNTER"))));
+            lc.setTotalhh(String.valueOf(c.getString(c.getColumnIndexOrThrow("TOTALHH"))));
         }
 
         return lc;

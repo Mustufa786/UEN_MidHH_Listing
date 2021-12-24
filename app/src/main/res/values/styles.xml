@@ -21,6 +21,28 @@
 
     </style>
 
+    <style name="AppThemeUrdu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:textSize">18dp</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerStyle">@style/spinner</item>
+        <item name="spinnerStyle">@style/spinner</item>
+        <item name="android:textViewStyle">@style/labels</item>
+        <item name="android:editTextStyle">@style/textInput</item>
+        <item name="radioButtonStyle">@style/radiobutton</item>
+        <item name="checkboxStyle">@style/checkbox</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:buttonStyle">@style/button</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fillAfter">true</item>
+        <item name="android:enterFadeDuration">600</item>
+        <item name="android:exitFadeDuration">200</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:animateLayoutChanges">false</item>
+    </style>
     <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:scrollViewStyle">@style/BackgroundStyle</item>
         <item name="android:actionBarTheme">@style/ActionBarTheme</item>
@@ -108,7 +130,7 @@
         <item name="android:drawable">@drawable/textview_background_grad</item>
         <item name="android:textColor">@color/dullWhile</item>
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:elevation">1dp</item>
@@ -118,7 +140,7 @@
     </style>
 
     <style name="textInput" parent="android:Widget.Material.Light.EditText">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:background">#efefef</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingStart">8dp</item>
@@ -136,7 +158,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/darker_gray</item>
         <item name="android:textColor">#000000</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:padding">4dp</item>
     </style>
@@ -148,7 +170,7 @@
         <item name="android:background">#ffd6d6</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#ff1e1e</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:visibility">invisible</item>
         <item name="android:padding">16dp</item>
@@ -161,7 +183,7 @@
         <item name="android:background">#d6d6d6</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#ef6d6d</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:visibility">invisible</item>
         <item name="android:padding">16dp</item>
@@ -174,7 +196,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:textColor">#ff0000</item>
         <item name="android:background">#efefef</item>
@@ -185,14 +207,14 @@
 
     <style name="spinnerItemStyle">
         <item name="android:padding">10dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="spinnerDropDownItemStyle">
         <item name="android:padding">20dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
@@ -334,5 +356,18 @@
         <item name="android:colorForeground">@android:color/black</item>
     </style>
 
+    <style name="button" parent="Widget.AppCompat.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:radius">2dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@color/gray</item>
+        <!--        <item name="android:background">@drawable/background_grad</item>-->
+    </style>
 
 </resources>

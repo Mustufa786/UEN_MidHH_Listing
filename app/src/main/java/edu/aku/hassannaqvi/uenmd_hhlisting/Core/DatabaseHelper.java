@@ -223,7 +223,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (mCursor.getCount() > 0) {
 
                 if (mCursor.moveToFirst()) {
-                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.UsersTable.DIST_ID));
+                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndexOrThrow(UsersContract.UsersTable.DIST_ID));
                 }
                 return true;
             }

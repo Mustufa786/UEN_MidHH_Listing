@@ -68,10 +68,10 @@ public class UsersContract {
     }
 
     public UsersContract Hydrate(Cursor cursor) {
-        this._ID = cursor.getLong(cursor.getColumnIndex(UsersTable._ID));
-        this.ROW_USERNAME = cursor.getString(cursor.getColumnIndex(UsersTable.ROW_USERNAME));
-        this.ROW_PASSWORD = cursor.getString(cursor.getColumnIndex(UsersTable.ROW_PASSWORD));
-        this.DIST_ID = cursor.getString(cursor.getColumnIndex(UsersTable.DIST_ID));
+        this._ID = cursor.getLong(cursor.getColumnIndexOrThrow(UsersTable._ID));
+        this.ROW_USERNAME = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.ROW_USERNAME));
+        this.ROW_PASSWORD = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.ROW_PASSWORD));
+        this.DIST_ID = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.DIST_ID));
         return this;
 
     }

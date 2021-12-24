@@ -26,9 +26,9 @@ public class EnumBlockContract {
     }
 
     public EnumBlockContract HydrateEnum(Cursor cursor) {
-        this.dist_id = cursor.getString(cursor.getColumnIndex(EnumBlockTable.COLUMN_DIST_ID));
-        this.geoarea = cursor.getString(cursor.getColumnIndex(EnumBlockTable.COLUMN_GEO_AREA));
-        this.cluster = cursor.getString(cursor.getColumnIndex(EnumBlockTable.COLUMN_CLUSTER_AREA));
+        this.dist_id = cursor.getString(cursor.getColumnIndexOrThrow(EnumBlockTable.COLUMN_DIST_ID));
+        this.geoarea = cursor.getString(cursor.getColumnIndexOrThrow(EnumBlockTable.COLUMN_GEO_AREA));
+        this.cluster = cursor.getString(cursor.getColumnIndexOrThrow(EnumBlockTable.COLUMN_CLUSTER_AREA));
         return this;
     }
 
