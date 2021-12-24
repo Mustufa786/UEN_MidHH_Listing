@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+
+    }
     compileSdkVersion 31
     Properties versionProps = new Properties()
     def versionPropsFile = file('version.properties')
@@ -80,6 +85,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            resValue("string", "DB_PASSWORD_PERSON", "Ta@ndInC%apACIT1")
+        }
     }
     productFlavors {
     }
@@ -128,5 +137,22 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //Gson
     implementation 'com.google.code.gson:gson:2.8.9'
-    
+
+    def work_version = '2.6.0'
+
+    // WorkManager(Java only)
+    implementation("androidx.work:work-runtime:$work_version") {
+        force = true
+    }
+
+    // Sqlcipher
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.0'
+    implementation "androidx.sqlite:sqlite:2.2.0"
+
+    //Rooted
+    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+
+    // Android Database Browser
+    debugImplementation 'com.amitshekhar.android:debug-db-encrypt:1.0.6'
+
 }

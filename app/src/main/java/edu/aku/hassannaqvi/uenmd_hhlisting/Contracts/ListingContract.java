@@ -1,5 +1,7 @@
 package edu.aku.hassannaqvi.uenmd_hhlisting.Contracts;
 
+import static edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp._EMPTY_;
+
 import android.database.Cursor;
 import android.provider.BaseColumns;
 
@@ -11,51 +13,51 @@ import org.json.JSONObject;
  */
 public class ListingContract {
 
-    public String ID;
-    public String UID;
-    public String hhDT;
-    public String enumCode;
-    public String clusterCode;
-    public String enumStr;
-    public String hh01;
-    public String hh02;
-    public String hh03;
-    public String hh04;
-    public String hh04other;
-    public String hh05;
-    public String hh06;
-    public String hh07;
-    public String hh07n;
-    public String hh08a1;
-    public String hh08;
-    public String hh09;
-    public String hh09a1;
-    public String hh10;
-    public String hh11;
-    public String hh12;
-    public String hh13;
-    public String hh14;
-    public String hh15;
-    public String hh16;
-    public String hhadd;
-    public String isNewHH;
-    public String counter;
-    public String DeviceID;
-    public String GPSLat;
-    public String GPSLng;
-    public String GPSTime;
-    public String GPSAcc;
-    public String GPSAlt;
-    public String AppVer;
-    public String tagId;
+    public String ID = _EMPTY_;
+    public String UID = _EMPTY_;
+    public String sysdate = _EMPTY_;
+    public String enumCode = _EMPTY_;
+    public String clusterCode = _EMPTY_;
+    public String enumStr = _EMPTY_;
+    public String hh01 = _EMPTY_;
+    public String hh02 = _EMPTY_;
+    public String hh03 = _EMPTY_;
+    public String hh04 = _EMPTY_;
+    public String hh04other = _EMPTY_;
+    public String hh05 = _EMPTY_;
+    public String hh06 = _EMPTY_;
+    public String hh07 = _EMPTY_;
+    public String hh07n = _EMPTY_;
+    public String hh08a1 = _EMPTY_;
+    public String hh08 = _EMPTY_;
+    public String hh09 = _EMPTY_;
+    public String hh09a1 = _EMPTY_;
+    public String hh10 = _EMPTY_;
+    public String hh11 = _EMPTY_;
+    public String hh12 = _EMPTY_;
+    public String hh13 = _EMPTY_;
+    public String hh14 = _EMPTY_;
+    public String hh15 = _EMPTY_;
+    public String hh16 = _EMPTY_;
+    public String hhadd = _EMPTY_;
+    public String isNewHH = _EMPTY_;
+    public String counter = _EMPTY_;
+    public String DeviceID = _EMPTY_;
+    public String GPSLat = _EMPTY_;
+    public String GPSLng = _EMPTY_;
+    public String GPSTime = _EMPTY_;
+    public String GPSAcc = _EMPTY_;
+    public String GPSAlt = _EMPTY_;
+    public String AppVer = _EMPTY_;
+    public String tagId = _EMPTY_;
 
-    public String isRandom;
-    public String resCount;
-    public String childCount;
-    public String randCount;
-    public String totalhh;
+    public String isRandom = _EMPTY_;
+    public String resCount = _EMPTY_;
+    public String childCount = _EMPTY_;
+    public String randCount = _EMPTY_;
+    public String totalhh = _EMPTY_;
 
-    private String username; // User Name
+    private String username = _EMPTY_; // User Name
 
     public ListingContract() {
     }
@@ -128,12 +130,12 @@ public class ListingContract {
         this.ID = ID;
     }
 
-    public String getHhDT() {
-        return hhDT;
+    public String getSysdate() {
+        return sysdate;
     }
 
-    public void setHhDT(String hhDT) {
-        this.hhDT = hhDT;
+    public void setSysdate(String sysdate) {
+        this.sysdate = sysdate;
     }
 
 
@@ -418,7 +420,7 @@ public class ListingContract {
         json.put("projectname", "UEN-Midline-LINELISTING");
         json.put(ListingEntry._ID, this.ID);
         json.put(ListingEntry.COLUMN_NAME_UID, this.UID);
-        json.put(ListingEntry.COLUMN_NAME_HHDATETIME, this.hhDT);
+        json.put(ListingEntry.COLUMN_NAME_HHDATETIME, this.sysdate);
         json.put(ListingEntry.COLUMN_NAME_ENUMCODE, this.enumCode);
         json.put(ListingEntry.COLUMN_NAME_CLUSTERCODE, this.clusterCode);
         json.put(ListingEntry.COLUMN_NAME_ENUMSTR, this.enumStr);
@@ -464,7 +466,7 @@ public class ListingContract {
     public ListingContract hydrate(Cursor c, int type) {
         ListingContract lc = new ListingContract(c.getString(c.getColumnIndexOrThrow(ListingEntry._ID)));
         lc.setUID(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_UID))));
-        lc.setHhDT(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HHDATETIME))));
+        lc.setSysdate(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HHDATETIME))));
         lc.setEnumCode(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_ENUMCODE))));
         lc.setClusterCode(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_CLUSTERCODE))));
         lc.setEnumStr(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_ENUMSTR))));
@@ -516,7 +518,7 @@ public class ListingContract {
 
         this.ID = jsonObject.getString(ListingEntry._ID);
         this.UID = jsonObject.getString(ListingEntry.COLUMN_NAME_UID);
-        this.hhDT = jsonObject.getString(ListingEntry.COLUMN_NAME_HHDATETIME);
+        this.sysdate = jsonObject.getString(ListingEntry.COLUMN_NAME_HHDATETIME);
         this.enumCode = jsonObject.getString(ListingEntry.COLUMN_NAME_ENUMCODE);
         this.clusterCode = jsonObject.getString(ListingEntry.COLUMN_NAME_CLUSTERCODE);
         this.enumStr = jsonObject.getString(ListingEntry.COLUMN_NAME_ENUMSTR);
@@ -564,13 +566,13 @@ public class ListingContract {
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String _ID = "_id";
         public static final String COLUMN_NAME_UID = "uid";
-        public static final String COLUMN_NAME_HHDATETIME = "hhdt";
+        public static final String COLUMN_NAME_HHDATETIME = "sysdate";
 
         public static final String COLUMN_NAME_ENUMCODE = "enumcode";
         public static final String COLUMN_NAME_CLUSTERCODE = "clustercode";
         public static final String COLUMN_NAME_ENUMSTR = "enumstr";
 
-        public static final String COLUMN_NAME_HH01 = "chkconfirm";
+        public static final String COLUMN_NAME_HH01 = "hh01";
         public static final String COLUMN_NAME_HH02 = "hh02";
         public static final String COLUMN_NAME_HH03 = "hh03";
         public static final String COLUMN_NAME_HH04 = "hh04";

@@ -43,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     }};
 
     String countryId = "";
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
 
-        DatabaseHelper db = new DatabaseHelper(this);
+        db = MainApp.db;
 
         long rowID = db.addSignUpForm(MainApp.signContract);
 

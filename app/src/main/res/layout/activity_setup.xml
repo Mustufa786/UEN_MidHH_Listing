@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="24dp"
+                android:minWidth="128dp"
                 android:text="@string/hh02" />
 
             <EditText
@@ -106,7 +107,24 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/hh04h" />
 
+            <RadioButton
+                android:id="@+id/hh04i"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/hh04i" />
+
         </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/na101d"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:minHeight="56dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/fldGrpHH04"

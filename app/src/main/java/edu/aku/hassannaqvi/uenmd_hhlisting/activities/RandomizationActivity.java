@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
+import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.randomListAdapter;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu.MenuActivity;
@@ -44,7 +45,7 @@ public class RandomizationActivity extends MenuActivity {
 
         this.setTitle("Randomization Clusters");
 
-        db = new DatabaseHelper(this);
+        db = MainApp.db;
 
         lstList = new ArrayList<>();
         hhRandomise = new ArrayList<>();
@@ -53,7 +54,7 @@ public class RandomizationActivity extends MenuActivity {
 
         lstClusters.addOnItemTouchListener(
                 new randomListAdapter.RecyclerItemClickListener(getApplicationContext(), new randomListAdapter.RecyclerItemClickListener.OnItemClickListener() {
-                    Boolean delFlag = true;
+                    final Boolean delFlag = true;
 
                     @Override
                     public void onItemClick(View view, final int position) {
@@ -105,8 +106,8 @@ public class RandomizationActivity extends MenuActivity {
     }
 
     public class ApplicationsTask extends AsyncTask<String, Void, Boolean> {
-        private ProgressDialog dialog;
-        private Context context;
+        private final ProgressDialog dialog;
+        private final Context context;
 
         public ApplicationsTask(Context mContext) {
             context = mContext;
@@ -153,8 +154,8 @@ public class RandomizationActivity extends MenuActivity {
 
     public class RandomizationTask extends AsyncTask<String, Void, Boolean> {
         String clustercode;
-        private ProgressDialog dialog;
-        private Context context;
+        private final ProgressDialog dialog;
+        private final Context context;
 
         public RandomizationTask(Context mContext, String clustercode) {
             context = mContext;

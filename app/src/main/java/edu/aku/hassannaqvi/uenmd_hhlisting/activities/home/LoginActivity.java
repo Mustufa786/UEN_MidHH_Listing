@@ -73,8 +73,8 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.TypefaceUtil;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
-import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SignupActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SyncActivity;
 
 /**
  * A login screen that offers login via email/password.
@@ -194,7 +194,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //        DB backup
         dbBackup();
 
-        db = new DatabaseHelper(this);
+        db = MainApp.db;
 
         signup.setOnClickListener(new OnClickListener() {
             @Override
@@ -389,6 +389,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         for (int i = 0; i < permissions.length; i++) {
             if (permissions[i].equals(Manifest.permission.READ_CONTACTS)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {

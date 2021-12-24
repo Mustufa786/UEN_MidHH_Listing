@@ -64,6 +64,7 @@ public class FamilyListingActivity extends Activity {
     Button btnAddHousehold;
     @BindViews({R.id.hh10})
     List<RadioGroup> hh10_12;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +123,7 @@ public class FamilyListingActivity extends Activity {
         deleteHH.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b)
-                    ClearClass.ClearAllFields(fldGrpSecB01, false);
-                else
-                    ClearClass.ClearAllFields(fldGrpSecB01, true);
+                ClearClass.ClearAllFields(fldGrpSecB01, !b);
             }
         });
 
@@ -326,7 +324,7 @@ public class FamilyListingActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+        db = MainApp.db;
 
         long updcount = db.addForm(MainApp.lc);
 

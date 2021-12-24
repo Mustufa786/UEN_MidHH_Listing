@@ -24,9 +24,10 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
+import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.WifiDirect.WiFiDirectActivity;
-import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SyncActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new DatabaseHelper(this);
+        db = MainApp.db;
         dbBackup();
 
     }

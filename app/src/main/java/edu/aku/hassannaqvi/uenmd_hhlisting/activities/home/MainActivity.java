@@ -18,11 +18,9 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -44,23 +42,18 @@ import android.widget.Toast;
 
 import com.validatorcrawler.aliazaz.Validator;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.EnumBlockContract;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VerticesContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.AndroidDatabaseManager;
@@ -69,8 +62,8 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.map.MapsActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu.MenuActivity;
-import edu.aku.hassannaqvi.uenmd_hhlisting.activities.sync.SyncActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SetupActivity;
+import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SyncActivity;
 
 public class MainActivity extends MenuActivity {
 
@@ -104,6 +97,8 @@ public class MainActivity extends MenuActivity {
     TextView na101b;
     @BindView(R.id.na101c)
     TextView na101c;
+    @BindView(R.id.lang)
+    TextView lang;
     @BindView(R.id.na101d)
     Spinner na101d;
     @BindView(R.id.fldGrpna101)
@@ -195,6 +190,9 @@ public class MainActivity extends MenuActivity {
         ButterKnife.bind(this);
 
         this.setTitle("Household Linelisting");
+
+        Locale current = getResources().getConfiguration().locale;
+        lang.setText(current.getDisplayLanguage() + " | " + current.getISO3Language() + " | " + current.getLanguage());
 
         if (MainApp.admin) {
             adminBlock.setVisibility(View.VISIBLE);
@@ -309,6 +307,8 @@ public class MainActivity extends MenuActivity {
     }
 
     public void populateSpinner(String villages) {
+
+        MainApp.selectedVillage = villages;
         // Spinner Drop down elements
         //List<String> teamNos = new ArrayList<String>();
         //Collection<TeamsContract> dc = db.getAllTeams();
@@ -424,7 +424,7 @@ public class MainActivity extends MenuActivity {
                 loginFlag = MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.startsWith("user");
             }
             if (loginFlag) {
-                DatabaseHelper db = new DatabaseHelper(this);
+                db = MainApp.db;
                 EnumBlockContract enumBlockContract = db.getEnumBlock(txtPSU.getText().toString());
                 if (enumBlockContract != null) {
                     String selected = enumBlockContract.getGeoarea();
@@ -517,7 +517,7 @@ public class MainActivity extends MenuActivity {
 
     public void openClusterMap(View view) {
 
-        DatabaseHelper db = new DatabaseHelper(this);
+        db = MainApp.db;
         Collection<VerticesContract> v = db.getVerticesByCluster(txtPSU.getText().toString());
         if (v.size() > 3) {
             startActivity(new Intent(this, MapsActivity.class));
@@ -558,9 +558,6 @@ public class MainActivity extends MenuActivity {
         startActivity(dbmanager);
     }
 
-    public void copyData(View view) {
-        new CopyTask(this).execute();
-    }
 
     public void syncFunction(View view) {
         if (isNetworkAvailable()) {
@@ -681,7 +678,7 @@ public class MainActivity extends MenuActivity {
 
     }
 
-    public class CopyTask extends AsyncTask<Void, Void, Void> {
+  /*  public class CopyTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog Asycdialog;
         Context mContext;
@@ -749,6 +746,6 @@ public class MainActivity extends MenuActivity {
             Asycdialog.dismiss();
             Toast.makeText(mContext, "Copying done!!", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
 }

@@ -68,7 +68,7 @@ public class EnumBlockContract {
 
     public static abstract class EnumBlockTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "enumblock";
+        public static final String TABLE_NAME = "clusters";
         public static final String COLUMN_DIST_ID = "dist_id";
         public static final String COLUMN_GEO_AREA = "geoarea";
         public static final String COLUMN_CLUSTER_AREA = "cluster_no";

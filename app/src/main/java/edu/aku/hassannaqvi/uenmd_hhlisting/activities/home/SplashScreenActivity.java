@@ -56,8 +56,8 @@ public class SplashScreenActivity extends Activity {
     View splashNextBg;
     @BindView(R.id.splash_txt_appname)
     TextView splashNext;
-    private Interpolator initAnimationInterpolator = PathInterpolatorCompat.create(.8f, 0, .2f, 1);
-    private Interpolator midAnimationInterpolator = PathInterpolatorCompat.create(.01f, 0, .025f, 1);
+    private final Interpolator initAnimationInterpolator = PathInterpolatorCompat.create(.8f, 0, .2f, 1);
+    private final Interpolator midAnimationInterpolator = PathInterpolatorCompat.create(.01f, 0, .025f, 1);
 
     private AnimatorSet finalAnimator;
 

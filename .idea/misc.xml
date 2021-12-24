@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_language_change.xml" value="0.39166666666666666" />
-        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_family_listing.xml" value="0.3171875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_family_listing.xml" value="0.56328125" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_login.xml" value="0.3171875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_main.xml" value="0.47619047619047616" />
-        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_setup.xml" value="0.37552083333333336" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_setup.xml" value="0.56328125" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_sync.xml" value="0.31640625" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/menu/activity_menu.xml" value="0.21145833333333333" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/menu/language_menu.xml" value="0.37552083333333336" />
       </map>
@@ -59,7 +60,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

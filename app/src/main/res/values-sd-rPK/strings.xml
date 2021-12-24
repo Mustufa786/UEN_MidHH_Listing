@@ -10,6 +10,7 @@
     <string name="hh04b"> غير رھائشي </string>
     <string name="hh04g"> عارضي (لسٽون بند ڪريو) </string>
     <string name="hh04h"> لائين لسٽون مڪمل (وڌيڪ جڳھه نه آھي) </string>
+    <string name="hh04i"> هن ڪلستر جي ايندڙ ڳوٺ ڏانهن وڃو </string>
 
     <string name="confirmcity"> ڇا توھان مٿي ڏنل شهر / ڳوٺ ۾ موجود آھيو؟ </string>
     <string name="hh05"> ڇا ھن عمارت ۾ ھڪ کان وڌيڪ گھر رھائش پذير آھن؟ </string>
@@ -62,5 +63,6 @@
     <string name="discover_peers_button">Find Near-By Devices</string>
     <string name="country_prompt">Choose a country</string>
     <string name="txtName"> qwertyuiop asdfghjkl zxcvbnm QWERTYUIOP ASDFGHJKL ZXCVBNM </string>
+    <string name="btnDownload">Download</string>
 
 </resources>

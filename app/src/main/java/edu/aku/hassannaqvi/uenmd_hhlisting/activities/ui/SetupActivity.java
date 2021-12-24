@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -17,11 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -37,6 +40,7 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.activities.home.MainActivity;
 public class SetupActivity extends Activity {
 
     private static String deviceId;
+    private final String TAG = "Setup Activity";
     @BindView(R.id.activity_household_listing)
     ScrollView activityHouseholdListing;
     @BindView(R.id.hh02)
@@ -53,12 +57,16 @@ public class SetupActivity extends Activity {
     RadioButton hh04g;
     @BindView(R.id.hh04h)
     RadioButton hh04h;
+    @BindView(R.id.hh04i)
+    RadioButton hh04i;
     @BindView(R.id.hh05)
     Switch hh05;
     @BindView(R.id.hh06)
     EditText hh06;
     @BindView(R.id.hh07)
     TextView hh07;
+    @BindView(R.id.na101d)
+    Spinner na101d;
     @BindView(R.id.fldGrpHH04)
     LinearLayout fldGrpHH04;
     @BindView(R.id.btnAddHousehold)
@@ -66,8 +74,7 @@ public class SetupActivity extends Activity {
     @BindView(R.id.btnChangePSU)
     Button btnChangPSU;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date().getTime());
-
-    private String TAG = "Setup Activity";
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +172,91 @@ public class SetupActivity extends Activity {
         });
 
 
+        hh04i.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    populateSpinner();
+                } else {
+                    na101d.setVisibility(View.GONE);
+                    na101d.setAdapter(null);
+                }
+            }
+        });
+
+    }
+
+
+    public void populateSpinner() {
+        // Spinner Drop down elements
+        //List<String> teamNos = new ArrayList<String>();
+        //Collection<TeamsContract> dc = db.getAllTeams();
+
+        //teamNos.add("....");
+
+        //Log.d(TAG, "onCreate: " + dc.size());
+        ArrayList villageList = new ArrayList<>();
+        villageList.add("...");
+        String[] villiageSplit = MainApp.selectedVillage.split(",");
+
+        for (String v : villiageSplit) {
+
+            villageList.add(v);
+
+        }
+
+        na101d.setVisibility(View.VISIBLE);
+        // Creating adapter for spinner
+        na101d.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, villageList));
+
+ /*       na101d.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (na101d.getSelectedItemPosition() != 0) {
+
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });*/
+
+
+
+/*
+        mN02.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                MainApp.hh02txt = psuCode.get(position);
+                Collection<PSUsContract> pc = db.getAllPSUsByTaluka(MainApp.hh01txt);
+                for (PSUsContract p : pc) {
+                    Log.d(TAG, "onItemSelected: " + p.getPSUCode() + " -" + MainApp.hh02txt);
+
+                    if (p.getPSUCode().equals(MainApp.hh02txt)) {
+                        Log.d(TAG, "onItemSelected: " + p.getPSUName());
+                        String[] psuNameS = p.getPSUName().toString().split("\\|");
+                        districtN.setText(psuNameS[0]);
+                        Log.d(TAG, "onItemSelected: " + psuNameS[0]);
+                        ucN.setText(psuNameS[1]);
+                        Log.d(TAG, "onItemSelected: " + psuNameS[1]);
+                        psuN.setText(psuNameS[2]);
+                        Log.d(TAG, "onItemSelected: " + psuNameS[2]);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });*/
+
     }
 
     @OnClick(R.id.btnAddChild)
@@ -210,7 +302,7 @@ public class SetupActivity extends Activity {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.lc.setTagId(sharedPref.getString("tagName", null));
         MainApp.lc.setAppVer(MainApp.versionName + "." + MainApp.versionCode);
-        MainApp.lc.setHhDT(dtToday);
+        MainApp.lc.setSysdate(dtToday);
 
         MainApp.lc.setEnumCode(MainApp.enumCode);
         MainApp.lc.setClusterCode(MainApp.clusterCode);
@@ -232,6 +324,9 @@ public class SetupActivity extends Activity {
                 break;
             case R.id.hh04h:
                 MainApp.lc.setHh04("9");
+                break;
+            case R.id.hh04i:
+                MainApp.lc.setHh04("7");
                 break;
             default:
                 break;
@@ -333,6 +428,14 @@ public class SetupActivity extends Activity {
 
     @OnClick(R.id.btnAddHousehold)
     void onBtnAddHouseholdClick() {
+
+        if (hh04i.isChecked() && na101d.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please select a village or choose different option", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (hh04i.isChecked()) {
+            MainApp.hh01txt = na101d.getSelectedItem().toString();
+        }
         if (MainApp.hh02txt == null) {
             MainApp.hh02txt = hh02.getText().toString();
         }
@@ -353,7 +456,7 @@ public class SetupActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+        db = MainApp.db;
         Log.d(TAG, "UpdateDB: Structure" + MainApp.lc.getHh03());
 
         long updcount = db.addForm(MainApp.lc);

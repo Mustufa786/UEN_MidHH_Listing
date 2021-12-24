@@ -37,9 +37,9 @@
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activities.sync.SyncActivity"
+            android:name=".activities.ui.SyncActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.ui.SetupActivity"
             android:theme="@style/AppThemeUrdu"
@@ -102,6 +102,18 @@
         <service
             android:name=".WifiDirect.DataTransferService"
             android:enabled="true" />
+
+        <meta-data
+            android:name="YEK_REVRES"
+
+            android:value="GSTa@ndInC%apACIT12B?E(H+MbQeThWmZq4t7w!zsCsF)J@NcRfUjXn2r5u8x/A" />
+        <!--        // This line will go to PHP Server in ENCID file
+                    define('UEN_RS_KEY',"GSTa@ndInC%apACIT12B?E(H+MbQeThWmZq4t7w!z$C$F)J@NcRfUjXn2r5u8x/A");
+        -->
+
+        <meta-data
+            android:name="YEK_TRATS"
+            android:value="2" />
     </application>
 
 </manifest>

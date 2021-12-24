@@ -1,13 +1,16 @@
 package edu.aku.hassannaqvi.uenmd_hhlisting.Core;
 
+import static edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp.IBAHC;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +44,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // The name of database.
     public static final String DATABASE_NAME = "uenml-hhl.db";
+    private static final String DATABASE_PASSWORD = IBAHC;
+
     public static final String PROJECT_NAME = "uenml-hhl-2019";
     public static final String DB_NAME = DATABASE_NAME.replace(".db", "-copy.db");
     public static final String FOLDER_NAME = "DMU-UEN-MidlinePAKHHL";
@@ -177,7 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getListingCount() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor cursor = db.rawQuery(SQL_COUNT_LISTINGS, null);
         int count = 0;
 
@@ -189,33 +194,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void syncEnumBlocks(JSONArray Enumlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(EnumBlockTable.TABLE_NAME, null, null);
-        try {
-            JSONArray jsonArray = Enumlist;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
-
-                EnumBlockContract Vc = new EnumBlockContract();
-                Vc.Sync(jsonObjectCC);
-
-                ContentValues values = new ContentValues();
-
-                values.put(EnumBlockTable.COLUMN_DIST_ID, Vc.getDist_id());
-                values.put(EnumBlockTable.COLUMN_GEO_AREA, Vc.getGeoarea());
-                values.put(EnumBlockTable.COLUMN_CLUSTER_AREA, Vc.getCluster());
-
-                db.insert(EnumBlockTable.TABLE_NAME, null, values);
-            }
-        } catch (Exception e) {
-        } finally {
-            db.close();
-        }
-    }
 
     public boolean Login(String username, String password) throws SQLException {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
         Cursor mCursor = db.rawQuery("SELECT * FROM " + UsersContract.UsersTable.TABLE_NAME + " WHERE " + UsersContract.UsersTable.ROW_USERNAME + "=? AND " + UsersContract.UsersTable.ROW_PASSWORD + "=?", new String[]{username, password});
         if (mCursor != null) {
@@ -234,7 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Long addSignUpForm(SignupContract fc) {
 
         // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
@@ -258,12 +239,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Long addForm(ListingContract lc) {
 
         // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(ListingEntry.COLUMN_NAME_UID, lc.getUID());
-        values.put(ListingEntry.COLUMN_NAME_HHDATETIME, lc.getHhDT());
+        values.put(ListingEntry.COLUMN_NAME_HHDATETIME, lc.getSysdate());
 
         values.put(ListingEntry.COLUMN_NAME_ENUMCODE, lc.getEnumCode());
         values.put(ListingEntry.COLUMN_NAME_CLUSTERCODE, lc.getClusterCode());
@@ -307,6 +288,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ListingEntry.COLUMN_APPVER, lc.getAppVer());
         values.put(ListingEntry.COLUMN_RANDOMIZED, lc.getIsRandom());
         values.put(ListingEntry.COLUMN_TAGID, lc.getTagId());
+        values.put(ListingEntry.COLUMN_SYNCED, "");
+        values.put(ListingEntry.COLUMN_SYNCED_DATE, "");
+        values.put(ListingEntry.COLUMN_TAGID, lc.getTagId());
 
         long newRowId;
         newRowId = db.insert(
@@ -321,12 +305,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Long addBLRandom(ListingContract lc) {
 
         // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(singleRandomHH.COLUMN_LUID, lc.getUID());
-        values.put(singleRandomHH.COLUMN_RANDOMDT, lc.getHhDT());
+        values.put(singleRandomHH.COLUMN_RANDOMDT, lc.getSysdate());
         values.put(singleRandomHH.COLUMN_CLUSTER_BLOCK_CODE, lc.getClusterCode());
         values.put(singleRandomHH.COLUMN_STRUCTURE_NO, lc.getHh03());
         values.put(singleRandomHH.COLUMN_FAMILY_EXT_CODE, lc.getHh07());
@@ -345,7 +329,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateListingUID() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -363,7 +347,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateListingRecord(String Clustercode) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -381,7 +365,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public JSONArray getAllListingsJSON() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 ListingEntry._ID,
@@ -465,87 +449,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return jsonArray;
     }
 
-    public Collection<ListingContract> getUnsyncedListings() {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public JSONArray getUnsyncedListings() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
-        String[] columns = {
-                ListingEntry._ID,
-                ListingEntry.COLUMN_NAME_UID,
-                ListingEntry.COLUMN_NAME_HHDATETIME,
-                ListingEntry.COLUMN_NAME_ENUMCODE,
-                ListingEntry.COLUMN_NAME_CLUSTERCODE,
-                ListingEntry.COLUMN_NAME_ENUMSTR,
-                ListingEntry.COLUMN_NAME_HH01,
-                ListingEntry.COLUMN_NAME_HH02,
-                ListingEntry.COLUMN_NAME_HH03,
-                ListingEntry.COLUMN_NAME_HH04,
-                ListingEntry.COLUMN_NAME_HH04OTHER,
-                ListingEntry.COLUMN_NAME_HH05,
-                ListingEntry.COLUMN_NAME_HH06,
-                ListingEntry.COLUMN_NAME_HH07,
-                ListingEntry.COLUMN_NAME_HH07n,
-                ListingEntry.COLUMN_NAME_HH08,
-                ListingEntry.COLUMN_NAME_HH09,
-                ListingEntry.COLUMN_NAME_HH08A1,
-                ListingEntry.COLUMN_NAME_HH09A1,
-                ListingEntry.COLUMN_NAME_HH10,
-                ListingEntry.COLUMN_NAME_HH11,
-                ListingEntry.COLUMN_NAME_HH12,
-                ListingEntry.COLUMN_NAME_HH13,
-                ListingEntry.COLUMN_NAME_HH14,
-                ListingEntry.COLUMN_NAME_HH15,
-                ListingEntry.COLUMN_NAME_HH16,
-                ListingEntry.COLUMN_ADDRESS,
-                ListingEntry.COLUMN_ISNEWHH,
-                ListingEntry.COLUMN_COUNTER,
-                ListingEntry.COLUMN_USERNAME,
-                ListingEntry.COLUMN_NAME_DEVICEID,
-                ListingEntry.COLUMN_TAGID,
-                ListingEntry.COLUMN_NAME_GPSLat,
-                ListingEntry.COLUMN_NAME_GPSLng,
-                ListingEntry.COLUMN_NAME_GPSTime,
-                ListingEntry.COLUMN_NAME_GPSAccuracy,
-                ListingEntry.COLUMN_NAME_GPSAltitude,
-                ListingEntry.COLUMN_APPVER,
-                ListingEntry.COLUMN_RANDOMIZED
-        };
+        String[] columns = null;
 
-        String whereClause = ListingEntry.COLUMN_SYNCED + " is null";
+        String whereClause;
+        // whereClause = null;
+        whereClause = ListingEntry.COLUMN_SYNCED + " = '' ";
+
         String[] whereArgs = null;
 
         String groupBy = null;
         String having = null;
 
-        String orderBy = ListingEntry.COLUMN_NAME_CLUSTERCODE + " ASC";
+        String orderBy = ListingEntry._ID + " ASC";
 
-        Collection<ListingContract> allLC = new ArrayList<ListingContract>();
-        try {
-            c = db.query(
-                    ListingEntry.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                ListingContract listing = new ListingContract();
-                allLC.add(listing.hydrate(c, 0));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+        JSONArray allListings = new JSONArray();
+        c = db.query(
+                ListingEntry.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            /** WorkManager Upload
+             /*Form fc = new Form();
+             allFC.add(fc.Hydrate(c));*/
+            Log.d(TAG, "getUnsyncedFormHH: " + c.getCount());
+            ListingContract listings = new ListingContract();
+            allListings.put(listings.hydrate(c, 0).toJSONObject());
+
+
         }
-        return allLC;
+
+        c.close();
+        db.close();
+
+        return allListings;
     }
 
+
     public void syncListingFromDevice(JSONArray fmlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         try {
             JSONArray jsonArray = fmlist;
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -567,7 +516,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Collection<SignupContract> getUnsyncedSignups() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 SignUpTable._ID,
@@ -612,7 +561,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Collection<ListingContract> getAllListingsForRandom() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 ListingEntry._ID,
@@ -697,7 +646,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public JSONArray getListingsByCluster(String cluster) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 ListingEntry._ID,
@@ -787,7 +736,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public ArrayList<ListingContract> randomLisiting(String clusterCode) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 ListingEntry._ID,
@@ -868,7 +817,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Collection<TeamsContract> getAllTeams() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 SingleTaluka._ID,
@@ -911,7 +860,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<Cursor> getData(String Query) {
         //get writable database
-        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        SQLiteDatabase sqlDB = this.getWritableDatabase(DATABASE_PASSWORD);
         String[] columns = new String[]{"mesage"};
         //an array list of cursor to save two cursors one has results from the query
         //other cursor stores error message if any errors are triggered
@@ -958,11 +907,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void syncUsers(JSONArray userlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
+
+    public int syncUsers(JSONArray userlist) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(UsersContract.UsersTable.TABLE_NAME, null, null);
+        int insertCount = 0;
         try {
             JSONArray jsonArray = userlist;
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
@@ -975,6 +927,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(UsersTable.ROW_PASSWORD, user.getPassword());
                 values.put(UsersTable.DIST_ID, user.getDIST_ID());
                 db.insert(UsersTable.TABLE_NAME, null, values);
+                long rowID = db.insert(UsersTable.TABLE_NAME, null, values);
+
+                if (rowID != -1) insertCount++;
             }
 
 
@@ -983,11 +938,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             db.close();
         }
+
+        return insertCount;
     }
 
+    public int syncEnumBlocks(JSONArray Enumlist) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(EnumBlockTable.TABLE_NAME, null, null);
+        int insertCount = 0;
+
+        try {
+            JSONArray jsonArray = Enumlist;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
+
+                EnumBlockContract Vc = new EnumBlockContract();
+                Vc.Sync(jsonObjectCC);
+
+                ContentValues values = new ContentValues();
+
+                values.put(EnumBlockTable.COLUMN_DIST_ID, Vc.getDist_id());
+                values.put(EnumBlockTable.COLUMN_GEO_AREA, Vc.getGeoarea());
+                values.put(EnumBlockTable.COLUMN_CLUSTER_AREA, Vc.getCluster());
+
+                long rowID = db.insert(EnumBlockTable.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+            }
+        } catch (Exception e) {
+        } finally {
+            db.close();
+        }
+        return insertCount;
+
+    }
 
     public Collection<VerticesContract> getVerticesByCluster(String cluster_code) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 SingleVertices._ID,
@@ -1031,8 +1017,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allVC;
     }
 
-    public void updateSyncedForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public void updateSyncedlistings(String id) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -1051,7 +1037,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateSyncedSignup(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -1070,12 +1056,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateSyncedBLRandom(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
     }
 
     public void syncTeams(JSONArray dcList) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(SingleTaluka.TABLE_NAME, null, null);
 
         try {
@@ -1102,7 +1088,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public EnumBlockContract getEnumBlock(String cluster) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 EnumBlockTable._ID,
@@ -1145,7 +1131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void syncVertices(JSONArray vcList) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(SingleVertices.TABLE_NAME, null, null);
 
         try {
@@ -1174,7 +1160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void syncVersionApp(JSONArray Versionlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(VersionAppTable.TABLE_NAME, null, null);
         try {
             JSONArray jsonArray = Versionlist;
@@ -1199,7 +1185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public VersionAppContract getVersionApp() {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 VersionAppTable._ID,
