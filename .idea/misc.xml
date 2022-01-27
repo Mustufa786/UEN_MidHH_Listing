@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/app_bg_effect.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/avd_anim.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/capsule.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_assignment_ind_black_24dp.xml" value="0.5875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_language_change.xml" value="0.39166666666666666" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_lock_black_24dp.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_remove_red_eye_black_24dp.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/options_separator.xml" value="0.5875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_family_listing.xml" value="0.56328125" />
-        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_login.xml" value="0.3171875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_login.xml" value="0.54125" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_main.xml" value="0.47619047619047616" />
-        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_setup.xml" value="0.56328125" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_setup.xml" value="0.54125" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_signup.xml" value="0.3171875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_sync.xml" value="0.31640625" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/menu/activity_menu.xml" value="0.21145833333333333" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/menu/language_menu.xml" value="0.37552083333333336" />

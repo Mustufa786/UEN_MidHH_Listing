@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Change this when you change the database schema.
     private static final int DATABASE_VERSION = 1;
     public static String TAG = "DatabaseHelper";
-    public static String DB_FORM_ID;
+    public static String DB_FORM_ID = "0";
     // Create a table to hold Listings.
     final String SQL_CREATE_LISTING_TABLE = "CREATE TABLE " + ListingEntry.TABLE_NAME + " (" +
             ListingEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -97,13 +97,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ListingEntry.COLUMN_USERNAME + " TEXT, " +
             ListingEntry.COLUMN_NAME_DEVICEID + " TEXT, " +
             ListingEntry.COLUMN_TAGID + " TEXT, " +
-            ListingEntry.COLUMN_NAME_GPSLat + " TEXT, " +
+            ListingEntry.COLUMN_APPVER + " TEXT, " +
+            /*ListingEntry.COLUMN_NAME_GPSLat + " TEXT, " +
             ListingEntry.COLUMN_NAME_GPSLng + " TEXT, " +
             ListingEntry.COLUMN_NAME_GPSTime + " TEXT, " +
-            ListingEntry.COLUMN_APPVER + " TEXT, " +
             ListingEntry.COLUMN_NAME_GPSAccuracy + " TEXT, " +
             ListingEntry.COLUMN_NAME_GPSAltitude + " TEXT, " +
-            ListingEntry.COLUMN_RANDOMIZED + " TEXT, " +
+            */ListingEntry.COLUMN_RANDOMIZED + " TEXT, " +
             ListingEntry.COLUMN_SYNCED + " TEXT, " +
             ListingEntry.COLUMN_SYNCED_DATE + " TEXT " +
             " );";
@@ -198,12 +198,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean Login(String username, String password) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + UsersContract.UsersTable.TABLE_NAME + " WHERE " + UsersContract.UsersTable.ROW_USERNAME + "=? AND " + UsersContract.UsersTable.ROW_PASSWORD + "=?", new String[]{username, password});
+        Cursor mCursor = db.rawQuery("SELECT * "
+                        + "FROM " + UsersContract.UsersTable.TABLE_NAME
+                        + " WHERE " + UsersContract.UsersTable.ROW_USERNAME + "=? AND "
+                        + UsersContract.UsersTable.ROW_PASSWORD + "=?",
+                new String[]{username, password});
+
         if (mCursor != null) {
 
             if (mCursor.getCount() > 0) {
 
                 if (mCursor.moveToFirst()) {
+                    MainApp.user = new UsersContract().Hydrate(mCursor);
                     MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndexOrThrow(UsersContract.UsersTable.DIST_ID));
                 }
                 return true;
@@ -280,11 +286,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ListingEntry.COLUMN_COUNTER, lc.getCounter());
         values.put(ListingEntry.COLUMN_NAME_DEVICEID, lc.getDeviceID());
         values.put(ListingEntry.COLUMN_USERNAME, lc.getUsername());
-        values.put(ListingEntry.COLUMN_NAME_GPSLat, lc.getGPSLat());
+/*        values.put(ListingEntry.COLUMN_NAME_GPSLat, lc.getGPSLat());
         values.put(ListingEntry.COLUMN_NAME_GPSLng, lc.getGPSLng());
         values.put(ListingEntry.COLUMN_NAME_GPSTime, lc.getGPSTime());
         values.put(ListingEntry.COLUMN_NAME_GPSAccuracy, lc.getGPSAcc());
-        values.put(ListingEntry.COLUMN_NAME_GPSAltitude, lc.getGPSAlt());
+        values.put(ListingEntry.COLUMN_NAME_GPSAltitude, lc.getGPSAlt());*/
         values.put(ListingEntry.COLUMN_APPVER, lc.getAppVer());
         values.put(ListingEntry.COLUMN_RANDOMIZED, lc.getIsRandom());
         values.put(ListingEntry.COLUMN_TAGID, lc.getTagId());
@@ -292,13 +298,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ListingEntry.COLUMN_SYNCED_DATE, "");
         values.put(ListingEntry.COLUMN_TAGID, lc.getTagId());
 
-        long newRowId;
-        newRowId = db.insert(
-                ListingEntry.TABLE_NAME,
-                ListingEntry.COLUMN_NAME_NULLABLE,
-                values);
-        DB_FORM_ID = String.valueOf(newRowId);
-
+        long newRowId = Long.parseLong(DB_FORM_ID);
+        if (MainApp.lc.getUID().equals("")) {
+            newRowId = db.insert(
+                    ListingEntry.TABLE_NAME,
+                    ListingEntry.COLUMN_NAME_NULLABLE,
+                    values);
+            DB_FORM_ID = String.valueOf(newRowId);
+        }
         return newRowId;
     }
 
@@ -400,11 +407,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ListingEntry.COLUMN_USERNAME,
                 ListingEntry.COLUMN_NAME_DEVICEID,
                 ListingEntry.COLUMN_TAGID,
-                ListingEntry.COLUMN_NAME_GPSLat,
+/*                ListingEntry.COLUMN_NAME_GPSLat,
                 ListingEntry.COLUMN_NAME_GPSLng,
                 ListingEntry.COLUMN_NAME_GPSTime,
                 ListingEntry.COLUMN_NAME_GPSAccuracy,
-                ListingEntry.COLUMN_NAME_GPSAltitude,
+                ListingEntry.COLUMN_NAME_GPSAltitude,*/
                 ListingEntry.COLUMN_APPVER,
                 ListingEntry.COLUMN_RANDOMIZED
         };
@@ -596,11 +603,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ListingEntry.COLUMN_USERNAME,
                 ListingEntry.COLUMN_NAME_DEVICEID,
                 ListingEntry.COLUMN_TAGID,
-                ListingEntry.COLUMN_NAME_GPSLat,
+/*                ListingEntry.COLUMN_NAME_GPSLat,
                 ListingEntry.COLUMN_NAME_GPSLng,
                 ListingEntry.COLUMN_NAME_GPSTime,
                 ListingEntry.COLUMN_NAME_GPSAccuracy,
-                ListingEntry.COLUMN_NAME_GPSAltitude,
+                ListingEntry.COLUMN_NAME_GPSAltitude,*/
                 ListingEntry.COLUMN_APPVER,
                 ListingEntry.COLUMN_RANDOMIZED,
                 "COUNT(*) as RESCOUNTER, " +
@@ -681,11 +688,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ListingEntry.COLUMN_USERNAME,
                 ListingEntry.COLUMN_NAME_DEVICEID,
                 ListingEntry.COLUMN_TAGID,
-                ListingEntry.COLUMN_NAME_GPSLat,
+/*                ListingEntry.COLUMN_NAME_GPSLat,
                 ListingEntry.COLUMN_NAME_GPSLng,
                 ListingEntry.COLUMN_NAME_GPSTime,
                 ListingEntry.COLUMN_NAME_GPSAccuracy,
-                ListingEntry.COLUMN_NAME_GPSAltitude,
+                ListingEntry.COLUMN_NAME_GPSAltitude,*/
                 ListingEntry.COLUMN_APPVER,
                 ListingEntry.COLUMN_RANDOMIZED
         };
@@ -771,11 +778,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ListingEntry.COLUMN_USERNAME,
                 ListingEntry.COLUMN_NAME_DEVICEID,
                 ListingEntry.COLUMN_TAGID,
-                ListingEntry.COLUMN_NAME_GPSLat,
+/*                ListingEntry.COLUMN_NAME_GPSLat,
                 ListingEntry.COLUMN_NAME_GPSLng,
                 ListingEntry.COLUMN_NAME_GPSTime,
                 ListingEntry.COLUMN_NAME_GPSAccuracy,
-                ListingEntry.COLUMN_NAME_GPSAltitude,
+                ListingEntry.COLUMN_NAME_GPSAltitude,*/
                 ListingEntry.COLUMN_APPVER,
                 ListingEntry.COLUMN_RANDOMIZED
         };

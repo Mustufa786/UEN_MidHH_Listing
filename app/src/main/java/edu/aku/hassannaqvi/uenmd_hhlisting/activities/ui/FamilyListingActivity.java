@@ -156,13 +156,11 @@ public class FamilyListingActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            MainApp.lc.setTagId(MainApp.lc.getTagId() + "3");
+
             if (UpdateDB()) {
-                if (familyFlag) {
-                    MainApp.hh07txt = String.valueOf(Integer.valueOf(MainApp.hh07txt) + 1);
-                } else {
-
-                    MainApp.hh07txt = String.valueOf(Integer.valueOf(MainApp.hh07txt) + 1);
-
+                MainApp.hh07txt = String.valueOf(Integer.valueOf(MainApp.hh07txt) + 1);
+                if (!familyFlag) {
                     familyFlag = true;
                 }
                 MainApp.lc.setHh07(MainApp.hh07txt);
@@ -262,7 +260,6 @@ public class FamilyListingActivity extends Activity {
             hh16.setError(null);
         }
 
-
         if (Integer.valueOf(hh16.getText().toString()) <= (Integer.valueOf(hh11.getText().toString().isEmpty() ? "0" : hh11.getText().toString()))) {
             Toast.makeText(this, "Invalid Count!", Toast.LENGTH_SHORT).show();
             hh16.setError("Invalid Count!");
@@ -285,6 +282,8 @@ public class FamilyListingActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            MainApp.lc.setTagId(MainApp.lc.getTagId() + "4");
+
             if (UpdateDB()) {
                 MainApp.hh07txt = String.valueOf(Integer.valueOf(MainApp.hh07txt) + 1);
                 MainApp.lc.setHh07(MainApp.hh07txt);
@@ -301,6 +300,7 @@ public class FamilyListingActivity extends Activity {
 
     @OnClick(R.id.btnAddHousehold)
     void onBtnAddHouseholdClick() {
+        btnAddHousehold.setEnabled(false);
         if (formValidation()) {
 
             try {
@@ -308,17 +308,22 @@ public class FamilyListingActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            MainApp.lc.setTagId(MainApp.lc.getTagId() + "5");
+
             if (UpdateDB()) {
                 MainApp.fCount = 0;
                 MainApp.fTotal = 0;
                 MainApp.cCount = 0;
                 MainApp.cTotal = 0;
                 familyFlag = false;
-                finish();
                 Intent fA = new Intent(this, SetupActivity.class);
                 startActivity(fA);
+                finish();
 
             }
+        } else {
+            btnAddHousehold.setEnabled(true);
+
         }
 
     }
@@ -330,16 +335,17 @@ public class FamilyListingActivity extends Activity {
 
         MainApp.lc.setID(String.valueOf(updcount));
 
-        if (updcount != 0) {
+        if (updcount > 0) {
 
             MainApp.lc.setUID(
                     (MainApp.lc.getDeviceID() + MainApp.lc.getID()));
 
             db.updateListingUID();
-
+            MainApp.lc.setUID("");
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
         }
+        //   MainApp.lc = null;
         return true;
     }
 

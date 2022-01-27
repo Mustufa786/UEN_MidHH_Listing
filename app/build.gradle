@@ -87,7 +87,7 @@ android {
         }
 
         debug {
-            resValue("string", "DB_PASSWORD_PERSON", "Ta@ndInC%apACIT1")
+            resValue("string", "DB_PASSWORD_uenml_hhl.db", "Ta@ndInC%apACIT1")
         }
     }
     productFlavors {
@@ -138,7 +138,7 @@ dependencies {
     //Gson
     implementation 'com.google.code.gson:gson:2.8.9'
 
-    def work_version = '2.6.0'
+    def work_version = '2.7.1'
 
     // WorkManager(Java only)
     implementation("androidx.work:work-runtime:$work_version") {

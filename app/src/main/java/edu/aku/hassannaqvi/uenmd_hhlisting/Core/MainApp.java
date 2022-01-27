@@ -1,13 +1,11 @@
 package edu.aku.hassannaqvi.uenmd_hhlisting.Core;
 
-import android.Manifest;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -15,11 +13,7 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.View;
-
-import androidx.core.app.ActivityCompat;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -27,10 +21,10 @@ import org.json.JSONArray;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.ListingContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.SignupContract;
+import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.UsersContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.TypefaceUtil;
 
 /**
@@ -74,6 +68,7 @@ public class MainApp extends Application {
     public static String enumCode = "";
     public static String clusterCode = "";
     public static String enumStr = "";
+    public static UsersContract user = new UsersContract();
 
     public static SignupContract signContract;
 
@@ -180,7 +175,7 @@ public class MainApp extends Application {
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         // Declare and Initialize GPS collection module
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+/*        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // requestPermission();
@@ -189,7 +184,7 @@ public class MainApp extends Application {
             }
         } else {
             requestLocationUpdate();
-        }
+        }*/
 
 
         sharedPref = getSharedPreferences("PSUCodes", Context.MODE_PRIVATE);
@@ -198,7 +193,7 @@ public class MainApp extends Application {
         db = new DatabaseHelper(this);
     }
 
-    public void requestLocationUpdate() {
+/*    public void requestLocationUpdate() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -215,10 +210,10 @@ public class MainApp extends Application {
                 MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
                 new MyLocationListener()
         );
-    }
+    }*/
 
 
-    protected void showCurrentLocation() {
+   /* protected void showCurrentLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -249,9 +244,11 @@ public class MainApp extends Application {
 
     }
 
+    */
+
     /**
      * Checks whether two providers are the same
-     */
+     *//*
     private boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;
@@ -297,7 +294,8 @@ public class MainApp extends Application {
             return true;
         } else return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
     }
-
+*/
+/*
     private class MyLocationListener implements LocationListener {
 
         public void onLocationChanged(Location location) {
@@ -353,6 +351,7 @@ public class MainApp extends Application {
         }
 
     }
+*/
 
     private void initSecure() {
         // Initialize SQLCipher library

@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.uenmd_hhlisting.activities.home;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,18 +7,14 @@ import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.InputType;
@@ -39,6 +34,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
 
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -60,7 +57,6 @@ import edu.aku.hassannaqvi.uenmd_hhlisting.Core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
-import edu.aku.hassannaqvi.uenmd_hhlisting.activities.map.MapsActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.menu.MenuActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SetupActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SyncActivity;
@@ -73,16 +69,15 @@ public class MainActivity extends MenuActivity {
     private static final String port = "3000";
     public List<String> psuCode;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
-    @BindView(R.id.districtN)
+/*    @BindView(R.id.districtN)
     TextView districtN;
     @BindView(R.id.ucN)
     TextView ucN;
     @BindView(R.id.psuN)
     TextView psuN;
     @BindView(R.id.msgUpdate)
-    TextView msgUpdate;
-    @BindView(R.id.msgText)
-    TextView msgText;
+    TextView msgUpdate;*/
+
     @BindView(R.id.txtPSU)
     EditText txtPSU;
     @BindView(R.id.btnCheckPSU)
@@ -109,7 +104,7 @@ public class MainActivity extends MenuActivity {
     LinearLayout lllstwarning;
 
     @BindView(R.id.fldGrpMain01)
-    LinearLayout fldGrpMain01;
+    CardView fldGrpMain01;
 
     @BindView(R.id.lstwarning)
     RadioGroup lstwarning;
@@ -129,15 +124,15 @@ public class MainActivity extends MenuActivity {
     Boolean flag = false;
     DatabaseHelper db;
     ProgressDialog progressDoalog;
-    @BindView(R.id.lblAppVersion)
-    TextView lblAppVersion;
+    /*    @BindView(R.id.lblAppVersion)
+        TextView lblAppVersion;*/
     VersionAppContract versionAppContract;
     String preVer = "", newVer = "";
     DownloadManager downloadManager;
     Long refID;
     SharedPreferences sharedPrefDownload;
     SharedPreferences.Editor editorDownload;
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+   /* BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
@@ -167,7 +162,7 @@ public class MainActivity extends MenuActivity {
                 }
             }
         }
-    };
+    };*/
 
     private String clusterName;
 
@@ -210,7 +205,7 @@ public class MainActivity extends MenuActivity {
         sharedPrefDownload = getSharedPreferences("appDownload", MODE_PRIVATE);
         editorDownload = sharedPrefDownload.edit();
 
-        String versionCode = sharedPrefInfo.getString("versionCode", "");
+      /*  String versionCode = sharedPrefInfo.getString("versionCode", "");
         if (versionCode.equals("")) {
 
 
@@ -218,7 +213,7 @@ public class MainActivity extends MenuActivity {
             if (Integer.valueOf(versionCode) > Integer.valueOf(MainApp.versionCode)) {
                 msgUpdate.setVisibility(View.VISIBLE);
             }
-        }
+        }*/
         builder = new AlertDialog.Builder(MainActivity.this);
         ImageView img = new ImageView(getApplicationContext());
         img.setImageResource(R.drawable.tagimg);
@@ -249,11 +244,11 @@ public class MainActivity extends MenuActivity {
         // database handler
         db = new DatabaseHelper(getApplicationContext());
 
-        msgText.setText(db.getListingCount() + " records found in Listings table.");
+        //  msgText.setText(db.getListingCount() + " records found in Listings table.");
         // spinnersFill();
 
 //        Version Checking
-        versionAppContract = db.getVersionApp();
+    /*    versionAppContract = db.getVersionApp();
         if (versionAppContract.getVersioncode() != null) {
 
             preVer = MainApp.versionName + "." + MainApp.versionCode;
@@ -297,13 +292,13 @@ public class MainActivity extends MenuActivity {
         }
 
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-
+*/
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(broadcastReceiver);
+        //   unregisterReceiver(broadcastReceiver);
     }
 
     public void populateSpinner(String villages) {
@@ -358,9 +353,9 @@ public class MainActivity extends MenuActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                districtN.setText(null);
+         /*       districtN.setText(null);
                 psuN.setText(null);
-                ucN.setText(null);
+                ucN.setText(null);*/
                 fldGrpna101.setVisibility(View.GONE);
                 lllstwarning.setVisibility(View.GONE);
                 chkconfirm.setChecked(false);
@@ -413,11 +408,11 @@ public class MainActivity extends MenuActivity {
 
     public void OpenFormFun() {
 
-        if (txtPSU.getText().toString().length() != 6) {
+        if (txtPSU.getText().toString().length() == 7) {
 
             txtPSU.setError(null);
             boolean loginFlag;
-            int clus = Integer.valueOf(txtPSU.getText().toString().substring(3, 6));
+            int clus = Integer.valueOf(txtPSU.getText().toString().substring(4, 7));
             if (clus < 500) {
                 loginFlag = !(MainApp.userEmail.equals("test1234") || MainApp.userEmail.equals("dmu@aku") || MainApp.userEmail.startsWith("user"));
             } else {
@@ -520,7 +515,7 @@ public class MainActivity extends MenuActivity {
         db = MainApp.db;
         Collection<VerticesContract> v = db.getVerticesByCluster(txtPSU.getText().toString());
         if (v.size() > 3) {
-            startActivity(new Intent(this, MapsActivity.class));
+            //    startActivity(new Intent(this, MapsActivity.class));
         } else {
             Toast.makeText(this, "Cluster map do not exist for " + clusterName, Toast.LENGTH_SHORT).show();
         }

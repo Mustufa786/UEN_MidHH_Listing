@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryAlpha">#663F51B5</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorPrimaryDark1">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorAccentAlpha">#24d60000</color>
-    <color name="colorAccentGAlpha">#2400d600</color>
+    <color name="colorPrimary">#6D4C41</color>
+    <color name="colorPrimaryLight">#BCAAA4</color>
+    <color name="colorPrimaryDark">#4E342E</color>
+    <color name="colorAccent">#FF9100</color>
+    <color name="colorAccentLight">#FFAB40</color>
+
+    <color name="colorPrimaryOverlay">#7f6D4C41</color>
+    <color name="colorPrimaryLightOverlay">#7fBCAAA4</color>
+    <color name="colorPrimaryDarkOverlay">#7f4E342E</color>
+    <color name="colorAccentOverlay">#7fFF9100</color>
+    <color name="colorAccentLightOverlay">#7fFFAB40</color>
+
 
     <color name="black_overlay">#66000000</color>
 
@@ -33,5 +38,37 @@
 
     <color name="darkRed">#D50000</color>
     <color name="lightOrange">#FFE0B2</color>
+
+
+    <!-- Standard App Colors -->
+    =
+    <color name="grayDark">#424242</color>
+    <color name="grayLight">#EEEEEE</color>
+    <color name="greenLight">#d600ef00</color>
+    <color name="fuchsia">#d6ef00ef</color>
+    <color name="redLight">#d6ef0000</color>
+    ===
+    <color name="red_overlay">#7f990000</color>
+    <color name="green_overlay">#7f009900</color>
+    <color name="blackOverlay">#7f000000</color>
+    =
+    <color name="redDark">#990000</color>
+    <color name="Pink">#FF80AB</color>
+    <color name="lightPink">#F8BBD0</color>
+
+    <color name="girlPink">#FF80AB</color>
+
+    <color name="motherBg">#FFCDD2</color>
+    <color name="childBg">#C5CAE9</color>
+    <color name="adolMaleBg">#B2DFDB</color>
+    <color name="adolFemaleBg">#FBC02D</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="girl_pink">#FF80AB</color>
+    <color name="boy_blue">#82B1FF</color>
 
 </resources>

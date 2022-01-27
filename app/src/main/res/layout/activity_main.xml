@@ -1,338 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingEnd="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/app_bg_effect"
+    android:orientation="vertical"
     tools:context="edu.aku.hassannaqvi.uenmd_hhlisting.activities.home.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/CustomToolbarTheme"
+        app:popupTheme="@style/CustomPopupTheme"
+        app:subtitle="Please select a cluster"
+        app:subtitleTextAppearance="@style/Toolbar.SubtitleText"
+        app:title="Main Screen"
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="24dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lblAppVersion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/lightOrange"
-            android:textAlignment="center"
-            android:textColor="@color/darkRed"
-            android:textStyle="bold"
-            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/msgText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:gravity="center_horizontal"
-            android:text="Records Summary "
-            android:textColor="@color/green"
-            android:textSize="24sp" />
+        <!--        <TextView
+                    android:id="@+id/msgText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:gravity="center_horizontal"
+                    android:text="Main Menu"
+                    android:textColor="@color/green"
+                    android:textSize="24sp" />-->
 
-        <TextView
-            android:id="@+id/msgUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:gravity="center_horizontal"
-            android:text="New version of this app is available for download."
-            android:textColor="@color/red"
-            android:textSize="24sp"
-            android:visibility="gone" />
+        <androidx.cardview.widget.CardView
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            style="@style/cardView">
 
-            <Button
-                android:id="@+id/btnCheckPSU"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_weight="30"
-                android:padding="10dp"
-                android:text="CHECK" />
+                android:minHeight="56dp"
 
-            <EditText
-                android:id="@+id/txtPSU"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:background="#ddd"
-                android:hint="Cluster number"
-                android:inputType="number"
-                android:maxLength="7"
-                android:padding="10dp"
-                android:textColor="@android:color/black" />
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnCheckPSU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/zxing_transparent"
+                    android:drawableEnd="@drawable/places_ic_search"
+                    android:drawablePadding="12dp"
+                    android:padding="10dp"
+                    android:text="SEARCH"
+                    android:textColor="@color/colorAccent"
+                    android:textFontWeight="800" />
 
+                <EditText
+                    android:id="@+id/txtPSU"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#ddd"
+                    android:hint="Cluster number"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:padding="10dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:textColor="@android:color/black"
+                    android:textDirection="ltr" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/fldGrpna101"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:orientation="vertical"
-            android:visibility="gone"
             tools:visibility="visible">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <androidx.cardview.widget.CardView style="@style/cardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-                    <!--na101a-->
-                    <TextView
-                        android:layout_width="0dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="@string/na101a"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/white" />
+                        android:minHeight="56dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/na101a"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:background="@color/dullWhile"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/na101a"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/white" />
 
-                    <!--na101b-->
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="@string/na101b"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/white" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/na101b"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/white" />
 
-                    <TextView
-                        android:id="@+id/na101b"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:fontFamily="sans-serif"
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/na101c"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/white" />
 
-                        android:background="@color/dullWhile"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                    </LinearLayout>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-
-                    android:orientation="horizontal">
-                    <!--na101c-->
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="@string/na101c"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/white" />
-
-
-                    <TextView
-                        android:id="@+id/na101c"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:background="@color/dullWhile"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:fontFamily="sans-serif"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-
-                    <!--na101d-->
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="@string/na101d"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/white" />
-
-
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/na101d"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/openClusterMap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:onClick="openClusterMap"
-                android:text="Check Cluster Map"
-                android:textColor="#7139c2"
-                android:visibility="gone" />
-
-            <CheckBox
-                android:id="@+id/chkconfirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/confirmcity" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lllstwarning"
-            style="@style/linearlayout_view"
-            android:layout_marginTop="15dp"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <LinearLayout
-                android:id="@+id/fldGrpMain01"
-                style="@style/linearlayout_view_wt_bound">
-
-                <TextView
-                    style="@style/textInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/lstWarning"
-                    android:textColor="@color/white" />
-
-                <RadioGroup
-                    android:id="@+id/lstwarning"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="match_parent">
-
-                    <RadioButton
-                        android:id="@+id/lstwarninga"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text="@string/yes" />
+                        android:minHeight="56dp"
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/lstwarningb"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        <TextView
+                            android:id="@+id/na101a"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/dullWhile"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/na101b"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/dullWhile"
+
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/na101c"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@color/dullWhile"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text="@string/no" />
-                </RadioGroup>
+                        android:minHeight="56dp"
+                        android:orientation="horizontal">
+
+                        <!--na101d-->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/na101d"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/white" />
+
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/na101d"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chkconfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        android:minHeight="56dp"
+                        android:text="@string/confirmcity" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/lllstwarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpMain01"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="56dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/lstWarning"
+                            android:textColor="@color/white" />
+
+                        <RadioGroup
+                            android:id="@+id/lstwarning"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/lstwarninga"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:layout_weight="1"
+                                android:text="@string/yes" />
+
+                            <RadioButton
+                                android:id="@+id/lstwarningb"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:layout_weight="1"
+                                android:minHeight="56dp"
+                                android:text="@string/no" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/openForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    android:background="@color/colorAccent"
+                    android:onClick="openForm"
+                    android:text="Start Line Listing"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:typeface="sans" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/openForm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:onClick="openForm"
-                android:text="Start Line Listing" />
-
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/districtN"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#ef3030"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/ucN"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#ef3030"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/psuN"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#ef3030"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/syncFunction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:onClick="syncFunction"
-            android:text="Sync Listing"
-            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/adminBlock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            tools:visibility="visible"
             android:visibility="gone">
 
             <Button
@@ -341,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:onClick="openDB"
-
+                tools:visibility="visible"
                 android:text="Open DB Manager" />
 
 

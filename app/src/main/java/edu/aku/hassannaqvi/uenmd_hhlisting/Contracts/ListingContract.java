@@ -43,11 +43,11 @@ public class ListingContract {
     public String isNewHH = _EMPTY_;
     public String counter = _EMPTY_;
     public String DeviceID = _EMPTY_;
-    public String GPSLat = _EMPTY_;
+/*    public String GPSLat = _EMPTY_;
     public String GPSLng = _EMPTY_;
     public String GPSTime = _EMPTY_;
     public String GPSAcc = _EMPTY_;
-    public String GPSAlt = _EMPTY_;
+    public String GPSAlt = _EMPTY_;*/
     public String AppVer = _EMPTY_;
     public String tagId = _EMPTY_;
 
@@ -319,7 +319,7 @@ public class ListingContract {
         DeviceID = deviceID;
     }
 
-    public String getGPSLat() {
+/*    public String getGPSLat() {
         return GPSLat;
     }
 
@@ -349,7 +349,7 @@ public class ListingContract {
 
     public void setGPSAcc(String GPSAcc) {
         this.GPSAcc = GPSAcc;
-    }
+    }*/
 
     public String getAppVer() {
         return AppVer;
@@ -375,13 +375,13 @@ public class ListingContract {
         this.tagId = tagId;
     }
 
-    public String getGPSAlt() {
+/*    public String getGPSAlt() {
         return GPSAlt;
     }
 
     public void setGPSAlt(String GPSAlt) {
         this.GPSAlt = GPSAlt;
-    }
+    }*/
 
     public String getHh16() {
         return hh16;
@@ -446,11 +446,11 @@ public class ListingContract {
         json.put(ListingEntry.COLUMN_NAME_HH16, this.hh16);
         json.put(ListingEntry.COLUMN_ADDRESS, this.hhadd);
         json.put(ListingEntry.COLUMN_NAME_DEVICEID, this.DeviceID);
-        json.put(ListingEntry.COLUMN_NAME_GPSLat, this.GPSLat);
+/*        json.put(ListingEntry.COLUMN_NAME_GPSLat, this.GPSLat);
         json.put(ListingEntry.COLUMN_NAME_GPSLng, this.GPSLng);
         json.put(ListingEntry.COLUMN_NAME_GPSTime, this.GPSTime);
         json.put(ListingEntry.COLUMN_NAME_GPSAccuracy, this.GPSAcc);
-        json.put(ListingEntry.COLUMN_NAME_GPSAltitude, this.GPSAlt);
+        json.put(ListingEntry.COLUMN_NAME_GPSAltitude, this.GPSAlt);*/
         json.put(ListingEntry.COLUMN_APPVER, this.AppVer);
         json.put(ListingEntry.COLUMN_USERNAME, this.username);
         json.put(ListingEntry.COLUMN_TAGID, this.tagId);
@@ -492,11 +492,11 @@ public class ListingContract {
         lc.setHh16(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_HH16))));
         lc.setHhadd(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_ADDRESS))));
         lc.setDeviceID(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_DEVICEID))));
-        lc.setGPSLat(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSLat))));
+/*        lc.setGPSLat(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSLat))));
         lc.setGPSLng(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSLng))));
         lc.setGPSTime(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSTime))));
         lc.setGPSAcc(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSAccuracy))));
-        lc.setGPSAlt(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSAltitude))));
+        lc.setGPSAlt(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_NAME_GPSAltitude))));*/
         lc.setAppVer(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_APPVER))));
         lc.setTagId(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_TAGID))));
         lc.setUsername(String.valueOf(c.getString(c.getColumnIndexOrThrow(ListingEntry.COLUMN_USERNAME))));
@@ -545,11 +545,11 @@ public class ListingContract {
         this.hhadd = jsonObject.getString(ListingEntry.COLUMN_ADDRESS);
         this.isNewHH = jsonObject.getString(ListingEntry.COLUMN_ISNEWHH);
         this.DeviceID = jsonObject.getString(ListingEntry.COLUMN_NAME_DEVICEID);
-        this.GPSLat = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSLat);
+/*        this.GPSLat = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSLat);
         this.GPSLng = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSLng);
         this.GPSTime = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSTime);
         this.GPSAcc = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSAccuracy);
-        this.GPSAlt = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSAltitude);
+        this.GPSAlt = jsonObject.getString(ListingEntry.COLUMN_NAME_GPSAltitude);*/
         this.AppVer = jsonObject.getString(ListingEntry.COLUMN_APPVER);
         this.tagId = jsonObject.getString(ListingEntry.COLUMN_TAGID);
         this.isRandom = jsonObject.getString(ListingEntry.COLUMN_RANDOMIZED);
@@ -596,11 +596,11 @@ public class ListingContract {
         public static final String COLUMN_ISNEWHH = "isnewhh";
         public static final String COLUMN_COUNTER = "counter";
         public static final String COLUMN_NAME_DEVICEID = "deviceid";
-        public static final String COLUMN_NAME_GPSLat = "gpslat";
-        public static final String COLUMN_NAME_GPSLng = "gpslng";
-        public static final String COLUMN_NAME_GPSTime = "gpstime";
-        public static final String COLUMN_NAME_GPSAccuracy = "gpsacc";
-        public static final String COLUMN_NAME_GPSAltitude = "gpsalt";
+        /*        public static final String COLUMN_NAME_GPSLat = "gpslat";
+                public static final String COLUMN_NAME_GPSLng = "gpslng";
+                public static final String COLUMN_NAME_GPSTime = "gpstime";
+                public static final String COLUMN_NAME_GPSAccuracy = "gpsacc";
+                public static final String COLUMN_NAME_GPSAltitude = "gpsalt";*/
         public static final String COLUMN_APPVER = "appver";
         public static final String COLUMN_TAGID = "tagId";
         public static final String COLUMN_SYNCED = "synced";

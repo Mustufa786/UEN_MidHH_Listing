@@ -1,13 +1,11 @@
 package edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -285,7 +283,7 @@ public class SetupActivity extends Activity {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
             SaveDraft();
-
+            MainApp.lc.setTagId(MainApp.lc.getTagId() + "1");
             if (UpdateDB()) {
                 MainApp.hh02txt = null;
 
@@ -340,7 +338,7 @@ public class SetupActivity extends Activity {
 
         MainApp.lc.setIsRandom(MainApp.tabCheck);
 
-        setGPS();
+        // setGPS();
 
         MainApp.fTotal = hh06.getText().toString().isEmpty() ? 0 : Integer.parseInt(hh06.getText().toString());
 
@@ -349,6 +347,7 @@ public class SetupActivity extends Activity {
 
     }
 
+/*
     public void setGPS() {
         SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
 
@@ -368,12 +367,12 @@ public class SetupActivity extends Activity {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
 
-            MainApp.lc.setGPSLat(GPSPref.getString("Latitude", "0"));
-            MainApp.lc.setGPSLng(GPSPref.getString("Longitude", "0"));
-            MainApp.lc.setGPSAcc(GPSPref.getString("Accuracy", "0"));
-            MainApp.lc.setGPSAlt(GPSPref.getString("Altitude", "0"));
-//            MainApp.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            MainApp.lc.setGPSTime(date); // Timestamp is converted to date above
+//            MainApp.lc.setGPSLat(GPSPref.getString("Latitude", "0"));
+//            MainApp.lc.setGPSLng(GPSPref.getString("Longitude", "0"));
+//            MainApp.lc.setGPSAcc(GPSPref.getString("Accuracy", "0"));
+//            MainApp.lc.setGPSAlt(GPSPref.getString("Altitude", "0"));
+////            MainApp.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+//            MainApp.lc.setGPSTime(date); // Timestamp is converted to date above
 
             Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
 
@@ -382,6 +381,7 @@ public class SetupActivity extends Activity {
         }
 
     }
+*/
 
     private boolean formValidation() {
         if (MainApp.hh02txt == null) {
@@ -442,6 +442,8 @@ public class SetupActivity extends Activity {
         if (formValidation()) {
 
             SaveDraft();
+            MainApp.lc.setTagId(MainApp.lc.getTagId() + "2");
+
             if (UpdateDB()) {
                 MainApp.fCount = 0;
                 MainApp.fTotal = 0;
@@ -470,10 +472,12 @@ public class SetupActivity extends Activity {
                     (MainApp.lc.getDeviceID() + MainApp.lc.getID()));
 
             db.updateListingUID();
+            MainApp.lc.setUID("");
 
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
         }
+        //   MainApp.lc = null;
         return true;
     }
 

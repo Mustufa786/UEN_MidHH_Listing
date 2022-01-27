@@ -155,16 +155,18 @@ public class SyncActivity extends AppCompatActivity {
                 bi.mTextViewS.setVisibility(View.GONE);
                 bi.pBar.setVisibility(View.GONE);
                 downloadTables.clear();
-                boolean sync_flag = getIntent().getBooleanExtra("login", false);
 
-                select = " * ";
-                filter = " enabled = '1' ";
-                downloadTables.add(new SyncModel(UsersContract.UsersTable.TABLE_NAME, select, filter));
 
-                select = " * ";
-                filter = " col_flag is null ";
-                downloadTables.add(new SyncModel(EnumBlockContract.EnumBlockTable.TABLE_NAME, select, filter));
-
+                boolean sync_flag = getIntent().getBooleanExtra("sync_flag", false);
+                if (sync_flag) {
+                    select = " * ";
+                    filter = " enabled = '1' ";
+                    downloadTables.add(new SyncModel(UsersContract.UsersTable.TABLE_NAME, select, filter));
+                } else {
+                    select = " * ";
+                    filter = " col_flag is null AND dist_id = '" + MainApp.user.getDIST_ID() + "' ";
+                    downloadTables.add(new SyncModel(EnumBlockContract.EnumBlockTable.TABLE_NAME, select, filter));
+                }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);
                 BeginDownload();

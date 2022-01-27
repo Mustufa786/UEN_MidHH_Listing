@@ -114,7 +114,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_assignment_ind_black_24dp"
-                    android:drawableRight="@drawable/ic_assignment_ind_black_24dp"
                     android:drawablePadding="10dp"
                     android:elevation="@dimen/cardview_compat_inset_shadow"
                     android:hint="Email"
@@ -152,8 +151,7 @@
                     style="@style/textInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/avd_anim"
-                    android:drawableRight="@drawable/avd_anim"
+                    android:drawableEnd="@drawable/ic_lock_black_24dp"
                     android:drawablePadding="10dp"
                     android:elevation="@dimen/cardview_compat_inset_shadow"
                     android:hint="Password"
@@ -166,53 +164,63 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
+                <ImageButton
+                    android:id="@+id/showPassword"
+                    android:layout_width="35dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_margin="5dp"
+                    android:background="@color/grayLight"
+                    android:elevation="2dp"
+                    android:src="@drawable/ic_remove_red_eye_black_24dp" />
+
             </androidx.cardview.widget.CardView>
 
-            <ImageButton
-                android:id="@+id/showPassword"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginTop="5dp"
-                android:background="#00000000"
-                android:elevation="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView2"
-                app:layout_constraintEnd_toEndOf="@+id/cardView2"
-                app:layout_constraintTop_toTopOf="@+id/cardView2" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="44dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2">
+                android:layout_marginTop="56dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/cardView2">
 
-                <ImageButton
+                <Button
                     android:id="@+id/email_sign_in_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_80sdp"
-                    android:layout_marginTop="8dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/circle_green"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/syncData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="@dimen/_90sdp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/blue_circle"
+                    style="@style/button"
+                    android:background="@drawable/capsule"
+                    android:drawableEnd="@drawable/ic_key"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="146dp"
+                    android:text="@string/action_sign_in"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="56dp"
+                    android:layout_height="56dp" />
+
+                <Button
+                    android:id="@+id/syncData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/button"
+                    android:background="@drawable/capsule"
+                    android:backgroundTint="@color/colorPrimaryLightOverlay"
+                    android:drawableEnd="@drawable/ic_download"
+                    android:drawablePadding="8dp"
+
+                    android:fontFamily="sans-serif"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="146dp"
+                    android:text="@string/btnDownload"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
 
             <TextView
@@ -262,7 +270,7 @@
                 android:layout_marginTop="200dp"
                 android:text="Version 2.1"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/grayLight"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

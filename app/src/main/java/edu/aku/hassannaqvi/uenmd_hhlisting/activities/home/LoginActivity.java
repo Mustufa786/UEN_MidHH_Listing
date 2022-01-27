@@ -5,38 +5,27 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -63,23 +52,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import edu.aku.hassannaqvi.uenmd_hhlisting.Contracts.VersionAppContract;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.DatabaseHelper;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Core.MainApp;
 import edu.aku.hassannaqvi.uenmd_hhlisting.Other.TypefaceUtil;
 import edu.aku.hassannaqvi.uenmd_hhlisting.R;
-import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SignupActivity;
 import edu.aku.hassannaqvi.uenmd_hhlisting.activities.ui.SyncActivity;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -131,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initializingCountry();
+        //initializingCountry();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
@@ -158,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             e.printStackTrace();
         }
 
-        // Set up the login form.
+/*        // Set up the login form.
         mEmailView = findViewById(R.id.email);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkAndRequestPermissions()) {
@@ -168,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             populateAutoComplete();
             loadIMEI();
-        }
+        }*/
 
         mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -196,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         db = MainApp.db;
 
-        signup.setOnClickListener(new OnClickListener() {
+       /* signup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -206,7 +192,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 else
                     Toast.makeText(LoginActivity.this, "Please download data first!!", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 //        Testing visibility
         if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
@@ -391,25 +377,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         for (int i = 0; i < permissions.length; i++) {
-            if (permissions[i].equals(Manifest.permission.READ_CONTACTS)) {
+     /*       if (permissions[i].equals(Manifest.permission.READ_CONTACTS)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     populateAutoComplete();
                 }
-            } else if (permissions[i].equals(Manifest.permission.GET_ACCOUNTS)) {
+            } else */
+            if (permissions[i].equals(Manifest.permission.GET_ACCOUNTS)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                 }
             } else if (permissions[i].equals(Manifest.permission.READ_PHONE_STATE)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     doPermissionGrantedStuffs();
                 }
-            } else if (permissions[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+           /*  } else if (permissions[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                 }
-            } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
+           } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     requestLocationUpdate();
-                }
+                }*/
             } else if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
 
@@ -419,7 +406,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    public void requestLocationUpdate() {
+/*    public void requestLocationUpdate() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -436,7 +423,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
                 new MyLocationListener()
         );
-    }
+    }*/
 
     private void doPermissionGrantedStuffs() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -452,7 +439,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         MainApp.IMEI = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
-    private void populateAutoComplete() {
+/*    private void populateAutoComplete() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -464,7 +451,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             getLoaderManager().initLoader(0, null, this);
         }
-    }
+    }*/
 
 
     /**
@@ -574,7 +561,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    @Override
+ /*   @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
@@ -600,12 +587,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cursor.moveToNext();
         }
 
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
-    }
+    }*/
 
     @OnClick(R.id.showPassword)
     void onShowPasswordClick() {
@@ -613,31 +600,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         AnimatedVectorDrawable drawable;
 
         if (mPasswordView.getTransformationMethod() == null) {
-
-            drawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.avd_anim_close);
+            mPasswordView.setTransformationMethod(new PasswordTransformationMethod());
+         /*   drawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.avd_anim_close);
             showPassword.setImageDrawable(drawable);
-            drawable.start();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mPasswordView.setTransformationMethod(new PasswordTransformationMethod());
-                }
-            }, 1000);
+            drawable.start();*/
 
 
         } else {
 
-            drawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.avd_anim);
-            showPassword.setImageDrawable(drawable);
-            drawable.start();
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
+
                     mPasswordView.setTransformationMethod(null);
-                }
-            }, 1000);
+
 
         }
     }
@@ -658,7 +632,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    protected void showCurrentLocation() {
+   /* protected void showCurrentLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -738,7 +712,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
     }
-
+*/
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -782,23 +756,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
-            LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
-                        || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
-                    MainApp.userEmail = mEmail;
-                    MainApp.admin = mEmail.contains("@");
-                    finish();
+            //   LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            //    if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
+                    || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
+                MainApp.userEmail = mEmail;
+                MainApp.admin = mEmail.contains("@");
+                finish();
 
-                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(iLogin);
+                Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(iLogin);
 
-                } else {
-                    mPasswordView.setError(getString(R.string.error_incorrect_password));
-                    mPasswordView.requestFocus();
-                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
-                }
             } else {
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.requestFocus();
+                Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
+            }
+/*            } else {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         LoginActivity.this);
                 alertDialogBuilder
@@ -822,7 +796,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 AlertDialog alert = alertDialogBuilder.create();
                 alert.show();
 
-            }
+            }*/
 
         }
 
@@ -834,6 +808,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+/*
     private class MyLocationListener implements LocationListener {
 
         public void onLocationChanged(Location location) {
@@ -889,6 +864,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
     }
+*/
 
     private void changeLanguage(int countryCode) {
         Log.d(TAG, "changeLanguage: " + countryCode);
@@ -943,14 +919,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    private void initializingCountry() {
+  /*  private void initializingCountry() {
         countryCode = Integer.parseInt(MainApp.sharedPref.getString("lang", "0"));
         if (countryCode == 0) {
             MainApp.editor.putString("lang", "1").apply();
         }
 
         changeLanguage(Integer.parseInt(MainApp.sharedPref.getString("lang", "0")));
-    }
+    }*/
 
 /*    public void TakePhoto(View view) {
 
@@ -964,6 +940,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         takePhotoLauncher.launch(intent);
 
     }*/
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -989,7 +966,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 MainApp.langRTL = true;
                 break;
 
-        /*    case R.id.TJ:
+        */
+/*    case R.id.TJ:
                 MainApp.selectedLanguage = 3;
                 MainApp.langRTL = false;
                 break;
@@ -1001,7 +979,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             default:
                 MainApp.selectedLanguage = 0;
-                MainApp.langRTL = false;*/
+                MainApp.langRTL = false;*//*
+
 
         }
         MainApp.editor.putString("lang", String.valueOf(MainApp.selectedLanguage)).apply();
@@ -1012,6 +991,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         return true;
     }
+*/
 
 }
 

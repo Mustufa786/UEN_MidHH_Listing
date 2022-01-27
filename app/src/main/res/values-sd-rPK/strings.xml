@@ -64,5 +64,6 @@
     <string name="country_prompt">Choose a country</string>
     <string name="txtName"> qwertyuiop asdfghjkl zxcvbnm QWERTYUIOP ASDFGHJKL ZXCVBNM </string>
     <string name="btnDownload">Download</string>
+    <string name="options">options</string>
 
 </resources>
