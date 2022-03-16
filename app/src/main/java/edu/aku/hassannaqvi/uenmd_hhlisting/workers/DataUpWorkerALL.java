@@ -264,7 +264,7 @@ public class DataUpWorkerALL extends Worker {
             //HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
             urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setSSLSocketFactory(buildSslSocketFactory(mContext));
+           // urlConnection.setSSLSocketFactory(buildSslSocketFactory(mContext));
             urlConnection.setReadTimeout(100000 /* milliseconds */);
             urlConnection.setConnectTimeout(150000 /* milliseconds */);
             urlConnection.setRequestMethod("POST");
@@ -275,10 +275,10 @@ public class DataUpWorkerALL extends Worker {
             urlConnection.setUseCaches(false);
             urlConnection.connect();
 
-            Certificate[] certs = urlConnection.getServerCertificates();
+        /*    Certificate[] certs = urlConnection.getServerCertificates();
 
             if (certIsValid(certs, ca)) {
-
+*/
 
                 Log.d(TAG, "downloadURL: " + url);
 
@@ -343,14 +343,14 @@ public class DataUpWorkerALL extends Worker {
                             .build();
                     return Result.failure(data);
                 }
-            } else {
+         /*   } else {
                 data = new Data.Builder()
                         .putString("error", "Invalid Certificate")
                         .putInt("position", this.position)
                         .build();
 
                 return Result.failure(data);
-            }
+            }*/
         } catch (java.net.SocketTimeoutException e) {
             Log.d(TAG, "doWork (Timeout): " + e.getMessage());
             displayNotification(nTitle, "Timeout Error: " + e.getMessage());
