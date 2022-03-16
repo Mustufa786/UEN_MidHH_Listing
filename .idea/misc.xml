@@ -11,8 +11,10 @@
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_lock_black_24dp.xml" value="0.5875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/ic_remove_red_eye_black_24dp.xml" value="0.5875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/drawable/options_separator.xml" value="0.5875" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_change_password.xml" value="0.56328125" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_family_listing.xml" value="0.56328125" />
-        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_login.xml" value="0.54125" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_login.xml" value="0.35758513931888547" />
+        <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_loginold.xml" value="0.18046875" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_main.xml" value="0.47619047619047616" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_setup.xml" value="0.54125" />
         <entry key="..\:/users/hassan.naqvi/StudioProjects/UEN_MidHH_Listing/app/src/main/res/layout/activity_signup.xml" value="0.3171875" />
@@ -68,7 +70,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

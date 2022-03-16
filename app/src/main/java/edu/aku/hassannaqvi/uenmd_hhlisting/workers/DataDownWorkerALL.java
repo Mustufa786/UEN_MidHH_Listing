@@ -175,7 +175,7 @@ public class DataDownWorkerALL extends Worker {
             //HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
             urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setSSLSocketFactory(buildSslSocketFactory(mContext));
+           // urlConnection.setSSLSocketFactory(buildSslSocketFactory(mContext));
             urlConnection.setReadTimeout(5000 /* milliseconds */);
             urlConnection.setConnectTimeout(5000 /* milliseconds */);
             urlConnection.setRequestMethod("POST");
@@ -187,11 +187,11 @@ public class DataDownWorkerALL extends Worker {
             urlConnection.setUseCaches(false);
             urlConnection.connect();
 
-            Certificate[] certs = urlConnection.getServerCertificates();
+      /*      Certificate[] certs = urlConnection.getServerCertificates();
 
             if (certIsValid(certs, ca)) {
 
-
+*/
                 DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
 
                 JSONObject jsonTable = new JSONObject();
@@ -250,14 +250,14 @@ public class DataDownWorkerALL extends Worker {
                             .build();
                     return Result.failure(data);
                 }
-            } else {
+           /* } else {
                 data = new Data.Builder()
                         .putString("error", "Invalid Certificate")
                         .putInt("position", this.position)
                         .build();
 
                 return Result.failure(data);
-            }
+            }*/
         } catch (java.net.SocketTimeoutException e) {
             data = new Data.Builder()
                     .putString("error", String.valueOf(e.getMessage()))

@@ -97,9 +97,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.txtinstalldate)
     TextView txtinstalldate;
     @BindView(R.id.email_sign_in_button)
-    ImageButton mEmailSignInButton;
+    Button mEmailSignInButton;
     @BindView(R.id.syncData)
-    ImageButton syncData;
+    Button syncData;
     @BindView(R.id.showPassword)
     ImageButton showPassword;
     @BindView(R.id.signup)
